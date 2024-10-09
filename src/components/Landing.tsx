@@ -4,7 +4,6 @@
 const Landing = () => {
     return (
     <div className="landing">
-    
         <a href="/findest-explorer">
             <div className="portal rotating"></div>
             <div className="title">Ro <span>and </span>Findest</div>

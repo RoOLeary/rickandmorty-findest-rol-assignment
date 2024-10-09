@@ -4,7 +4,7 @@ import Tabs from '../../components/Tabs/Tabs'
 const Explorer = () => {
   
   return (
-    <main className={styles.container}>
+    <main>
       <Tabs />
     </main>
   )

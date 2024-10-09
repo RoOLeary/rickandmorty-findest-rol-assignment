@@ -1,10 +1,48 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-import React from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { debounce } from 'lodash';
 import { useGetLocationsListQuery } from './../services/rickandmorty';
 import styles from './index.module.css';
 
 const Locations = () => {
-  const { data, error, isLoading } = useGetLocationsListQuery();
+  const [page, setPage] = useState(1);
+  const [name, setName] = useState('');
+  const [type, setType] = useState('');
+  const [dimension, setDimension] = useState('');
+
+  const [debouncedSearch, setDebouncedSearch] = useState(name);
+
+  // Debounce the search input
+  const debouncedSearchChange = useCallback(
+    debounce((value:string) => {
+      setDebouncedSearch(value);
+    }, 300),
+    []
+  );
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+    debouncedSearchChange(e.target.value);
+  };
+
+  // Fetch the locations based on search, filters, and page
+  const { data, error, isLoading } = useGetLocationsListQuery({
+    page,
+    name: debouncedSearch,
+    type,
+    dimension,
+  });
+
+  const handleNextPage = () => {
+    if (data?.info.next) {
+      setPage((prevPage) => prevPage + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (data?.info.prev && page > 1) {
+      setPage((prevPage) => prevPage - 1);
+    }
+  };
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -12,32 +50,69 @@ const Locations = () => {
 
   if (error) {
     return (
-      <main className={styles.container}>
+      <main>
         <p className={styles.error}>{JSON.stringify(error)}</p>
       </main>
     );
   }
 
-  console.log('data', data?.results);
-
-  const whereGotClicked = (location: any) => {
-    console.log(`Character with name ${location.name} and id: ${location.id} was clicked`);
-  };
-
   return (
-    <main className={styles.container}>
-      <section className={styles.taskList}>
-    
-        {data?.results.map((location: any) => (
-          <div key={location.id} onClick={() => whereGotClicked(location)}>
-            <h3>{location.name}</h3>
-            <p>Dimension: {location.dimension}</p>
-          </div>
-        ))}
+    <div className={'location'}>
+      <div className={'locationFilters'}>
+        {/* Search Input */}
+        <input
+          type="text"
+          className={'searchInput'}
+          placeholder="Search Locations by Name"
+          value={name}
+          onChange={handleSearchChange}
+        />
 
-        <p>We'll splooge out results here shortly.</p>
+        {/* Filters */}
+        <div className={'filters'}>
+          {/* Type Filter */}
+          <select value={type} onChange={(e) => setType(e.target.value)}>
+            <option value="">All Types</option>
+            <option value="Planet">Planet</option>
+            <option value="Cluster">Cluster</option>
+            <option value="Space station">Space Station</option>
+            {/* Add more type options based on what the API supports */}
+          </select>
+
+          {/* Dimension Filter */}
+          <select value={dimension} onChange={(e) => setDimension(e.target.value)}>
+            <option value="">All Dimensions</option>
+            <option value="Dimension C-137">Dimension C-137</option>
+            <option value="Post-Apocalyptic Dimension">Post-Apocalyptic Dimension</option>
+            {/* Add more dimension options based on what the API supports */}
+          </select>
+        </div>
+      </div>
+
+      {/* Locations List */}
+      <section className={'locationList'}>
+        <div className={'locationListContainer'}>
+          {data?.results.map((location:any) => (
+            <div key={location.id} className={'locationCard'}>
+              <h3>{location.name}</h3>
+              <p><strong>Type:</strong> {location.type}</p>
+              <p><strong>Dimension:</strong> {location.dimension}</p>
+            </div>
+          ))}
+        </div>
       </section>
-    </main>
+
+      {/* Pagination Controls */}
+      <div className={styles.pagination}>
+        <button onClick={handlePreviousPage} disabled={!data?.info.prev || page === 1}>
+          Previous
+        </button>
+        <span>Page {page}</span>
+        <button onClick={handleNextPage} disabled={!data?.info.next}>
+          Next
+        </button>
+      </div>
+    </div>
   );
 };
 

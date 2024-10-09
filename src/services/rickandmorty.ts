@@ -11,61 +11,107 @@ export const rickAndMortyApi = createApi({
     fetchFn: async (...args) => ky(...args),
   }),
   endpoints: (builder) => ({
-    // Read all tasks
-    getCharacterList: builder.query<CharacterListResponse, void>({
-      query: ({ page = 1, name = '' } = {}) => {
+    // Query for fetching a list of characters with pagination and search functionality
+    getCharacterList: builder.query<CharacterListResponse, { page?: number, name?: string, species?: string, gender?: string, status?: string }>({
+      query: ({ page = 1, name = '', species = '', gender = '', status = '' } = {}) => {
         const params = new URLSearchParams();
         params.append('page', page.toString());
-        if (name) params.append('name', name);  // Search by name if provided
+        if (name) params.append('name', name);
+        if (species) params.append('species', species);
+        if (gender) params.append('gender', gender);
+        if (status) params.append('status', status);
         return `character/?${params.toString()}`;
       },
     }),
 
-    getLocationsList: builder.query<LocationsListResponse, void>({
-      query: () => '/location',
-      providesTags: (result = [], error, arg) =>
-        result ? result.results.map(({ id }) => ({ type: 'Task', id })) : ['Task'],
+    // Query for fetching an individual character by ID
+    getCharacterById: builder.query<Character, string>({
+      query: (id) => `/character/${id}`,
     }),
 
+    // Query for fetching unique species from characters
+    getUniqueSpecies: builder.query<string[], void>({
+      async queryFn() {
+        const speciesSet = new Set<string>();
+        let page = 1;
+        let hasNextPage = true;
+
+        while (hasNextPage) {
+          const response = await ky.get(`https://rickandmortyapi.com/api/character/?page=${page}`).json();
+          response.results.forEach((character: any) => {
+            if (character.species) {
+              speciesSet.add(character.species);
+            }
+          });
+          hasNextPage = !!response.info.next;
+          page++;
+        }
+
+        return { data: Array.from(speciesSet) };
+      }
+    }),
+
+    // Query for fetching unique origins from characters
+    getUniqueOrigins: builder.query<string[], void>({
+      async queryFn() {
+        const originSet = new Set<string>();
+        let page = 1;
+        let hasNextPage = true;
+
+        while (hasNextPage) {
+          const response = await ky.get(`https://rickandmortyapi.com/api/character/?page=${page}`).json();
+          response.results.forEach((character: any) => {
+            if (character.origin?.name) {
+              originSet.add(character.origin.name);
+            }
+          });
+          hasNextPage = !!response.info.next;
+          page++;
+        }
+
+        return { data: Array.from(originSet) };
+      }
+    }),
+
+    // Query for fetching unique locations from characters
+    getUniqueLocations: builder.query<string[], void>({
+      async queryFn() {
+        const locationSet = new Set<string>();
+        let page = 1;
+        let hasNextPage = true;
+
+        while (hasNextPage) {
+          const response = await ky.get(`https://rickandmortyapi.com/api/character/?page=${page}`).json();
+          response.results.forEach((character: any) => {
+            if (character.location?.name) {
+              locationSet.add(character.location.name);
+            }
+          });
+          hasNextPage = !!response.info.next;
+          page++;
+        }
+
+        return { data: Array.from(locationSet) };
+      }
+    }),
+
+    // Query for fetching locations list
+    getLocationsList: builder.query<LocationListResponse, { page?: number, name?: string, type?: string, dimension?: string }>({
+      query: ({ page = 1, name = '', type = '', dimension = '' } = {}) => {
+        const params = new URLSearchParams();
+        params.append('page', page.toString());
+        if (name) params.append('name', name);
+        if (type) params.append('type', type);
+        if (dimension) params.append('dimension', dimension);
+        return `location/?${params.toString()}`;
+      },
+    }),
+
+    // Query for fetching episodes list
     getEpisodeList: builder.query<EpisodeListResponse, void>({
       query: () => '/episode',
       providesTags: (result = [], error, arg) =>
-        result ? result.results.map(({ id }) => ({ type: 'Task', id })) : ['Task'],
-    }),
-
-    // Read a single task by ID
-    getTaskById: builder.query<Task, string>({
-      query: (id) => `/tasks/${id}`,
-      providesTags: (result, error, id) => [{ type: 'Task', id }],
-    }),
-
-    // Create a new task
-    addTask: builder.mutation<Task, Partial<Task>>({
-      query: (newTask) => ({
-        url: '/tasks',
-        method: 'POST',
-        body: newTask,
-      }),
-      invalidatesTags: ['Task'], // Invalidate cache to refetch the task list
-    }),
-
-    // Update an existing task by ID
-    updateTask: builder.mutation<Task, Partial<Task>>({
-      query: ({ id, ...updatedTask }) => ({
-        url: `/tasks/${id}`,
-        method: 'PUT',
-        body: updatedTask,
-      }),
-      invalidatesTags: (result, error, { id }) => [{ type: 'Task', id }],
-    }),
-
-    // Delete a task by ID
-    deleteTask: builder.mutation<{ success: boolean; id: string }, string>({
-      query: (id) => ({
-        url: `/tasks/${id}`,
-        method: 'DELETE',
-      }),
-      invalidatesTags: (result, error, id) => [{ type: 'Task', id }],
+        result ? result.results.map(({ id }) => ({ type: 'Episode', id })) : ['Episode'],
     }),
   }),
 })
@@ -73,10 +119,10 @@ export const rickAndMortyApi = createApi({
 // Export the hooks for the API endpoints
 export const {
   useGetCharacterListQuery,
+  useGetCharacterByIdQuery,
+  useGetUniqueSpeciesQuery,
+  useGetUniqueOriginsQuery,
+  useGetUniqueLocationsQuery,
   useGetLocationsListQuery,
-  useGetTaskByIdQuery,
   useGetEpisodeListQuery,
-  useAddTaskMutation,
-  useUpdateTaskMutation,
-  useDeleteTaskMutation,
-} = rickAndMortyApi
+} = rickAndMortyApi;

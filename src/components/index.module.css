@@ -1,62 +1,74 @@
-.container {
-    background-color: #282c34;
-    min-height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white;
-  }
-  
-  .error {
-    font-size: 30px;
-  }
-  
-  .header {
-    position: fixed;
-    top: 20px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  
-    & h1 {
-      font-size: 50px;
-    }
-  }
-  
-  .taskList {
-    display: flex;
-    flex-direction:column; 
-    /* flex-wrap: wrap; */
-  }
-  
-  .button {
-    flex: 1 0 calc(33.3333% - 10px);
-    color: white;
-    margin: 5px;
-    margin-top: 10px;
-    font-size: 24px;
-    padding: 14px 20px;
-    border: 1px solid #fff;
-    border-radius: 8px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    transition: background-color 0.5s;
-  
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.5);
-    }
-  }
-  
-  .link {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    font-size: 32px;
-    color: #61dafb;
-  }
-  
+/* .character {
+  padding: 2rem;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  margin: auto;
+  max-width: 1200px;
+}
+
+.characterFilters {
+  margin-bottom: 1rem;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+select {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  width: 20%;
+}
+
+.characterList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.characterListContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+} */

@@ -4,6 +4,11 @@
 
 
 @import './characterList.scss';
+@import './episodeList.scss';
+@import './locationList.scss';
+@import './modal.scss';
+
+
 
 
 /* body {
@@ -19,7 +24,8 @@ code {
 
 body {
   background-color: black;
-  font-size: 0.9vw;
+  
+  p{font-size: 14px;}
 }
 
 .container {
@@ -52,18 +58,26 @@ body {
   z-index: 48;
 }
 
-/* ROTATION CSS */
-
 @-webkit-keyframes rotating /* Safari and Chrome */ {
   0% {
     -webkit-transform: rotate(0deg) scale(1);
     -o-transform: rotate(0deg) scale(1);
     transform: rotate(0deg) scale(1);
   }
+  25% {
+    -webkit-transform: rotate(90deg) scale(1.1);
+    -o-transform: rotate(90deg) scale(1.1);
+    transform: rotate(90deg) scale(1.1);
+  }
   50% {
-    -webkit-transform: rotate(180deg) scale(1.1);
-    -o-transform: rotate(180deg) scale(1.1);
-    transform: rotate(180deg) scale(1.1);
+    -webkit-transform: rotate(180deg) scale(1);
+    -o-transform: rotate(180deg) scale(1);
+    transform: rotate(180deg) scale(1);
+  }
+  75% {
+    -webkit-transform: rotate(270deg) scale(1.1);
+    -o-transform: rotate(270deg) scale(1.1);
+    transform: rotate(270deg) scale(1.1);
   }
   100% {
     -webkit-transform: rotate(360deg) scale(1);
@@ -80,12 +94,26 @@ body {
     -o-transform: rotate(0deg) scale(1);
     transform: rotate(0deg) scale(1);
   }
+  25% {
+    -ms-transform: rotate(90deg) scale(1.1);
+    -moz-transform: rotate(90deg) scale(1.1);
+    -webkit-transform: rotate(90deg) scale(1.1);
+    -o-transform: rotate(90deg) scale(1.1);
+    transform: rotate(90deg) scale(1.1);
+  }
   50% {
-    -ms-transform: rotate(180deg) scale(1.1);
-    -moz-transform: rotate(180deg) scale(1.1);
-    -webkit-transform: rotate(180deg) scale(1.1);
-    -o-transform: rotate(180deg) scale(1.1);
-    transform: rotate(180deg) scale(1.1);
+    -ms-transform: rotate(180deg) scale(1);
+    -moz-transform: rotate(180deg) scale(1);
+    -webkit-transform: rotate(180deg) scale(1);
+    -o-transform: rotate(180deg) scale(1);
+    transform: rotate(180deg) scale(1);
+  }
+  75% {
+    -ms-transform: rotate(270deg) scale(1.1);
+    -moz-transform: rotate(270deg) scale(1.1);
+    -webkit-transform: rotate(270deg) scale(1.1);
+    -o-transform: rotate(270deg) scale(1.1);
+    transform: rotate(270deg) scale(1.1);
   }
   100% {
     -ms-transform: rotate(360deg) scale(1);
@@ -103,6 +131,7 @@ body {
   -o-animation: rotating 10s linear infinite;
   animation: rotating 10s linear infinite;
 }
+
 
 
 /* PORTAL */
@@ -218,16 +247,63 @@ body {
 
 // SET UP
 
-.tabContainer{
-  padding: 3.5em;
+.tabContainer {
+  padding: 3.5em 1em 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   gap: 1em;
 
   > button {
     font-size: x-large;
-    background: blue;
-    padding: 5px 10px;
-    border-radius: 15px;
+    background: #08BAE3;
+    padding: 10px 5px;
+    border-radius: 5px;
+    width: 100%;
+    font-family: "Get Schwifty";
+    transition: all .15s ease-in-out;
+
+    &:hover {
+      color: #66BA4F;
+      background-color: white;
+    }
+
+    &.active {
+      color: white;
+      background-color: #66BA4F;
+    }
   }
+}
+
+
+
+.searchFilters{
+  padding: 2em 1em 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+
+  form {
+    display: flex;
+    width: 100%;
+    gap: .5em;
+    margin-bottom: 2em; 
+    button{
+      background: blue;
+      padding: 5px 25px;
+    }
+  }
+}
+
+.content{
+    width: 100%;
+    margin: 0 auto; /* Center align content for all screen sizes */
+  
+    @media (min-width: 768px) {
+        width: 960px;
+    }  
+}
+
+
+.pagination > button {
+  color: white; 
 }
