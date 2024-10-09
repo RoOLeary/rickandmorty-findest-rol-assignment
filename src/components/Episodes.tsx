@@ -137,7 +137,7 @@ const Episodes = () => {
               <p><strong>Air Date: </strong>{episode.air_date}</p>
               <p><strong>Episode: </strong>{episode.episode}</p>
               <p><strong>Characters: </strong></p>
-              <ul className="flex flex-wrap gap-2 py-4">
+              <ul className="flex flex-wrap gap-2 py-4 max-sm:justify-between">
                 <Suspense fallback={<LoadingFallback />}>
                   {characterDetails[episode.id] ? (
                     characterDetails[episode.id].map((character, idx) => (
