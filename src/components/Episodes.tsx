@@ -7,7 +7,7 @@ const Episodes = () => {
   const [air_date, setAirDate] = useState('');
   const [episode, setEpisode] = useState('');
   const [characters, setCharacters] = useState('');
-  
+
   const { data, error, isLoading } = useGetEpisodeListQuery({
     page,
     air_date,
@@ -84,8 +84,52 @@ const Episodes = () => {
   };
 
   return (
-    <section className={"episodeList"}>
-      <div className="episodeListContainer">
+    <><section className={"episodeList"}>
+      <div className={'episodeFilters'}>
+        {/* Search Input */}
+        <input
+          type="text"
+          className={'searchInput'}
+          placeholder="Search Episodes" />
+
+        {/* Filters */}
+        <div className={'filters'}>
+          {/* Type Filter */}
+          <select>
+            <option value="">Seasons</option>
+            <option value="se1">Season 1</option>
+            <option value="se2">Season 2</option>
+            <option value="se3">Season 3</option>
+            <option value="se4">Season 4</option>
+            <option value="se5">Season 5</option>
+            <option value="se6">Season 6</option>            {/* Add more type options based on what the API supports */}
+          </select>
+
+          {/* Dimension Filter */}
+          <select>
+            <option value="">Episode</option>
+            <option value="ep1">Episode 1</option>
+            <option value="ep2">Episode 2</option>
+            <option value="ep3">Episode 3</option>
+            <option value="ep4">Episode 4</option>
+            <option value="ep5">Episode 5</option>
+            <option value="ep6">Episode 6</option>
+            <option value="ep7">Episode 7</option>
+            <option value="ep8">Episode 8</option>
+            <option value="ep9">Episode 9</option>
+            <option value="ep10">Episode 10</option>
+            <option value="ep11">Episode 11</option>
+
+        </select>
+
+        <select>
+          <option value="">Characters</option>
+          <option value="Dimension C-137">Dimension C-137</option>
+          <option value="Post-Apocalyptic Dimension">Post-Apocalyptic Dimension</option>
+          {/* Add more dimension options based on what the API supports */}
+        </select>
+      </div>
+    </div><div className="episodeListContainer">
         {data?.results.map((episode: any) => (
           <div key={episode.id} onClick={() => whoGotClicked(episode)} className="episodeListItem">
             <div className="episodeListItemDetail">
@@ -94,23 +138,22 @@ const Episodes = () => {
               <p><strong>Episode: </strong>{episode.episode}</p>
               <p><strong>Characters: </strong></p>
               <ul className="flex flex-wrap gap-2 py-4">
-              <Suspense fallback={<LoadingFallback />}>
-                {characterDetails[episode.id] ? (
-                  characterDetails[episode.id].map((character, idx) => (
-                    <li key={idx}>
-                      <a href={character.url}>
-                        <img
-                          src={character.image}
-                          alt={character.name}
-                          style={{ width: '50px', height: '50px', marginRight: '10px', borderRadius: '25px' }}
-                        />
-                      </a>
-                    </li>
-                  ))
-                ) : (
-                  <LoadingFallback />
-                )}
-              </Suspense>
+                <Suspense fallback={<LoadingFallback />}>
+                  {characterDetails[episode.id] ? (
+                    characterDetails[episode.id].map((character, idx) => (
+                      <li key={idx}>
+                        <a href={character.url}>
+                          <img
+                            src={character.image}
+                            alt={character.name}
+                            style={{ width: '50px', height: '50px', marginRight: '10px', borderRadius: '25px' }} />
+                        </a>
+                      </li>
+                    ))
+                  ) : (
+                    <LoadingFallback />
+                  )}
+                </Suspense>
               </ul>
             </div>
           </div>
@@ -127,6 +170,7 @@ const Episodes = () => {
         </button>
       </div>
     </section>
+    </>
   );
 };
 
