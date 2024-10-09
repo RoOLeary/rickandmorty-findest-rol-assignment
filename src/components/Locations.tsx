@@ -27,13 +27,7 @@ const Locations = () => {
   return (
     <main className={styles.container}>
       <section className={styles.taskList}>
-        <h1>What up? Let's do it! Wubbalubbadubdub</h1>
-
-        <form>
-          <input type="text" name="location" value="" />
-          <button type="submit">Search locations</button>
-        </form>
-
+    
         {data?.results.map((location: any) => (
           <div key={location.id} onClick={() => whereGotClicked(location)}>
             <h3>{location.name}</h3>

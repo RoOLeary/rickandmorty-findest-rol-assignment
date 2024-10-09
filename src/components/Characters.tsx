@@ -26,24 +26,21 @@ const Characters = () => {
 
   return (
     <main className={styles.container}>
-      <section className={styles.taskList}>
-        <h1>What up? Let's do it! Wubbalubbadubdub</h1>
-       
-        <form>
-          <input type="text" name="character" value="" />
-          <button type="submit">Search Characters</button>
-        </form>
-
+      <section className={"characterList"}>
+       <div className="characterListContainer">
         {data?.results.map((character: any) => (
-          <div key={character.id} onClick={() => whoGotClicked(character)}>
-            <h3>{character.name}</h3>
-            <p>Species: {character.species}</p>
-            <p>Status: {character.status}</p>
-            <p>Location: {character.location.name}</p>
+          <div key={character.id} onClick={() => whoGotClicked(character)} className="characterListItem">
             <img src={character.image} alt={character.name} width={100} />
+            <div className="characterListItemDetail">
+                <h3>{character.name}</h3>
+                <p>Species: {character.species}</p>
+                <p>Status: {character.status}</p>
+                <p>Location: {character.location.name}</p>
+            </div>
           </div>
         ))}
 
+        </div>
         <p>We'll splooge out results here shortly.</p>
       </section>
     </main>

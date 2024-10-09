@@ -77,6 +77,7 @@
     "postcss-nesting": "^13.0.0",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.8",
+    "sass-embedded": "^1.79.4",
     "serve": "^14.2.3",
     "tailwindcss": "^3.4.13",
     "typescript": "^5.6.2",

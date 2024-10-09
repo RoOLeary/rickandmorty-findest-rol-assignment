@@ -1,0 +1,233 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@import './characterList.scss';
+
+
+/* body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+} */
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+body {
+  background-color: black;
+  font-size: 0.9vw;
+}
+
+.container {
+  height: 100vh;
+  display: grid;
+}
+
+.title {
+  position: absolute;
+  bottom: 0.8em;
+  width: 100%;
+  text-align: center;
+  font-family: 'Get Schwifty';
+  font-size: 10em;
+  color: #08BAE3;
+  z-index: 50;
+  -webkit-text-stroke: 1px rgba(0,0,0,0.5);
+}
+.title span {
+    font-size: 0.5em;
+  }
+
+.title.middle {
+  -webkit-text-stroke: 0.1em #FFF765;
+  z-index: 49;
+}
+
+.title.bottom {
+  -webkit-text-stroke: 0.4em black;
+  z-index: 48;
+}
+
+/* ROTATION CSS */
+
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+  0% {
+    -webkit-transform: rotate(0deg) scale(1);
+    -o-transform: rotate(0deg) scale(1);
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    -webkit-transform: rotate(180deg) scale(1.1);
+    -o-transform: rotate(180deg) scale(1.1);
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    -webkit-transform: rotate(360deg) scale(1);
+    -o-transform: rotate(360deg) scale(1);
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes rotating {
+  0% {
+    -ms-transform: rotate(0deg) scale(1);
+    -moz-transform: rotate(0deg) scale(1);
+    -webkit-transform: rotate(0deg) scale(1);
+    -o-transform: rotate(0deg) scale(1);
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    -ms-transform: rotate(180deg) scale(1.1);
+    -moz-transform: rotate(180deg) scale(1.1);
+    -webkit-transform: rotate(180deg) scale(1.1);
+    -o-transform: rotate(180deg) scale(1.1);
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    -ms-transform: rotate(360deg) scale(1);
+    -moz-transform: rotate(360deg) scale(1);
+    -webkit-transform: rotate(360deg) scale(1);
+    -o-transform: rotate(360deg) scale(1);
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+.rotating {
+  -webkit-animation: rotating 10s linear infinite;
+  -moz-animation: rotating 10s linear infinite;
+  -ms-animation: rotating 10s linear infinite;
+  -o-animation: rotating 10s linear infinite;
+  animation: rotating 10s linear infinite;
+}
+
+
+/* PORTAL */
+
+.portal {
+  background-color: #66BA4F;  
+  box-shadow: 0px 0px 40px 10px #448C3F;
+  height: 60em;
+  width: 60em;
+  border-radius: 50%;
+  margin: auto;
+  background: 
+    radial-gradient(circle at 77% 80%, #FDFEB4 2.5%, transparent 2.5%),
+    radial-gradient(circle at 75% 83%, #FDFEB4 2%, transparent 2%),
+    radial-gradient(circle at 79% 83%, #FDFEB4 1%, transparent 1%),
+    radial-gradient(circle at 45% 13%, #FFFFD5 1.5%, transparent 1.5%),
+    radial-gradient(circle at 42% 13%, #FFFFD5 2%, transparent 2%),
+    radial-gradient(circle at 38% 14%, #FFFFD5 1.5%, transparent 1.5%),
+    radial-gradient(circle at 20% 24%, #FDFEB4 1%, transparent 1%),
+    radial-gradient(circle at 21% 23%, #FDFEB4 1%, transparent 1%),
+    radial-gradient(circle at 51% 13%, #FDFEB4 1%, transparent 1%),
+    radial-gradient(circle at 81% 33%, #FDFEB4 1%, transparent 1%),
+    radial-gradient(circle at 85% 36%, #FDFEB4 2%, transparent 2%),
+    radial-gradient(circle at 21% 46%, #FDFEB4 1%, transparent 1%),
+    radial-gradient(circle at 20% 51%, #FDFEB4 2%, transparent 2%),
+    radial-gradient(circle at 53% 51%, transparent 64%, #43A93E 64%),
+    radial-gradient(circle at 47% 59%, transparent 64%, #43843E 64%),
+    radial-gradient(circle at 47% 60%, transparent 59%, #1A9042 59%),
+    radial-gradient(circle at 50% 59%, transparent 55%, #1B863C 55%),
+    radial-gradient(circle at 45% 60%, transparent 55%, #399C49 55%),
+    radial-gradient(circle at 47% 60%, transparent 46%, #1A9042 46%),
+    radial-gradient(circle at 46% 55%, transparent 43%, #75B03B 43%),
+    radial-gradient(circle at 36% 55%, transparent 43%, #A9CB48 43%),
+    radial-gradient(circle at 50% 60%, transparent 40%, #66BA4F 40%),
+    radial-gradient(circle at 50% 53%, transparent 40%, #E5E051 37%),
+    radial-gradient(circle at 30% 48%, transparent 40%, #EAF157 37%),
+    radial-gradient(circle at 57% 69%, transparent 40%, #EAF157 40%),
+    radial-gradient(circle at 40% 88%, transparent 40%, #E9E072 37%),
+    radial-gradient(circle at 67% 54%, transparent 40%, #FAEB7B 37%),
+    radial-gradient(circle at 49% 35%, transparent 40%, #FFF8C5 37%),
+    radial-gradient(circle at 79% 59%, transparent 40%, #FFFE9C 37%),
+    radial-gradient(circle at 50% 50%, #FDFEB4 100%, #FDFEB4 100%)
+    ;
+}
+@font-face {
+  font-family: 'Get Schwifty';
+  src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/3089507/get-schwifty.woff') format('woff');
+}
+
+
+.container {
+  background-color: #282c34;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.error {
+  font-size: 30px;
+}
+
+.header {
+  position: fixed;
+  top: 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & h1 {
+    font-size: 50px;
+  }
+}
+
+.taskList {
+  display: flex;
+  flex-direction:column; 
+  /* flex-wrap: wrap; */
+}
+
+.button {
+  flex: 1 0 calc(33.3333% - 10px);
+  color: white;
+  margin: 5px;
+  margin-top: 10px;
+  font-size: 24px;
+  padding: 14px 20px;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.5s;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+.link {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 32px;
+  color: #61dafb;
+}
+
+
+// SET UP
+
+.tabContainer{
+  padding: 3.5em;
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+
+  > button {
+    font-size: x-large;
+    background: blue;
+    padding: 5px 10px;
+    border-radius: 15px;
+  }
+}

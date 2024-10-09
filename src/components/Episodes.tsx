@@ -30,11 +30,6 @@ const Episodes = () => {
       <section className={styles.taskList}>
         <h1>What up? Let's do it! Wubbalubbadubdub</h1>
        
-        <form>
-          <input type="text" name="character" value="" />
-          <button type="submit">Search Episodes</button>
-        </form>
-
         {data?.results.map((episode: any) => (
           <div key={episode.id} onClick={() => whoGotClicked(episode)}>
             <h3>{episode.name}</h3>
