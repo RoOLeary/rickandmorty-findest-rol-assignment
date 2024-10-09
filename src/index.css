@@ -1,11 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+} */
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
 body {
   background-color: black;
   font-size: 0.9vw;
 }
+
 .container {
   height: 100vh;
   display: grid;
 }
+
 .title {
   position: absolute;
   bottom: 0.8em;
@@ -16,9 +33,9 @@ body {
   color: #08BAE3;
   z-index: 50;
   -webkit-text-stroke: 1px rgba(0,0,0,0.5);
-  
+
   @media (max-width: 768px) {
-    bottom: 0;
+    bottom: unset;
   }
 }
 .title span {
@@ -34,6 +51,61 @@ body {
   -webkit-text-stroke: 0.4em black;
   z-index: 48;
 }
+
+/* ROTATION CSS */
+
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+  0% {
+    -webkit-transform: rotate(0deg) scale(1);
+    -o-transform: rotate(0deg) scale(1);
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    -webkit-transform: rotate(180deg) scale(1.1);
+    -o-transform: rotate(180deg) scale(1.1);
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    -webkit-transform: rotate(360deg) scale(1);
+    -o-transform: rotate(360deg) scale(1);
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes rotating {
+  0% {
+    -ms-transform: rotate(0deg) scale(1);
+    -moz-transform: rotate(0deg) scale(1);
+    -webkit-transform: rotate(0deg) scale(1);
+    -o-transform: rotate(0deg) scale(1);
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    -ms-transform: rotate(180deg) scale(1.1);
+    -moz-transform: rotate(180deg) scale(1.1);
+    -webkit-transform: rotate(180deg) scale(1.1);
+    -o-transform: rotate(180deg) scale(1.1);
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    -ms-transform: rotate(360deg) scale(1);
+    -moz-transform: rotate(360deg) scale(1);
+    -webkit-transform: rotate(360deg) scale(1);
+    -o-transform: rotate(360deg) scale(1);
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+.rotating {
+  -webkit-animation: rotating 10s linear infinite;
+  -moz-animation: rotating 10s linear infinite;
+  -ms-animation: rotating 10s linear infinite;
+  -o-animation: rotating 10s linear infinite;
+  animation: rotating 10s linear infinite;
+}
+
+
+/* PORTAL */
 
 .portal {
   background-color: #66BA4F;  

@@ -5,6 +5,7 @@
 
 @import './characterList.scss';
 @import './episodeList.scss';
+@import './landing.scss';
 @import './locationList.scss';
 @import './modal.scss';
 
@@ -84,6 +85,10 @@ body::before {
   color: #08BAE3;
   z-index: 50;
   -webkit-text-stroke: 1px rgba(0,0,0,0.5);
+
+  @media (max-width: 768px) {
+    bottom: unset;
+  }
 }
 .title span {
     font-size: 0.5em;
@@ -365,6 +370,10 @@ body::before {
     align-items: center;
     gap: 1em;
     background: transparent;
+
+    @media (max-width: 768px) {
+      font-size: 34px;
+    }  
   }
 
 }
