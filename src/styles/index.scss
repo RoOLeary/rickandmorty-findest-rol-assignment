@@ -27,8 +27,6 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh; /* Ensure the body takes up the full viewport height */
-  // overflow: hidden; /* Prevent scrollbars from appearing due to the pseudo-element */
-
   p{
     font-size: 14px;
   }
@@ -70,11 +68,6 @@ body::before {
     transform: translate(-50%, -50%) scale(1.5);
   }
 }
-
-
-
-
-
 
 .container {
   height: 100vh;
@@ -349,6 +342,28 @@ body::before {
     @media (min-width: 768px) {
         width: 960px;
     }  
+}
+
+.tab-content-loading {
+  display: flex;
+  justify-content: center;  /* Centers the spinner horizontally */
+  align-items: center;      /* Centers the spinner vertically */
+  height: 80vh;             /* Ensures the container takes the full height of the tab content */
+  min-height: 200px;        /* Optional: Adjust minimum height based on your design */
+
+
+
+  .loadingSpinner{
+    font-family: "Get Schwifty";
+    font-size: 54px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    background: transparent;
+  }
+
 }
 
 
