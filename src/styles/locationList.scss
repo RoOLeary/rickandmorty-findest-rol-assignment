@@ -1,5 +1,7 @@
 .locations{
     
+    
+
     .locationFilters{
         display: flex;
         flex-direction: column;
@@ -37,6 +39,16 @@
         gap: 1.5rem;
         justify-content: center;
         margin-bottom: 2rem;
+
+        .heading{
+            font-size: 32px;
+            color: #08BAE3;
+            border-radius: 5px;
+            width: 100%;
+            font-family: "Get Schwifty";
+            transition: all 0.15s ease-in-out;
+            padding: .5em 1em;
+        }
 
         .locationListContainer{
 

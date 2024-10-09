@@ -142,6 +142,7 @@ const Characters = () => {
 
       {/* Character List */}
       <section className={'characterList'}>
+       
         <div className={'characterListContainer'}>
           {filteredCharacters?.map((character:any) => (
             <CharacterCard key={character.id} character={character} chartoggle={undefined} />

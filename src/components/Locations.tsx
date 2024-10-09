@@ -106,6 +106,7 @@ const Locations = () => {
 
       {/* Locations List */}
       <section className={'locationList'}>
+      
         <div className={'locationListContainer'}>
           {data?.results.map((location:any) => (
             <div key={location.id} className={'locationCard'}>

@@ -133,6 +133,7 @@ const Episodes = () => {
 
         {/* Episode List Section */}
         <div className="episodeListContainer">
+       
           {data?.results.map((episode: any) => (
             <div key={episode.id} className="episodeListItem">
               <div className="episodeListItemDetail">
