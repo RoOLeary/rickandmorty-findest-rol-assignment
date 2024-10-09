@@ -4,29 +4,58 @@ import Locations from '../Locations';
 import Episodes from '../Episodes';
 import Spinner from '../Spinner';
 
+// Check if the ViewTransition API is supported
+const useViewTransition = () => {
+  return typeof document.startViewTransition === 'function';
+};
+
 const Tabs = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(true); 
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [activeTab, setActiveTab] = useState('characters');
+  const supportsViewTransition = useViewTransition();
 
   useEffect(() => {
     const resolveAfterXSeconds = () => {
       return new Promise<void>((resolve) => {
         setTimeout(() => {
-          setIsLoading(false); 
+          setIsLoading(false);
           resolve();
         }, 1500);
       });
     };
 
     resolveAfterXSeconds();
-  }, []); 
+  }, []);
+
+  // Function to handle tab switching with ViewTransitions
+  const switchTab = (newTab: string) => {
+    if (supportsViewTransition) {
+      document.startViewTransition(() => {
+        setActiveTab(newTab);
+      });
+    } else {
+      setActiveTab(newTab); // Fallback for browsers that don't support ViewTransition API
+    }
+  };
 
   return (
     <div className='content'>
       <div className="tabContainer">
-        <button onClick={() => setActiveTab('characters')} className={`text-white ${activeTab === 'characters' && 'active'}`}>Characters</button>
-        <button onClick={() => setActiveTab('locations')} className={`text-white ${activeTab === 'locations' && 'active'}`}>Locations</button>
-        <button onClick={() => setActiveTab('episodes')} className={`text-white ${activeTab === 'episodes' && 'active'}`}>Episodes</button>
+        <button
+          onClick={() => switchTab('characters')}
+          className={`text-white ${activeTab === 'characters' && 'active'}`}>
+          Characters
+        </button>
+        <button
+          onClick={() => switchTab('locations')}
+          className={`text-white ${activeTab === 'locations' && 'active'}`}>
+          Locations
+        </button>
+        <button
+          onClick={() => switchTab('episodes')}
+          className={`text-white ${activeTab === 'episodes' && 'active'}`}>
+          Episodes
+        </button>
       </div>
 
       {isLoading ? (
