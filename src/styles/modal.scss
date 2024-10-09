@@ -1,5 +1,13 @@
-.modal{
-    .modal-overlay {
+.modal {
+    /* Ensure the modal is hidden by default */
+    display: none;
+    
+    /* When the modal is open, show the modal and animate */
+    &.show {
+        display: flex;
+    }
+
+    .modalOverlay {
         position: fixed;
         top: 0;
         left: 0;
@@ -9,9 +17,16 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    /* When the modal is open, apply the fade-in */
+    &.show .modalOverlay {
+        opacity: 1;
     }
     
-    .modal-content {
+    .modalContent {
         background-color: white;
         padding: 20px;
         border-radius: 8px;
@@ -19,14 +34,37 @@
         width: 100%;
         display: flex;
         flex-direction: column;
+        transform: scale(0.9); /* Start scaled down */
+        transition: transform 0.3s ease, opacity 0.3s ease;
     }
-    
-    .modal-close {
-        background: transparent;
-        border: none;
-        font-size: 16px;
-        cursor: pointer;
-        float: right;
+
+    /* Modal content animation when modal is open */
+    &.show .modalContent {
+        transform: scale(1); /* Scale to normal size */
+    }
+
+    .modalClose {
+        background: black;         
+        border: none;                
+        font-size: 16px;            
+        cursor: pointer;             
+        display: flex;               
+        justify-content: center;     
+        align-items: center;         
+        color: white;              
+        width: 30px;                 
+        height: 30px;                
+        position: absolute;          
+        top: 5px;                   
+        right: 10px;                
+        border-radius: 50%;          
+        text-align: center;  
+        
+        &:hover{
+            color: #000; 
+            background: #fff;
+            border: 1px solid #000; 
+        }
     }
     
 }

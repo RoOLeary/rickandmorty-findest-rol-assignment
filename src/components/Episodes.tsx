@@ -1,14 +1,33 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { useGetEpisodeListQuery } from './../services/rickandmorty';
 import styles from './index.module.css';
 
 const Episodes = () => {
-  const { data, error, isLoading } = useGetEpisodeListQuery();
+  const [page, setPage] = useState(1);
+  const [air_date, setAirDate] = useState('');
+  const [episode, setEpisode] = useState('');
+  const [characters, setCharacters] = useState('');
+  
+  const { data, error, isLoading } = useGetEpisodeListQuery({
+    page,
+    air_date,
+    episode,
+    characters
+  });
+
+  
+
+  
+
+  // Fetch character list based on search, filters, and page
+
+
+
   const [characterDetails, setCharacterDetails] = useState<{ [key: number]: {
     url: string | undefined; name: string, image: string 
 }[] }>({});
 
+  const LoadingFallback = () => <li>Awwww Jeez...th..th..this is gonna take a second.</li>;
   // Function to fetch character names from the character URLs
   const fetchCharacterDetails = async (episodeId: number, characterUrls: string[]) => {
     const characterIds = characterUrls.map((url) => url.split('/').pop()); // Extract character IDs
@@ -28,6 +47,17 @@ const Episodes = () => {
     setCharacterDetails((prev) => ({ ...prev, [episodeId]: characterDetailsArray }));
   };
   
+  const handleNextPage = () => {
+    if (data?.info.next) {
+      setPage((prevPage) => prevPage + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (data?.info.prev && page > 1) {
+      setPage((prevPage) => prevPage - 1);
+    }
+  };
 
   useEffect(() => {
     if (data) {
@@ -64,21 +94,38 @@ const Episodes = () => {
               <p><strong>Episode: </strong>{episode.episode}</p>
               <p><strong>Characters: </strong></p>
               <ul className="flex flex-wrap gap-2 py-4">
-              {characterDetails[episode.id] ? (
+              <Suspense fallback={<LoadingFallback />}>
+                {characterDetails[episode.id] ? (
                   characterDetails[episode.id].map((character, idx) => (
                     <li key={idx}>
-                      <a href={character.url}><img src={character.image} alt={character.name} style={{ width: '50px', height: '50px', marginRight: '10px', borderRadius: '25px' }} /></a>
+                      <a href={character.url}>
+                        <img
+                          src={character.image}
+                          alt={character.name}
+                          style={{ width: '50px', height: '50px', marginRight: '10px', borderRadius: '25px' }}
+                        />
+                      </a>
                     </li>
                   ))
                 ) : (
-                  <li>Loading characters...</li>
+                  <LoadingFallback />
                 )}
+              </Suspense>
               </ul>
             </div>
           </div>
         ))}
       </div>
-      <p>Pagination Will go here.</p>
+      {/* Pagination Controls */}
+      <div className={'pagination'}>
+        <button onClick={handlePreviousPage} disabled={!data?.info.prev || page === 1}>
+          Previous
+        </button>
+        <span>Page {page}</span>
+        <button onClick={handleNextPage} disabled={!data?.info.next}>
+          Next
+        </button>
+      </div>
     </section>
   );
 };

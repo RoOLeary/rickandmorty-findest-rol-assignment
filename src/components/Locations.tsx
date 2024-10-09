@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+// @ts-expect-error
 import { debounce } from 'lodash';
 import { useGetLocationsListQuery } from './../services/rickandmorty';
 import styles from './index.module.css';
@@ -48,21 +49,35 @@ const Locations = () => {
     return <p>Loading...</p>;
   }
 
+  // Handle errors gracefully
   if (error) {
     return (
       <main>
-        <p className={styles.error}>{JSON.stringify(error)}</p>
+        <p className={'error'}>
+            Error: We're out of Portal Gun Fluid. Unable to fetch data.
+        </p>
+      </main>
+    );
+  }
+
+  // Graceful handling of no results found
+  if (data?.results.length === 0) {
+    return (
+      <main>
+        <p className={
+            'error'}>No locations found for the current search criteria.</p>
       </main>
     );
   }
 
   return (
-    <div className={'location'}>
+    <div className={'locations'}>
       <div className={'locationFilters'}>
         {/* Search Input */}
         <input
           type="text"
-          className={'searchInput'}
+          className={
+            'searchInput'}
           placeholder="Search Locations by Name"
           value={name}
           onChange={handleSearchChange}
@@ -94,7 +109,7 @@ const Locations = () => {
         <div className={'locationListContainer'}>
           {data?.results.map((location:any) => (
             <div key={location.id} className={'locationCard'}>
-              <h3>{location.name}</h3>
+              <h3 className={'locationListItemTitle'}>{location.name}</h3>
               <p><strong>Type:</strong> {location.type}</p>
               <p><strong>Dimension:</strong> {location.dimension}</p>
             </div>
@@ -103,7 +118,8 @@ const Locations = () => {
       </section>
 
       {/* Pagination Controls */}
-      <div className={styles.pagination}>
+      <div className={
+        'pagination'}>
         <button onClick={handlePreviousPage} disabled={!data?.info.prev || page === 1}>
           Previous
         </button>

@@ -108,10 +108,15 @@ export const rickAndMortyApi = createApi({
     }),
 
     // Query for fetching episodes list
-    getEpisodeList: builder.query<EpisodeListResponse, void>({
-      query: () => '/episode',
-      providesTags: (result = [], error, arg) =>
-        result ? result.results.map(({ id }) => ({ type: 'Episode', id })) : ['Episode'],
+    getEpisodeList: builder.query<EpisodeListResponse, { page?: number, name?: string, air_date?: string, episode?: string, characters?: any }>({
+      query: ({ page = 1, name = '', air_date = '', episode = '', characters = '' } = {}) => {
+        const params = new URLSearchParams();
+        params.append('page', page.toString());
+        if (name) params.append('name', name);
+        if (air_date) params.append('air_date', air_date);
+        if (episode) params.append('episode', episode);
+        return `episode/?${params.toString()}`;
+      },
     }),
   }),
 })

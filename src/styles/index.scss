@@ -23,10 +23,54 @@ code {
 }
 
 body {
-  background-color: black;
-  
-  p{font-size: 14px;}
+  position: relative;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; /* Ensure the body takes up the full viewport height */
+  // overflow: hidden; /* Prevent scrollbars from appearing due to the pseudo-element */
 }
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 1px;
+  height: 1px;
+  background-color: #fff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 
+    -42vw -4vh 0px 0px #fff, 25vw -41vh 0px 0px #fff, 
+    -20vw 49vh 0px 1px #fff, 5vw 40vh 1px 1px #fff, 
+    29vw 19vh 1px 0px #fff, -44vw -13vh 0px 0px #fff, 
+    46vw 41vh 0px 1px #fff, -3vw -45vh 0px 1px #fff, 
+    47vw 35vh 1px 0px #fff, 12vw -8vh 1px 0px #fff, 
+    -34vw 48vh 1px 1px #fff, 32vw 26vh 1px 1px #fff,
+    /* Additional stars for more density */
+    -12vw 25vh 1px 0px #fff, 15vw -35vh 0px 0px #fff,
+    37vw 22vh 1px 1px #fff, -16vw -27vh 1px 0px #fff,
+    44vw -12vh 1px 0px #fff, -29vw 36vh 1px 0px #fff,
+    -24vw -18vh 1px 1px #fff, 28vw -19vh 1px 0px #fff,
+    -18vw -25vh 0px 0px #fff, 40vw -5vh 1px 0px #fff,
+    50vw -20vh 1px 1px #fff;
+  animation: zoom 16s alternate infinite;
+  z-index: -1; /* Ensure it stays behind other content */
+}
+
+@keyframes zoom {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+}
+
+
+
+
+
 
 .container {
   height: 100vh;
