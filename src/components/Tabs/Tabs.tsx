@@ -3,6 +3,7 @@ import Characters from '../Characters';
 import Locations from '../Locations';
 import Episodes from '../Episodes';
 import Spinner from '../Spinner';
+import { useNavigate } from 'react-router-dom';
 
 // Check if the ViewTransition API is supported
 const useViewTransition = () => {
@@ -13,6 +14,11 @@ const Tabs = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [activeTab, setActiveTab] = useState('characters');
   const supportsViewTransition = useViewTransition();
+  const navigate = useNavigate();
+
+  const handleReload = () => {
+    navigate(0); // This mimics a full page reload
+  };
 
   useEffect(() => {
     const resolveAfterXSeconds = () => {
@@ -55,6 +61,11 @@ const Tabs = () => {
           onClick={() => switchTab('episodes')}
           className={`text-white ${activeTab === 'episodes' && 'active'}`}>
           Episodes
+        </button>
+        <button
+          onClick={handleReload}
+          className={`text-white max-sm:hidden`}>
+          Reset
         </button>
       </div>
 
