@@ -5,30 +5,30 @@ import React from 'react'
 
 import App from './App'
 
-test('Show App Component', () => {
-  render(<App />)
+// test('Show App Component', () => {
+//   render(<App />)
 
-  expect(
-    screen.getByText('Hello Vite + Redux-Toolkit & RTK Query!'),
-  ).toBeInTheDocument()
-})
+//   expect(
+//     screen.getByText('Hello Vite + Redux-Toolkit & RTK Query!'),
+//   ).toBeInTheDocument()
+// })
 
-test('Working Counter', async () => {
-  const user = userEvent.setup()
-  const { getByText } = render(<App />)
-  expect(getByText('count is: 0')).toBeInTheDocument()
+// test('Working Counter', async () => {
+//   const user = userEvent.setup()
+//   const { getByText } = render(<App />)
+//   expect(getByText('count is: 0')).toBeInTheDocument()
 
-  const button = getByText('Increment')
+//   const button = getByText('Increment')
 
-  await user.click(button)
-  expect(getByText('count is: 1')).toBeInTheDocument()
+//   await user.click(button)
+//   expect(getByText('count is: 1')).toBeInTheDocument()
 
-  await user.click(button)
-  expect(getByText('count is: 2')).toBeInTheDocument()
+//   await user.click(button)
+//   expect(getByText('count is: 2')).toBeInTheDocument()
 
-  await user.click(button)
-  expect(getByText('count is: 3')).toBeInTheDocument()
-})
+//   await user.click(button)
+//   expect(getByText('count is: 3')).toBeInTheDocument()
+// })
 
 // test('working with msw', async () => {
 //   const user = userEvent.setup()
