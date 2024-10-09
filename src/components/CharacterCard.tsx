@@ -19,13 +19,24 @@ interface CharacterCardProps {
 const CharacterCard = ({ character, chartoggle }:CharacterCardProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+//   const openModal = () => setIsModalOpen(true);
+
+  const openModal = (id: any) => {
+    document.startViewTransition(() => {
+      setIsModalOpen(true);
+    });
+  };
+  const closeModal = () => {
+    document.startViewTransition(() => {
+      setIsModalOpen(false);
+    });
+  };
 
   return (
-    <div onClick={openModal} className={'characterListItem'}>
-        <img src={character.image} alt={character.name} width={100} />
+    <div onClick={() => openModal(character.id)} className={'characterListItem'}>
+        <img src={character.image} alt={character.name} width={100} data-view-transition={`character-image-${character.id}`}  />
         <div className={'characterListItemDetail'}>
+
             <h3 className={'characterListItemTitle'}>{character.name}</h3>
             <p><strong>Species:</strong> {character.species}</p>
             <p><strong>Status:</strong> {character?.status}</p>
@@ -35,7 +46,7 @@ const CharacterCard = ({ character, chartoggle }:CharacterCardProps) => {
 
         {/* Modal component, shown based on state */}
         <Modal show={isModalOpen} onClose={closeModal}>
-            <img src={character.image} alt={character.name} />
+            <img src={character.image} alt={character.name} data-view-transition={`character-image-${character.id}`} />
             <h3 className={'characterListItemTitle'}>{character.name}</h3>
             <p><strong>Species:</strong> {character.species}</p>
             <p><strong>Status:</strong> {character?.status}</p>

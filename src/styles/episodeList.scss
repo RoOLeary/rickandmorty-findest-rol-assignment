@@ -1,11 +1,16 @@
 .episodeList{
 
     .episodeFilters{
-        display: flex; 
+        display: flex;
         flex-direction: column;
         width: 100%;
         padding: 2em 1em 1em;
         gap: 10px;
+    
+        @media (max-width: 768px) {
+            padding: 3.5em;
+            gap: 15px;
+        }
     }
 
     .episodeListContainer{

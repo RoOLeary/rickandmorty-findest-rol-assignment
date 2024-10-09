@@ -80,6 +80,7 @@ const Episodes = () => {
       </main>
     );
   }
+  
 
   return (
     <>
@@ -149,6 +150,7 @@ const Episodes = () => {
                               src={character.image}
                               alt={character.name}
                               style={{ width: '50px', height: '50px', marginRight: '10px', borderRadius: '25px' }}
+                              data-view-transition={`character-image-${character}`}
                             />
                           </div>
                         </li>
@@ -178,7 +180,7 @@ const Episodes = () => {
       {/* Modal Component */}
       {selectedCharacter && (
         <Modal show={isModalOpen} onClose={closeModal}>
-          <img src={selectedCharacter.image} alt={selectedCharacter.name} />
+          <img src={selectedCharacter.image} alt={selectedCharacter.name} data-view-transition={`character-image-${selectedCharacter.id}`}/>
           <h3 className="characterListItemTitle">{selectedCharacter.name}</h3>
         </Modal>
       )}

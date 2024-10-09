@@ -1,10 +1,15 @@
 
 .characterFilters{
-    display: flex; 
+    display: flex;
     flex-direction: column;
     width: 100%;
     padding: 2em 1em 1em;
     gap: 10px;
+
+    @media (max-width: 768px) {
+        padding: 3.5em;
+        gap: 15px;
+    }
 }
 
 .characterList{
@@ -43,24 +48,35 @@
 
 .filters {
     display: flex;
-    gap: 1rem;
-    justify-content: space-between;
-    height: 60px;
-
-    @media screen and (max-width: 660px){
-        flex-direction: column;
-        width: 100%;
-    }
-
-    select {
-        padding: 0.5rem;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-        background-color: #fff;
-        width: 50%;
-    }
-    
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 0px;
   }
+  
+  .filters select {
+    padding: 10px;
+    border-radius: 5px;
+    flex: 1;
+    min-width: 150px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    font-size: 1em;
+    font-size: 16px;
+    color: gray
+  }
+  
+  /* Mobile view: stack dropdowns */
+  @media (max-width: 768px) {
+    .filters {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .filters select {
+      width: 100%;
+    }
+  }
+  
 
 
   .searchInput {
