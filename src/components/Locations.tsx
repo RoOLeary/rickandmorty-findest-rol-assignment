@@ -107,6 +107,7 @@ const Locations = () => {
             data?.results.map((location: any) => (
               <div key={location.id} className={'locationCard'}>
                 <h3 className={'locationListItemTitle'}>{location.name}</h3>
+                <p>{location.url}</p>
                 <p>
                   <strong>Type:</strong> {location.type}
                 </p>

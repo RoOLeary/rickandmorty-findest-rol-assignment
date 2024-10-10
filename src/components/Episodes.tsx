@@ -50,7 +50,7 @@ const Episodes = () => {
 
   const closeModal = () => setIsModalOpen(false);
 
-  const LoadingFallback = () => <li>Awwww Jeez...th..th..this is gonna take a second.</li>;
+  const LoadingFallback = () => <div>Awwww Jeez...th..th..this is gonna take a second.</div>;
 
   // Fetch character details
   const fetchCharacterDetails = async (episodeId: number, characterUrls: string[]) => {
@@ -62,7 +62,10 @@ const Episodes = () => {
         return {
           name: characterData.name || 'Unknown',
           image: characterData.image || '',
-          url: characterData.url || ''
+          url: characterData.url || '',
+          species: characterData.species || 'Unknown',
+          origin: characterData.origin.name || 'C-137',
+          location: characterData.location.name || 'Earth',
         };
       })
     );
@@ -75,6 +78,7 @@ const Episodes = () => {
         fetchCharacterDetails(episode.id, episode.characters);
       });
     }
+   
   }, [data]);
 
   const handleNextPage = () => {
@@ -97,6 +101,7 @@ const Episodes = () => {
   const handleEpisodeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setEpisodeNumber(e.target.value);
   };
+
 
   return (
     <>
@@ -144,7 +149,9 @@ const Episodes = () => {
             <p>Loading...</p>
           ) : error ? (
             <div className={'error'}>
-              <p className="font-black">Error fetching episodes. Please try again later.</p>
+              <h2>Awwww Jeez</h2>
+              <p className='font-black'>N-n-n-no characters found for this...c-c-c uuuhhh jeez....current search criteria.</p>
+              <p className='font-black'>Maybe try another search term? Or we could watch some Interdimensional Cable?</p>
             </div>
           ) : data?.results?.length === 0 ? (
             
@@ -189,7 +196,10 @@ const Episodes = () => {
       {selectedCharacter && (
         <Modal show={isModalOpen} onClose={closeModal}>
           <img src={selectedCharacter.image} alt={selectedCharacter.name} />
-          <h3 className="characterListItemTitle">{selectedCharacter.name}</h3>
+          <h3 className="font-black text-2xl">{selectedCharacter.name}</h3>
+          <p>Species: {selectedCharacter.species}</p>
+          {selectedCharacter.origin.name ? <p>Origin: {selectedCharacter.origin.name}</p> : null}
+          {selectedCharacter.location.name ? <p>Location: {selectedCharacter.location.name}</p> : null}
         </Modal>
       )}
     </>
