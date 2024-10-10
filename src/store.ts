@@ -10,7 +10,6 @@ const { createReduxHistory, routerMiddleware, routerReducer } =
   createReduxHistoryContext({ history: createBrowserHistory() })
 
 export const store = configureStore({
-  // @ts-ignore
   devTools: process.env.NODE_ENV === 'development',
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat([

@@ -70,6 +70,7 @@ export const rickAndMortyApi = createApi({
           const response = await ky.get(`https://rickandmortyapi.com/api/character/?page=${page}`).json();
           // @ts-ignore 
 
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           response.results.forEach((character: any) => {
             if (character.origin?.name) originSet.add(character.origin.name);  // Add origin to the Set
           });
@@ -92,6 +93,7 @@ export const rickAndMortyApi = createApi({
         while (hasNextPage) {
           const response = await ky.get(`https://rickandmortyapi.com/api/character/?page=${page}`).json();
           // @ts-ignore 
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           response.results.forEach((character: any) => {
             if (character.location?.name) locationSet.add(character.location.name);  // Add location to the Set
           });
