@@ -34,8 +34,8 @@ A **Rick and Morty** Explorer application built using **Vite, React (TypeScript)
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/your-username/rick-and-morty-explorer.git
-   cd rick-and-morty-explorer
+   git clone https://github.com/RoOLeary/rickandmorty-finest-rol-assignment
+   cd rickandmorty-finest-rol-assignment
    ```
 
 2. **Install dependencies using `pnpm`**:

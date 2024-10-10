@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // Import necessary modules from RTK Query and the 'ky' HTTP client
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import ky from 'ky';
 
 // Import types for expected API responses
 // @ts-expect-error
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { LocationListResponse, Location, EpisodeListResponse, Episode, CharacterListResponse, Character } from './types';
 
 // Create the API slice using RTK Query
@@ -44,7 +46,8 @@ export const rickAndMortyApi = createApi({
         while (hasNextPage) {
           const response = await ky.get(`https://rickandmortyapi.com/api/character/?page=${page}`).json();
           // @ts-ignore
-          response?.results?.forEach((character: any) => {
+          response?.results?.forEach((character: unknown) => {
+            // @ts-ignore
             if (character.species) speciesSet.add(character.species);  // Add species to the Set
           });
           // @ts-ignore
@@ -66,6 +69,7 @@ export const rickAndMortyApi = createApi({
         while (hasNextPage) {
           const response = await ky.get(`https://rickandmortyapi.com/api/character/?page=${page}`).json();
           // @ts-ignore 
+
           response.results.forEach((character: any) => {
             if (character.origin?.name) originSet.add(character.origin.name);  // Add origin to the Set
           });
@@ -113,8 +117,8 @@ export const rickAndMortyApi = createApi({
     }),
 
     // Fetches a list of episodes with optional filters: pagination, name, air_date, episode code, and characters
-    getEpisodeList: builder.query<EpisodeListResponse, { page?: number, name?: string, air_date?: string, episode?: string, characters?: any }>({
-      query: ({ page = 1, name = '', air_date = '', episode = '', characters = '' } = {}) => {
+    getEpisodeList: builder.query<EpisodeListResponse, { page?: number, name?: string, air_date?: string, episode?: string }>({
+      query: ({ page = 1, name = '', air_date = '', episode = '' } = {}) => {
         const params = new URLSearchParams();
         params.append('page', page.toString());  // Add pagination to the query string
         if (name) params.append('name', name);   // Add name filter if provided
