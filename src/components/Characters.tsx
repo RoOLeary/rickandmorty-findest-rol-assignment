@@ -145,7 +145,9 @@ const Characters = () => {
             <p>Loading...</p>
           ) : error ? (
             <div className={'error'}>
-              <p className="font-black">Error fetching characters. Please try again later.</p>
+              <h2>Awwww Jeez</h2>
+              <p className='font-black'>N-n-n-no characters found for this s...ss....this current search criteria.</p>
+              <p className='font-black'>Maybe try another search term? Or we could watch some Interdimensional Cable?</p>
             </div>
           ) : filteredCharacters?.length === 0 ? (
             <div className="error">

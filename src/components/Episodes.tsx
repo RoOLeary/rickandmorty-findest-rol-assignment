@@ -1,25 +1,43 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect, useState, Suspense } from 'react';
+import React, { useEffect, useState, Suspense, useCallback } from 'react';
 import {
   useGetEpisodeListQuery,
   useGetEpisodesBySeasonQuery,
   useGetEpisodesBySeasonAndNumberQuery
 } from './../services/rickandmorty';
+import { debounce } from 'lodash';
 import Modal from '../components/Modal';
 
 const Episodes = () => {
   const [page, setPage] = useState(1);
+  const [name, setName] = useState('');
   const [season, setSeason] = useState<number | string>('');  
   const [episodeNumber, setEpisodeNumber] = useState<number | string>('');  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCharacter, setSelectedCharacter] = useState<any>(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [debouncedSearch, setDebouncedSearch] = useState(name);
+
+  // Debounce the search input
+  const debouncedSearchChange = useCallback(
+    debounce((value: string) => {
+      setDebouncedSearch(value);
+    }, 300),
+    []
+  );
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+    setSearchTerm(e.target.value);
+    debouncedSearchChange(e.target.value);
+  };
 
   // API call based on filters
   const { data = { results: [], info: {} }, error, isLoading } = season
   ? episodeNumber
     ? useGetEpisodesBySeasonAndNumberQuery({ season: Number(season), episode: Number(episodeNumber) })
     : useGetEpisodesBySeasonQuery({ season: Number(season) })
-  : useGetEpisodeListQuery({ page });
+  : useGetEpisodeListQuery({ page, name: debouncedSearch });
 
   const [characterDetails, setCharacterDetails] = useState<{
     [key: number]: { url: string | undefined; name: string; image: string }[];
@@ -80,24 +98,12 @@ const Episodes = () => {
     setEpisodeNumber(e.target.value);
   };
 
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return (
-      <main>
-        <p className={'error'}>{JSON.stringify(error)}</p>
-      </main>
-    );
-  }
-
   return (
     <>
       <section className="episodeList">
         {/* Filters Section */}
         <div className="episodeFilters">
-          <input type="text" className="searchInput" placeholder="Search Episodes" />
+          <input type="text" className="searchInput" placeholder="Search Episodes" value={searchTerm} onChange={handleSearchChange} />
           <div className="filters">
             <select onChange={handleSeasonChange} value={season}>
               <option value="">All Seasons</option>
@@ -121,6 +127,7 @@ const Episodes = () => {
           </div>
         </div>
 
+        {/* Pagination Controls */}
         <div className={'pagination'}>
           <button onClick={handlePreviousPage} disabled={!data?.info?.prev || page === 1} data-testid="pagination-previous">
             Previous
@@ -131,36 +138,51 @@ const Episodes = () => {
           <span>Page {page}</span>
         </div>
 
+        {/* Episode List or Error Handling */}
         <div className="episodeListContainer">
-          {data?.results?.map((episode: any) => (
-            <div key={episode.id} className="episodeListItem">
-              <div className="episodeListItemDetail">
-                <h3 className="episodeListItemTitle">{episode.name}</h3>
-                <p><strong>Air Date: </strong>{episode.air_date}</p>
-                <p><strong>Episode: </strong>{episode.episode}</p>
-                <p><strong>Characters: </strong></p>
-                <ul className="flex flex-wrap gap-2 py-4 max-sm:justify-between">
-                  <Suspense fallback={<LoadingFallback />}>
-                    {characterDetails[episode.id] ? (
-                      characterDetails[episode.id].map((character, idx) => (
-                        <li key={idx}>
-                          <div onClick={() => openModal(character)}>
-                            <img
-                              src={character.image}
-                              alt={character.name}
-                              style={{ width: '50px', height: '50px', marginRight: '10px', borderRadius: '25px' }}
-                            />
-                          </div>
-                        </li>
-                      ))
-                    ) : (
-                      <LoadingFallback />
-                    )}
-                  </Suspense>
-                </ul>
-              </div>
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : error ? (
+            <div className={'error'}>
+              <p className="font-black">Error fetching episodes. Please try again later.</p>
             </div>
-          ))}
+          ) : data?.results?.length === 0 ? (
+            
+            <div className={'error'}>
+              <h2>Awwww Jeez</h2>
+              <p>N-n-n-no episodes found for the current search criteria.</p>
+          </div>
+          ) : (
+            data?.results?.map((episode: any) => (
+              <div key={episode.id} className="episodeListItem">
+                <div className="episodeListItemDetail">
+                  <h3 className="episodeListItemTitle">{episode.name}</h3>
+                  <p><strong>Air Date: </strong>{episode.air_date}</p>
+                  <p><strong>Episode: </strong>{episode.episode}</p>
+                  <p><strong>Characters: </strong></p>
+                  <ul className="flex flex-wrap gap-2 py-4 max-sm:justify-between">
+                    <Suspense fallback={<LoadingFallback />}>
+                      {characterDetails[episode.id] ? (
+                        characterDetails[episode.id].map((character, idx) => (
+                          <li key={idx}>
+                            <div onClick={() => openModal(character)}>
+                              <img
+                                src={character.image}
+                                alt={character.name}
+                                style={{ width: '50px', height: '50px', marginRight: '10px', borderRadius: '25px' }}
+                              />
+                            </div>
+                          </li>
+                        ))
+                      ) : (
+                        <LoadingFallback />
+                      )}
+                    </Suspense>
+                  </ul>
+                </div>
+              </div>
+            ))
+          )}
         </div>
       </section>
 
