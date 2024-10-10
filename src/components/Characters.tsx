@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { debounce } from 'lodash';
 import {
   useGetCharacterListQuery,
@@ -7,7 +7,6 @@ import {
   useGetUniqueLocationsQuery,
 } from './../services/rickandmorty';
 import CharacterCard from './CharacterCard';
-
 
 const Characters = () => {
   const [page, setPage] = useState(1);
@@ -22,7 +21,7 @@ const Characters = () => {
 
   // Debounce the search input
   const debouncedSearchChange = useCallback(
-    debounce((value:string) => {
+    debounce((value: string) => {
       setDebouncedSearch(value);
     }, 300),
     []
@@ -48,7 +47,8 @@ const Characters = () => {
   const { data: locationList } = useGetUniqueLocationsQuery();
 
   // Filter characters based on origin and location (client-side)
-  const filteredCharacters = data?.results.filter((character:any) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const filteredCharacters = data?.results?.filter((character: any) => {
     const matchesOrigin = origin ? character.origin.name.includes(origin) : true;
     const matchesLocation = location ? character.location.name.includes(location) : true;
     return matchesOrigin && matchesLocation;
@@ -65,18 +65,6 @@ const Characters = () => {
       setPage((prevPage) => prevPage - 1);
     }
   };
-
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return (
-      <main>
-        <p className={'error'}>{JSON.stringify(error)}</p>
-      </main>
-    );
-  }
 
   return (
     <div className={'character'}>
@@ -138,13 +126,13 @@ const Characters = () => {
           </select>
         </div>
       </div>
-        
-        {/* Pagination Controls */}
+
+      {/* Pagination Controls */}
       <div className={'pagination'}>
-        <button onClick={handlePreviousPage} disabled={!data?.info.prev || page === 1}>
+        <button onClick={handlePreviousPage} disabled={!data?.info?.prev || page === 1}>
           Previous
         </button>
-        <button onClick={handleNextPage} disabled={!data?.info.next}>
+        <button onClick={handleNextPage} disabled={!data?.info?.next}>
           Next
         </button>
         <span>Page {page}</span>
@@ -152,11 +140,21 @@ const Characters = () => {
 
       {/* Character List */}
       <section className={'characterList'}>
-       
         <div className={'characterListContainer'}>
-          {filteredCharacters?.map((character:any) => (
-            <CharacterCard key={character.id} character={character} chartoggle={undefined} />
-          ))}
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : error ? (
+            <div className={'error'}>
+              <p className="font-black">Error fetching characters. Please try again later.</p>
+            </div>
+          ) : filteredCharacters?.length === 0 ? (
+            <p>No characters found for the current search criteria.</p>
+          ) : (
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            filteredCharacters?.map((character: any) => (
+              <CharacterCard key={character.id} character={character} chartoggle={undefined} />
+            ))
+          )}
         </div>
       </section>
     </div>

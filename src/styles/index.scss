@@ -245,7 +245,6 @@ body::before {
 .error {
   font-size: 30px;
   background: white;
-  margin: 2rem 1rem;
   padding: 1em;
   border: 5px solid red;
   border-radius: 5px;
@@ -362,7 +361,6 @@ body::before {
     display: flex;
     width: 100%;
     gap: .5em;
-    margin-bottom: 2em; 
     button{
       background: blue;
       padding: 5px 25px;

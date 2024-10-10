@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react';
 import Modal from './Modal';  // Assuming you have a Modal component
 
@@ -12,12 +13,14 @@ interface CharacterCardProps {
     gender: string;
     origin: { name: string };
   },
-  chartoggle: any;
+  chartoggle?: any;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const CharacterCard = ({ character, chartoggle }: CharacterCardProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
   const openModal = (id: any) => {
     document.startViewTransition(() => {
       setIsModalOpen(true);

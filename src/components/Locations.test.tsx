@@ -1,25 +1,30 @@
+import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import Locations from './Locations'; // Adjust the import path
+import Locations from './Locations';
 import { useGetLocationsListQuery } from './../services/rickandmorty';
+import debounce from 'lodash/debounce';
 
-// Mock the API hook
+// Mock the necessary API calls
 jest.mock('./../services/rickandmorty', () => ({
   useGetLocationsListQuery: jest.fn(),
 }));
 
-// Mock lodash debounce
+// Mock lodash debounce to execute immediately for testing purposes
 jest.mock('lodash/debounce', () => jest.fn((fn) => fn));
 
-describe('Locations Component', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
+beforeEach(() => {
+  jest.clearAllMocks();
+});
 
-  test('search input updates correctly', async () => {
-    // Mock API hook with valid location data
+describe('Locations Component', () => {
+  test('renders and fetches locations data', () => {
+    // Mock API data for locations
     (useGetLocationsListQuery as jest.Mock).mockReturnValue({
       data: {
-        results: [{ id: 1, name: 'Earth', type: 'Planet', dimension: 'Dimension C-137' }],
+        results: [
+          { id: 1, name: 'Earth', type: 'Planet', dimension: 'Dimension C-137' },
+          { id: 2, name: 'Cronenberg Earth', type: 'Planet', dimension: 'Cronenberg Dimension' },
+        ],
         info: { next: null, prev: null },
       },
       error: null,
@@ -28,26 +33,181 @@ describe('Locations Component', () => {
 
     render(<Locations />);
 
-    // Ensure the search input is rendered
-    expect(screen.getByPlaceholderText(/search locations by name/i)).toBeInTheDocument();
+    // Check if locations are rendered
+    expect(screen.getByText('Earth')).toBeInTheDocument();
+    expect(screen.getByText('Cronenberg Earth')).toBeInTheDocument();
+  });
 
-    // Simulate typing in the search input
-    fireEvent.change(screen.getByPlaceholderText(/search locations by name/i), {
-      target: { value: 'Earth' },
+  test('displays loading message while fetching data', () => {
+    (useGetLocationsListQuery as jest.Mock).mockReturnValue({
+      data: null,
+      error: null,
+      isLoading: true,
     });
 
-    // Check that the search input value updates
-    await waitFor(() => {
-      expect(screen.getByPlaceholderText(/search locations by name/i)).toHaveValue('Earth');
+    render(<Locations />);
+
+    // Check for loading message
+    expect(screen.getByText('Loading...')).toBeInTheDocument();
+  });
+
+  test('handles search input and triggers debounced search', async () => {
+    (useGetLocationsListQuery as jest.Mock).mockReturnValue({
+      data: {
+        results: [
+          { id: 1, name: 'Earth', type: 'Planet', dimension: 'Dimension C-137' },
+        ],
+        info: { next: null, prev: null },
+      },
+      error: null,
+      isLoading: false,
     });
 
-    // Expect debounce to trigger search with updated name
+    render(<Locations />);
+
+    // Simulate search input
+    const searchInput = screen.getByPlaceholderText('Search Locations by Name');
+    fireEvent.change(searchInput, { target: { value: 'Earth' } });
+
     await waitFor(() => {
       expect(useGetLocationsListQuery).toHaveBeenCalledWith({
         page: 1,
         name: 'Earth',
         type: '',
         dimension: '',
+      });
+    });
+  });
+
+  test('handles pagination - clicking next and previous', async () => {
+    (useGetLocationsListQuery as jest.Mock)
+      .mockReturnValueOnce({
+        data: {
+          results: [
+            { id: 1, name: 'Earth', type: 'Planet', dimension: 'Dimension C-137' },
+          ],
+          info: { next: true, prev: null },
+        },
+        error: null,
+        isLoading: false,
+      })
+      .mockReturnValueOnce({
+        data: {
+          results: [
+            { id: 2, name: 'Cronenberg Earth', type: 'Planet', dimension: 'Cronenberg Dimension' },
+          ],
+          info: { next: null, prev: true },
+        },
+        error: null,
+        isLoading: false,
+      });
+
+    render(<Locations />);
+
+    // Click next button
+    const nextButton = screen.getByText('Next');
+    fireEvent.click(nextButton);
+
+    await waitFor(() => {
+      expect(screen.getByText('Cronenberg Earth')).toBeInTheDocument();
+    });
+
+    // Click previous button
+    const prevButton = screen.getByText('Previous');
+    fireEvent.click(prevButton);
+
+    await waitFor(() => {
+      expect(screen.getByText('Earth')).toBeInTheDocument();
+    });
+  });
+
+  test('displays error message when fetching fails', () => {
+    (useGetLocationsListQuery as jest.Mock).mockReturnValue({
+      data: null,
+      error: { message: 'Error fetching data' },
+      isLoading: false,
+    });
+
+    render(<Locations />);
+
+    // Check for error message
+    expect(screen.getByText(/We have an Error!!/i)).toBeInTheDocument();
+  });
+
+  test('reloads page on error retry', () => {
+    // Use Object.defineProperty to mock window.location.reload safely
+    const reloadSpy = jest.fn();
+    Object.defineProperty(window, 'location', {
+      configurable: true,
+      value: { reload: reloadSpy }, // Mock the reload function
+    });
+  
+    (useGetLocationsListQuery as jest.Mock).mockReturnValue({
+      data: null,
+      error: { message: 'Error fetching data' },
+      isLoading: false,
+    });
+  
+    render(<Locations />);
+  
+    // Simulate clicking the retry button
+    const retryButton = screen.getByText(/R-R-Re-T-T-Try/i);
+    fireEvent.click(retryButton);
+  
+    // Ensure reload is called
+    expect(reloadSpy).toHaveBeenCalled();
+  
+    // Restore the original location.reload
+    Object.defineProperty(window, 'location', {
+      configurable: true,
+      value: window.location, // Restore original window.location
+    });
+  });
+  
+
+  test('displays no results message when no locations found', () => {
+    (useGetLocationsListQuery as jest.Mock).mockReturnValue({
+      data: { results: [], info: { next: null, prev: null } },
+      error: null,
+      isLoading: false,
+    });
+
+    render(<Locations />);
+
+    // Check for no results message
+    expect(screen.getByText(/No locations found/i)).toBeInTheDocument();
+  });
+
+  test('handles type and dimension filters', async () => {
+    (useGetLocationsListQuery as jest.Mock).mockReturnValue({
+      data: {
+        results: [
+          { id: 1, name: 'Earth', type: 'Planet', dimension: 'Dimension C-137' },
+        ],
+        info: { next: null, prev: null },
+      },
+      error: null,
+      isLoading: false,
+    });
+
+    render(<Locations />);
+
+    // Change type filter
+    fireEvent.change(screen.getByDisplayValue('All Types'), {
+      target: { value: 'Planet' },
+    });
+
+    // Change dimension filter
+    fireEvent.change(screen.getByDisplayValue('All Dimensions'), {
+      target: { value: 'Dimension C-137' },
+    });
+
+    await waitFor(() => {
+      expect(useGetLocationsListQuery).toHaveBeenCalledWith({
+        page: 1,
+        name: '',
+        type: 'Planet',
+        dimension: 'Dimension C-137',
       });
     });
   });

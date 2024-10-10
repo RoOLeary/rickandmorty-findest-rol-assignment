@@ -1,7 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { debounce } from 'lodash';
 import { useGetLocationsListQuery } from './../services/rickandmorty';
-// import styles from './index.module.css';
 
 const Locations = () => {
   const [page, setPage] = useState(1);
@@ -13,7 +12,7 @@ const Locations = () => {
 
   // Debounce the search input
   const debouncedSearchChange = useCallback(
-    debounce((value:string) => {
+    debounce((value: string) => {
       setDebouncedSearch(value);
     }, 300),
     []
@@ -45,35 +44,8 @@ const Locations = () => {
   };
 
   const reloadPage = () => {
-    window.location.reload(); 
-  }
-
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
-
-  // Handle errors gracefully
-  if (error) {
-    return (
-      <main>
-        <div className={'error'}>
-            <h2>DAMN IT M-M-M-MORTY..</h2>
-            <p className="font-black">There's an Error!!...and Error M-m-m-m-morty...Unable to fetch data???"...WHAT DID YOU DO M-M-M-MORTY?</p>
-            <button onClick={reloadPage} className="reload">R-R-Re-T-T-Try</button>
-        </div>
-      </main>
-    );
-  }
-
-  // Graceful handling of no results found
-  if (data?.results.length === 0) {
-    return (
-      <main>
-        <p className={
-            'error'}>No locations found for the current search criteria.</p>
-      </main>
-    );
-  }
+    window.location.reload();
+  };
 
   return (
     <div className={'locations'}>
@@ -81,8 +53,7 @@ const Locations = () => {
         {/* Search Input */}
         <input
           type="text"
-          className={
-            'searchInput'}
+          className={'searchInput'}
           placeholder="Search Locations by Name"
           value={name}
           onChange={handleSearchChange}
@@ -96,7 +67,6 @@ const Locations = () => {
             <option value="Planet">Planet</option>
             <option value="Cluster">Cluster</option>
             <option value="Space station">Space Station</option>
-            {/* Add more type options based on what the API supports */}
           </select>
 
           {/* Dimension Filter */}
@@ -104,33 +74,52 @@ const Locations = () => {
             <option value="">All Dimensions</option>
             <option value="Dimension C-137">Dimension C-137</option>
             <option value="Post-Apocalyptic Dimension">Post-Apocalyptic Dimension</option>
-            {/* Add more dimension options based on what the API supports */}
           </select>
         </div>
       </div>
 
-     {/* Pagination Controls */}
-        <div className={'pagination'}>
-            <button onClick={handlePreviousPage} disabled={!data?.info.prev || page === 1}>
-            Previous
-            </button>
-            <button onClick={handleNextPage} disabled={!data?.info.next}>
-            Next
-            </button>
-            <span>Page {page}</span>
-        </div>
-        
+      {/* Pagination Controls */}
+      <div className={'pagination'}>
+        <button onClick={handlePreviousPage} disabled={!data?.info.prev || page === 1}>
+          Previous
+        </button>
+        <button onClick={handleNextPage} disabled={!data?.info.next}>
+          Next
+        </button>
+        <span>Page {page}</span>
+      </div>
+
       {/* Locations List */}
       <section className={'locationList'}>
-      
         <div className={'locationListContainer'}>
-          {data?.results.map((location:any) => (
-            <div key={location.id} className={'locationCard'}>
-              <h3 className={'locationListItemTitle'}>{location.name}</h3>
-              <p><strong>Type:</strong> {location.type}</p>
-              <p><strong>Dimension:</strong> {location.dimension}</p>
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : error ? (
+            <div className={'error'}>
+              <h2>DAMN IT M-M-M-MORTY..</h2>
+              <p className="font-black">
+                We have an Error!!...AN ERROR M-m-m-m-morty...Unable to fetch data...WHAT DID YOU DO M-M-M-MORTY?
+              </p>
+              <button onClick={reloadPage} className="reload">
+                R-R-Re-T-T-Try
+              </button>
             </div>
-          ))}
+          ) : data?.results.length === 0 ? (
+            <p>No locations found for the current search criteria.</p>
+          ) : (
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            data?.results.map((location: any) => (
+              <div key={location.id} className={'locationCard'}>
+                <h3 className={'locationListItemTitle'}>{location.name}</h3>
+                <p>
+                  <strong>Type:</strong> {location.type}
+                </p>
+                <p>
+                  <strong>Dimension:</strong> {location.dimension}
+                </p>
+              </div>
+            ))
+          )}
         </div>
       </section>
     </div>

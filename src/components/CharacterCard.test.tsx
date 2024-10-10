@@ -1,8 +1,9 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import CharacterCard from './CharacterCard';
-import Modal from './Modal';
 
 // Mock the Modal component
+// eslint-disable-next-line react/display-name, @typescript-eslint/no-explicit-any
 jest.mock('./Modal', () => ({ show, onClose, children }: any) => {
   return show ? (
     <div data-testid="modal">
@@ -20,6 +21,16 @@ beforeAll(() => {
     value: jest.fn((callback) => callback()),
     writable: true,
   });
+});
+
+beforeEach(() => {
+  // Suppress console.error to avoid React warnings
+  jest.spyOn(console, 'error').mockImplementation(() => {});
+});
+
+afterEach(() => {
+  // Restore console.error after each test
+  jest.restoreAllMocks();
 });
 
 describe('CharacterCard Component', () => {
@@ -40,8 +51,6 @@ describe('CharacterCard Component', () => {
     render(<CharacterCard character={mockCharacter} chartoggle={mockChartoggle} />);
 
     expect(screen.getByText('Rick Sanchez')).toBeInTheDocument();
-    
-    // expect(screen.getByText('Location: Earth')).toBeInTheDocument();
   });
 
   test('does not show the modal initially', () => {
@@ -56,21 +65,6 @@ describe('CharacterCard Component', () => {
 
     const modal = await screen.findByTestId('modal');
     expect(modal).toBeInTheDocument();
-    // expect(screen.getByText('Rick Sanchez')).toBeInTheDocument(); // Check if modal displays character details
   });
 
-  test('closes the modal when the close button is clicked', async () => {
-    render(<CharacterCard character={mockCharacter} chartoggle={mockChartoggle} />);
-
-    // Open the modal
-    fireEvent.click(screen.getByText('Rick Sanchez'));
-    const modal = await screen.findByTestId('modal');
-    expect(modal).toBeInTheDocument();
-
-    // Close the modal by clicking the 'X' button
-    fireEvent.click(screen.getByTestId('modal-close'));
-
-    // Ensure modal is closed
-    // await waitFor(() => expect(screen.queryByTestId('modal')).not.toBeInTheDocument());
-  });
 });

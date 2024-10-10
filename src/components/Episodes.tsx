@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState, Suspense } from 'react';
 import {
   useGetEpisodeListQuery,
