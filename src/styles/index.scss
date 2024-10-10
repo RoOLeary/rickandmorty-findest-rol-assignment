@@ -337,6 +337,10 @@ body::before {
     font-family: "Get Schwifty";
     transition: all .15s ease-in-out;
 
+    &:last-child{
+      width: 40%;
+    }
+
     &:hover {
       color: #66BA4F;
       background-color: white;
