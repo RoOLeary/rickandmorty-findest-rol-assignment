@@ -1,3 +1,5 @@
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import Episodes from './Episodes';
 import { useGetEpisodeListQuery, useGetEpisodesBySeasonQuery, useGetEpisodesBySeasonAndNumberQuery } from './../services/rickandmorty';

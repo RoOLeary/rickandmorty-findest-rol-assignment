@@ -43,10 +43,6 @@ const Locations = () => {
     }
   };
 
-  const reloadPage = () => {
-    window.location.reload();
-  };
-
   return (
     <div className={'locations'}>
       <div className={'locationFilters'}>
@@ -89,7 +85,7 @@ const Locations = () => {
         <span>Page {page}</span>
       </div>
 
-      {/* Locations List */}
+      {/* Locations List or Error Handling */}
       <section className={'locationList'}>
         <div className={'locationListContainer'}>
           {isLoading ? (
@@ -100,12 +96,12 @@ const Locations = () => {
               <p className="font-black">
                 We have an Error!!...AN ERROR M-m-m-m-morty...Unable to fetch data...WHAT DID YOU DO M-M-M-MORTY?
               </p>
-              <button onClick={reloadPage} className="reload">
-                R-R-Re-T-T-Try
-              </button>
             </div>
           ) : data?.results.length === 0 ? (
-            <p>No locations found for the current search criteria.</p>
+            <div className="error">
+              <h2>No Locations Found</h2>
+              <p>No locations found for the current search criteria.</p>
+            </div>
           ) : (
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             data?.results.map((location: any) => (
