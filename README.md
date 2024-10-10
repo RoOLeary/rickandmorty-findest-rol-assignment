@@ -2,6 +2,10 @@
 
 A **Rick and Morty** Explorer application built using **Vite, React (TypeScript), SCSS, Redux-Toolkit, and RTK Query** to allow users to explore the characters, locations, and episodes from the Rick and Morty universe. The app features a dynamic tabbed interface with pagination, responsive design, and detailed views of each character, location, or episode.
 
+## Live Demo
+
+A live demo can be seen [https://rickandmorty-findest-rol-assignment.vercel.app/](here) .
+Just click on the Portal, and "Awwwwwayyyy we go!"
 
 ## Installation
 
