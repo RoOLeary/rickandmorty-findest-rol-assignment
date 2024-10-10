@@ -4,7 +4,7 @@ A **Rick and Morty** Explorer application built using **Vite, React (TypeScript)
 
 ## Live Demo
 
-A live demo can be seen [https://rickandmorty-findest-rol-assignment.vercel.app/](here) .
+A live demo can be seen [here](https://rickandmorty-findest-rol-assignment.vercel.app/)
 Just click on the Portal, and "Awwwwwayyyy we go!"
 
 ## Installation
