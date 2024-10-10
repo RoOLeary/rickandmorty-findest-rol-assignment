@@ -82,7 +82,7 @@ const Locations = () => {
         <button onClick={handleNextPage} disabled={!data?.info.next}>
           Next
         </button>
-        <span>Page {page}</span>
+        <span>{page} / {data?.info?.pages}</span>
       </div>
 
       {/* Locations List or Error Handling */}
@@ -107,7 +107,7 @@ const Locations = () => {
             data?.results.map((location: any) => (
               <div key={location.id} className={'locationCard'}>
                 <h3 className={'locationListItemTitle'}>{location.name}</h3>
-                <p>{location.url}</p>
+                {/* <p>{location.url}</p> */}
                 <p>
                   <strong>Type:</strong> {location.type}
                 </p>

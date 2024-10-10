@@ -140,7 +140,7 @@ const Episodes = () => {
           <button onClick={handleNextPage} disabled={!data?.info?.next} data-testid="pagination-next">
             Next
           </button>
-          <span>Page {page}</span>
+          <span>{page} / {data?.info?.pages}</span>
         </div>
 
         {/* Episode List or Error Handling */}

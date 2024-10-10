@@ -135,7 +135,7 @@ const Characters = () => {
         <button onClick={handleNextPage} disabled={!data?.info?.next}>
           Next
         </button>
-        <span>Page {page}</span>
+        <span>{page} / {data?.info?.pages}</span>
       </div>
 
       {/* Character List */}
