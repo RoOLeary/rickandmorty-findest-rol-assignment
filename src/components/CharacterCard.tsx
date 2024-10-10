@@ -43,7 +43,6 @@ const CharacterCard = ({ character, chartoggle }: CharacterCardProps) => {
 
       {/* Modal component, shown based on state */}
       <Modal show={isModalOpen} onClose={closeModal} data-testid="modal">
-        <button className="modalClose" data-testid="modal-close">x</button>
         <img src={character.image} alt={character.name} data-view-transition={`character-image-${character.id}`} />
         <h3 className={'characterListItemTitle'}>{character.name}</h3>
         <p><strong>Species:</strong> {character.species}</p>

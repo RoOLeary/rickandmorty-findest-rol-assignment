@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import Episodes from './Episodes'; // Adjust this path to where your Episodes component is located
+import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
+import Episodes from './Episodes'; // Adjust the path to your Episodes component
 import { useGetEpisodeListQuery } from './../services/rickandmorty';
 
 // Mock the RTK Query API hook
@@ -65,7 +65,7 @@ describe('Episodes Component', () => {
   });
 
   test('navigates to next page on button click', async () => {
-    // Mock the API hook to return episode data
+    // Mock the initial page
     (useGetEpisodeListQuery as jest.Mock).mockReturnValue({
       data: {
         info: { next: true, prev: null },
@@ -79,7 +79,26 @@ describe('Episodes Component', () => {
 
     // Simulate clicking the "Next" button
     const nextButton = screen.getByText(/Next/i);
-    fireEvent.click(nextButton);
+    
+    // Simulate the mock response for the next page after clicking "Next"
+    act(() => {
+      fireEvent.click(nextButton);
+    });
+
+    // Mock API response for page 2
+    (useGetEpisodeListQuery as jest.Mock).mockReturnValue({
+      data: {
+        info: { next: null, prev: true },
+        results: [{ id: 2, name: 'Lawnmower Dog', air_date: 'December 9, 2013', episode: 'S01E02', characters: [] }],
+      },
+      error: null,
+      isLoading: false,
+    });
+
+    // Re-render after the click
+    await waitFor(() => {
+      expect(screen.getByText(/Lawnmower Dog/i)).toBeInTheDocument();
+    });
 
     // Expect the hook to be called with the updated page number
     expect(useGetEpisodeListQuery).toHaveBeenCalledWith({
