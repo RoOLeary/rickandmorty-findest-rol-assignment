@@ -42,6 +42,12 @@
             background: #ffffff;
             border-radius: 2px;
             padding: 1rem;
+            align-items: center;
+
+            .characterListImage{
+              width: 100px;
+              height: 100px; 
+            }
 
             .characterListItemTitle{
                 font-weight: bolder;

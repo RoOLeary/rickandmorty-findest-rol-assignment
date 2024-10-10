@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from 'react';
 
 interface ModalProps {
@@ -19,6 +20,7 @@ const Modal = ({ show, onClose, children }: ModalProps) => {
   };
 
   return (
+    // @ts-expect-error
       <div className={`modal ${show ? 'show' : ''}`} onClick={handleOverlayClick} onTouchStart={handleOverlayClick}>
         <div className="modalOverlay">
           <div className="modalContent" onClick={(e) => e.stopPropagation()} onTouchStart={(e) => e.stopPropagation()}>

@@ -35,7 +35,7 @@ const CharacterCard = ({ character, chartoggle }: CharacterCardProps) => {
 
   return (
     <div onClick={() => openModal(character.id)} className={'characterListItem'} data-testid="modal-open">
-      <img src={character.image} alt={character.name} width={100} data-view-transition={`character-image-${character.id}`} />
+      <img src={character.image} alt={character.name} width={100} height={100} className={'characterListImage'} data-view-transition={`character-image-${character.id}`} />
       <div className={'characterListItemDetail'}>
         <h3 className={'characterListItemTitle'}>{character.name}</h3>
         <p><strong>Species:</strong> {character.species}</p>
