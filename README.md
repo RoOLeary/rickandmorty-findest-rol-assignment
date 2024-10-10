@@ -8,8 +8,8 @@ A **Rick and Morty** Explorer application built using **Vite, React (TypeScript)
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/RoOLeary/rickandmorty-finest-rol-assignment
-   cd rickandmorty-finest-rol-assignment
+   git clone https://github.com/RoOLeary/rickandmorty-findest-rol-assignment
+   cd rickandmorty-findest-rol-assignment
    ```
 
 2. **Run the `setup.sh` bash script**:
