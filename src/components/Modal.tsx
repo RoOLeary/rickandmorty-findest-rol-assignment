@@ -19,15 +19,14 @@ const Modal = ({ show, onClose, children }: ModalProps) => {
   };
 
   return (
-    <div className={`modal ${show ? 'show' : ''}`} onClick={handleOverlayClick}>
-      <div className="modalOverlay">
-        {/* Prevent modal content from triggering overlay click */}
-        <div className="modalContent" onClick={(e) => e.stopPropagation()}>
-          <button className="modalClose" onClick={onClose}>×</button>
-          {children}
+      <div className={`modal ${show ? 'show' : ''}`} onClick={handleOverlayClick} onTouchStart={handleOverlayClick}>
+        <div className="modalOverlay">
+          <div className="modalContent" onClick={(e) => e.stopPropagation()} onTouchStart={(e) => e.stopPropagation()}>
+            <button className="modalClose" onClick={onClose}>×</button>
+            {children}
+          </div>
         </div>
       </div>
-    </div>
   );
 };
 

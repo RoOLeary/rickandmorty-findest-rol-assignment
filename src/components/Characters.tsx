@@ -148,7 +148,9 @@ const Characters = () => {
               <p className="font-black">Error fetching characters. Please try again later.</p>
             </div>
           ) : filteredCharacters?.length === 0 ? (
-            <p>No characters found for the current search criteria.</p>
+            <div className="error">
+              <h2>Awww Jeeez RICK</h2>
+              <p>N-n-n-no characters found for the current search criteria.</p></div>
           ) : (
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             filteredCharacters?.map((character: any) => (
