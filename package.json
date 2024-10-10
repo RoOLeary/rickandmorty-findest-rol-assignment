@@ -10,11 +10,11 @@
   },
   "scripts": {
     "start": "vite",
-    "dev": "jest vite",
+    "dev": "vite",
     "build": "vite build",
     "serve": "serve dist",
     "test": "jest",
-    "test:watch": "jest",
+    "test:watch": "je",
     "lint": "eslint src --c .ts,.tsx,.js,jsx.cjs",
     "lint:fix": "eslint src --c .ts,.tsx,.js,jsx,cjs --fix",
     "typecheck": "tsc --noEmit",
