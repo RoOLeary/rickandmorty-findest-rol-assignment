@@ -40,7 +40,7 @@ A **Rick and Morty** Explorer application built using **Vite, React (TypeScript)
   will serve up the application on http://localhost:3000
  
 
-Also 2. **Install dependencies using `pnpm`**:
+2. (Also 2) **Install dependencies using `pnpm`**:
 
    First, install **pnpm** if you haven't already:
 

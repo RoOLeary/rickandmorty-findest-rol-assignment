@@ -45,8 +45,8 @@ const Tabs = () => {
   };
 
   return (
-    <div className='content'>
-      <div className="tabContainer">
+    <div className='content tabs'>
+      <div className="tabContainer @import './pagination.scss">
         <button
           onClick={() => switchTab('characters')}
           className={`text-white ${activeTab === 'characters' && 'active'}`}>

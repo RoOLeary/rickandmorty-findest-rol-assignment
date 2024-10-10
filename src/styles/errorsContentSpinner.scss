@@ -1,0 +1,82 @@
+.error {
+  font-size: 30px;
+  background: white;
+  padding: 1em;
+  border: 5px solid red;
+  border-radius: 5px;
+
+  .reload{
+    background: red;
+    margin: 1em 0;
+    justify-content: center;
+    display: flex;
+    margin: 1em auto;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Get Schwifty';
+    padding: 1em 2em;
+  }
+
+  h2 {
+    font-family: "Get Schwifty";
+    transition: all 0.15s ease-in-out;
+    color: red; 
+    font-size: 30px;
+  }
+}
+
+.header {
+  position: fixed;
+  top: 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & h1 {
+    font-size: 50px;
+  }
+}
+
+.link {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 32px;
+  color: #61dafb;
+}
+
+.content{
+    width: 100%;
+    margin: 0 auto; /* Center align content for all screen sizes */
+  
+    @media (min-width: 768px) {
+        width: 960px;
+    }  
+}
+
+.tab-content-loading {
+  display: flex;
+  justify-content: center;  /* Centers the spinner horizontally */
+  align-items: center;      /* Centers the spinner vertically */
+  height: 80vh;             /* Ensures the container takes the full height of the tab content */
+  min-height: 200px;        /* Optional: Adjust minimum height based on your design */
+
+
+
+  .loadingSpinner{
+    font-family: "Get Schwifty";
+    font-size: 54px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    background: transparent;
+
+    @media (max-width: 768px) {
+      font-size: 34px;
+    }  
+  }
+
+}
