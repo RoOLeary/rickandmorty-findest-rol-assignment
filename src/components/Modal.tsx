@@ -20,10 +20,10 @@ const Modal = ({ show, onClose, children }: ModalProps) => {
   };
 
   return (
-    <div className={`modal ${show ? 'show' : ''}`} onClick={handleOverlayClick}>
+    <div className={`modal ${show ? 'show' : ''}`} onClick={handleOverlayClick} data-testid="modal">
       <div className="modalOverlay">
         <div className="modalContent" onClick={handleContentClick}>
-          <button className="modalClose" onClick={onClose}>×</button>
+          <button className="modalClose" onClick={onClose}>X</button>
           {children}
         </div>
       </div>

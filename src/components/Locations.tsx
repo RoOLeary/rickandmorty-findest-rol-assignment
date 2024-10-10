@@ -1,8 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
-// @ts-expect-error
 import { debounce } from 'lodash';
 import { useGetLocationsListQuery } from './../services/rickandmorty';
-import styles from './index.module.css';
+// import styles from './index.module.css';
 
 const Locations = () => {
   const [page, setPage] = useState(1);
@@ -45,6 +44,10 @@ const Locations = () => {
     }
   };
 
+  const reloadPage = () => {
+    window.location.reload(); 
+  }
+
   if (isLoading) {
     return <p>Loading...</p>;
   }
@@ -53,9 +56,11 @@ const Locations = () => {
   if (error) {
     return (
       <main>
-        <p className={'error'}>
-            Error: We're out of Portal Gun Fluid. Unable to fetch data.
-        </p>
+        <div className={'error'}>
+            <h2>DAMN IT M-M-M-MORTY..</h2>
+            <p className="font-black">There's an Error!!...and Error M-m-m-m-morty...Unable to fetch data???"...WHAT DID YOU DO M-M-M-MORTY?</p>
+            <button onClick={reloadPage} className="reload">R-R-Re-T-T-Try</button>
+        </div>
       </main>
     );
   }
@@ -104,6 +109,17 @@ const Locations = () => {
         </div>
       </div>
 
+     {/* Pagination Controls */}
+        <div className={'pagination'}>
+            <button onClick={handlePreviousPage} disabled={!data?.info.prev || page === 1}>
+            Previous
+            </button>
+            <button onClick={handleNextPage} disabled={!data?.info.next}>
+            Next
+            </button>
+            <span>Page {page}</span>
+        </div>
+        
       {/* Locations List */}
       <section className={'locationList'}>
       
@@ -117,18 +133,6 @@ const Locations = () => {
           ))}
         </div>
       </section>
-
-      {/* Pagination Controls */}
-      <div className={
-        'pagination'}>
-        <button onClick={handlePreviousPage} disabled={!data?.info.prev || page === 1}>
-          Previous
-        </button>
-        <span>Page {page}</span>
-        <button onClick={handleNextPage} disabled={!data?.info.next}>
-          Next
-        </button>
-      </div>
     </div>
   );
 };

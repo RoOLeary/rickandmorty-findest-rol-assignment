@@ -1,10 +1,10 @@
 // Import necessary modules from RTK Query and the 'ky' HTTP client
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import ky from 'ky'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import ky from 'ky';
 
 // Import types for expected API responses
 // @ts-expect-error
-import type { LocationListResponse, Location, EpisodeListResponse, Episode, CharacterListResponse, Character } from './types'
+import type { LocationListResponse, Location, EpisodeListResponse, Episode, CharacterListResponse, Character } from './types';
 
 // Create the API slice using RTK Query
 export const rickAndMortyApi = createApi({
@@ -14,7 +14,7 @@ export const rickAndMortyApi = createApi({
     fetchFn: async (...args) => ky(...args),     // Using 'ky' to handle the actual HTTP requests
   }),
   endpoints: (builder) => ({  // Define endpoints (API operations)
-    
+
     // Fetches a list of characters with optional filters: pagination, name, species, gender, and status
     getCharacterList: builder.query<CharacterListResponse, { page?: number, name?: string, species?: string, gender?: string, status?: string }>({
       query: ({ page = 1, name = '', species = '', gender = '', status = '' } = {}) => {
@@ -123,8 +123,24 @@ export const rickAndMortyApi = createApi({
         return `episode/?${params.toString()}`;  // Return the full API endpoint with query string
       },
     }),
+
+    // Fetches episodes by season and episode number
+    getEpisodesBySeasonAndNumber: builder.query<EpisodeListResponse, { season: number, episode: number }>({
+      query: ({ season, episode }) => {
+        const episodeCode = `S${String(season).padStart(2, '0')}E${String(episode).padStart(2, '0')}`; // Construct episode code like S01E01
+        return `episode/?episode=${episodeCode}`;  // Return the full API endpoint filtered by episode code
+      },
+    }),
+    
+    // Fetches episodes by season only
+    getEpisodesBySeason: builder.query<EpisodeListResponse, { season: number }>({
+      query: ({ season }) => {
+        const seasonCode = `S${String(season).padStart(2, '0')}`;  // Construct the season part of episode code (e.g., S01)
+        return `episode/?episode=${seasonCode}`;  // Return the full API endpoint filtered by season
+      },
+    }),
   }),
-})
+});
 
 // Export the hooks for all API queries and mutations
 export const {
@@ -135,4 +151,6 @@ export const {
   useGetUniqueLocationsQuery,
   useGetLocationsListQuery,
   useGetEpisodeListQuery,
+  useGetEpisodesBySeasonAndNumberQuery,
+  useGetEpisodesBySeasonQuery,
 } = rickAndMortyApi;

@@ -4,7 +4,9 @@ const Explorer = () => {
   
   return (
     <main>
-      <Tabs />
+        <div data-testid="explorer-component">
+        <Tabs />
+        </div>
     </main>
   )
 }

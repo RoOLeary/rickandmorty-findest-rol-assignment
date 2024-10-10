@@ -5,9 +5,11 @@
 
 @import './characterList.scss';
 @import './episodeList.scss';
+@import './home.scss';
 @import './landing.scss';
 @import './locationList.scss';
 @import './modal.scss';
+@import './pagination.scss';
 
 
 
@@ -24,6 +26,7 @@ code {
 }
 
 body {
+  background-color: black;
   position: relative;
   margin: 0;
   padding: 0;
@@ -241,6 +244,30 @@ body::before {
 
 .error {
   font-size: 30px;
+  background: white;
+  margin: 2rem 1rem;
+  padding: 1em;
+  border: 5px solid red;
+  border-radius: 5px;
+
+  .reload{
+    background: red;
+    margin: 1em 0;
+    justify-content: center;
+    display: flex;
+    margin: 1em auto;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Get Schwifty';
+    padding: 1em 2em;
+  }
+
+  h2 {
+    font-family: "Get Schwifty";
+    transition: all 0.15s ease-in-out;
+    color: red; 
+    font-size: 30px;
+  }
 }
 
 .header {
@@ -294,7 +321,7 @@ body::before {
 // SET UP
 
 .tabContainer {
-  padding: 3.5em 1em 0;
+  padding: 3.5rem 1rem 0;
   display: flex;
   justify-content: space-evenly;
   gap: 1em;
@@ -376,43 +403,4 @@ body::before {
     }  
   }
 
-}
-
-
-.pagination {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 20px;
-  gap: 10px;
-}
-
-.pagination button {
-  padding: 10px 20px;
-  background-color: #66BA4F;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  flex: 1;
-  text-align: center;
-}
-
-.pagination button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-.pagination span {
-  color: white;
-  font-size: 1.2em;
-  text-align: center;
-}
-
-/* For mobile responsiveness */
-@media (min-width: 768px) {
-  .pagination {
-    flex-direction: row;
-  }
 }
