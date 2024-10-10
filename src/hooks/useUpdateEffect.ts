@@ -5,6 +5,7 @@ import { useRef, useEffect } from 'react'
  */
 const useUpdateEffect = (
   effect: AnyFunction,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   deps: any[] | undefined = undefined,
 ): void => {
   const mounted = useRef<boolean>()
