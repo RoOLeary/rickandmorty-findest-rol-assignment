@@ -30,7 +30,7 @@ echo '
 
 
 echo # 
-echo "Installing pnpm multiversally..."
+echo "Installing pnpm interdimensionally..."
 echo #
 npm install -g pnpm
 
