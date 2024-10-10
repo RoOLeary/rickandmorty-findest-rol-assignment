@@ -5,6 +5,7 @@
 
 @import './characterList.scss';
 @import './episodeList.scss';
+@import './home.scss';
 @import './landing.scss';
 @import './locationList.scss';
 @import './modal.scss';
@@ -24,6 +25,7 @@ code {
 }
 
 body {
+  background-color: black;
   position: relative;
   margin: 0;
   padding: 0;

@@ -22,7 +22,7 @@ export type SpinnerProps = {
 const Spinner: React.FC<React.PropsWithChildren<SpinnerProps>> = memo(
   ({ className = '', size = 'md', variant = 'primary' }: SpinnerProps) => {
     return (
-      <div className="loadingSpinner">
+      <div className="loadingSpinner" data-testid="spinner">
         <svg
           className={clsx(
             'animate-spin',

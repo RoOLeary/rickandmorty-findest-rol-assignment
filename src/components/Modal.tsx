@@ -11,19 +11,17 @@ const Modal = ({ show, onClose, children }: ModalProps) => {
     return null;
   }
 
-  const handleOverlayClick = () => {
-    onClose();
-  };
-
-  const handleContentClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation(); // Prevent click from closing the modal when clicking inside the modal content
+  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {  // Ensure it's the overlay being clicked
+      onClose();  // Close the modal when clicking the overlay
+    }
   };
 
   return (
     <div className={`modal ${show ? 'show' : ''}`} onClick={handleOverlayClick}>
       <div className="modalOverlay">
-        <div className="modalContent" onClick={handleContentClick}>
-          <button className="modalClose" onClick={onClose}>×</button>
+        <div className="modalContent">
+          <button className="modalClose" onClick={onClose} data-testid="modal-close">X</button>
           {children}
         </div>
       </div>

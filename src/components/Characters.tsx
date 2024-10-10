@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from 'react';
-// @ts-expect-error
 import { debounce } from 'lodash';
 import {
   useGetCharacterListQuery,
@@ -94,7 +93,7 @@ const Characters = () => {
         {/* Filters */}
         <div className={'filters'}>
           {/* Species Filter */}
-          <select value={species} onChange={(e) => setSpecies(e.target.value)}>
+          <select value={species} onChange={(e) => setSpecies(e.target.value)} id="species" data-testid="species-select">
             <option value="">All Species</option>
             {speciesList?.map((speciesOption, idx) => (
               <option key={idx} value={speciesOption}>
@@ -104,14 +103,14 @@ const Characters = () => {
           </select>
 
           {/* Gender Filter */}
-          <select value={gender} onChange={(e) => setGender(e.target.value)}>
+          <select value={gender} onChange={(e) => setGender(e.target.value)} id="gender" data-testid="gender-select">
             <option value="">All Genders</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
 
           {/* Status Filter */}
-          <select value={status} onChange={(e) => setStatus(e.target.value)}>
+          <select value={status} onChange={(e) => setStatus(e.target.value)} id="status" data-testid="status-select">
             <option value="">All Status</option>
             <option value="alive">Alive</option>
             <option value="dead">Dead</option>
@@ -119,7 +118,7 @@ const Characters = () => {
           </select>
 
           {/* Origin Filter */}
-          <select value={origin} onChange={(e) => setOrigin(e.target.value)}>
+          <select value={origin} onChange={(e) => setOrigin(e.target.value)} id="origin" data-testid="origin-select">
             <option value="">All Origins</option>
             {originList?.map((originOption, idx) => (
               <option key={idx} value={originOption}>
@@ -129,7 +128,7 @@ const Characters = () => {
           </select>
 
           {/* Location Filter */}
-          <select value={location} onChange={(e) => setLocation(e.target.value)}>
+          <select value={location} onChange={(e) => setLocation(e.target.value)} id="location" data-testid="location-select">
             <option value="">All Locations</option>
             {locationList?.map((locationOption, idx) => (
               <option key={idx} value={locationOption}>
@@ -138,6 +137,17 @@ const Characters = () => {
             ))}
           </select>
         </div>
+      </div>
+        
+        {/* Pagination Controls */}
+      <div className={'pagination'}>
+        <button onClick={handlePreviousPage} disabled={!data?.info.prev || page === 1}>
+          Previous
+        </button>
+        <span>Page {page}</span>
+        <button onClick={handleNextPage} disabled={!data?.info.next}>
+          Next
+        </button>
       </div>
 
       {/* Character List */}
@@ -152,11 +162,11 @@ const Characters = () => {
 
       {/* Pagination Controls */}
       <div className={'pagination'}>
-        <button onClick={handlePreviousPage} disabled={!data?.info.prev || page === 1}>
+        <button onClick={handlePreviousPage} disabled={!data?.info.prev || page === 1} data-testid="next-button">
           Previous
         </button>
         <span>Page {page}</span>
-        <button onClick={handleNextPage} disabled={!data?.info.next}>
+        <button onClick={handleNextPage} disabled={!data?.info.next} data-testid="next-button">
           Next
         </button>
       </div>

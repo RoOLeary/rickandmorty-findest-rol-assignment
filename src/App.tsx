@@ -1,12 +1,12 @@
-import React from 'react'
-import { Provider as ReduxStoreProvider } from 'react-redux'
-import { Routes, Route } from 'react-router-dom'
-import { HistoryRouter } from 'redux-first-history/rr6'
+// App.js or App.tsx
+import React from 'react';
+import { Provider as ReduxStoreProvider } from 'react-redux';
+import { Routes, Route } from 'react-router-dom';
+import { HistoryRouter } from 'redux-first-history/rr6';
 
-import './pages/Home/index.module.css'
 import Home from './pages/Home';
-import Explorer from './pages/Explorer'
-import { history, store } from './store'
+import Explorer from './pages/Explorer';
+import { history, store } from './store';
 
 const App = () => {
   return (
@@ -18,7 +18,7 @@ const App = () => {
         </Routes>
       </HistoryRouter>
     </ReduxStoreProvider>
-  )
-}
+  );
+};
 
-export default App
+export default App;

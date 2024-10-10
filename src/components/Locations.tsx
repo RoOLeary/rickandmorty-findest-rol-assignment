@@ -1,8 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
-// @ts-expect-error
 import { debounce } from 'lodash';
 import { useGetLocationsListQuery } from './../services/rickandmorty';
-import styles from './index.module.css';
+// import styles from './index.module.css';
 
 const Locations = () => {
   const [page, setPage] = useState(1);

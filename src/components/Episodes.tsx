@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Suspense } from 'react';
 import { useGetEpisodeListQuery } from './../services/rickandmorty';
-import styles from './index.module.css';
+// import styles from './index.module.css';
 import Modal from '../components/Modal';
 
 const Episodes = () => {
@@ -76,7 +76,7 @@ const Episodes = () => {
   if (error) {
     return (
       <main>
-        <p className={styles.error}>{JSON.stringify(error)}</p>
+        <p className={'error'}>{JSON.stringify(error)}</p>
       </main>
     );
   }
