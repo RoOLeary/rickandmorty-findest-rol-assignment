@@ -7,11 +7,9 @@ const Landing = () => {
         <a href="/findest-explorer">
             <div className="portal rotating"></div>
             
-            <div className="title">Ro <span>and </span>Findest</div>
-            <div className="title middle"> Ro <span>and </span>Findest</div>
-            <div className="title bottom"> Ro <span>and </span>Findest</div>
-
-            <div className=""> Click <span>the Portal </span>to Start</div>
+            <div className="title">Danger <span>F*ckin'</span> Ro</div>
+            <div className="title middle">Danger <span>F*ckin'</span> Ro</div>
+            <div className="title bottom">Danger <span>F*ckin'</span> Ro</div>
         </a>
     </div>
     )
