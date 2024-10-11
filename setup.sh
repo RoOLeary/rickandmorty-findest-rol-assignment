@@ -42,11 +42,15 @@ pnpm install
 echo "Spinning up the miniverse engine..."
 pnpm test
 
-pnpm dev
-
 # Start the development server
 echo "...AND AWAAAAAAYYYYY WE GO!!!!"
 
+pnpm dev
+
+sleep 2
+echo #
+echo "Just hit a button, Morty! Give me a beat!"
+echo #
 
 # Open localhost:3000 in the default browser
 # For macOS
