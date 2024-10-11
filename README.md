@@ -115,26 +115,31 @@ Here are some useful scripts you can run with **pnpm**:
 
 Testing has been implemented for the following components:
 
-- **Tabs**: Ensure proper tab navigation and switching.
+- **Tabs**: 
+  - Ensure proper tab navigation and switching.
     ✓ should display the spinner during loading
     ✓ should switch tabs correctly
-- **Characters**: Test for API data fetching and rendering.
+- **Characters**: 
+  - Test for API data fetching and rendering.
     ✓ renders search input and filters correctly 
     ✓ search input updates and triggers debounced search 
     ✓ pagination works and calls API on next page click 
     ✓ pagination disables "Previous" button on first page 
     ✓ filters work and call API on species filter change 
-- **CharacterCards**: Ensure proper layout and modal functionality.
+- **CharacterCards**: 
+  - Ensure proper layout and modal functionality.
     ✓ renders character details correctly 
     ✓ does not show the modal initially 
     ✓ opens the modal when the character card is clicked 
-- **Episodes**: Validate pagination and data fetching.
+- **Episodes**: 
+  - Validate pagination and data fetching.
     ✓ renders and fetches episodes for a season 
     ✓ displays loading message while fetching data 
     ✓ displays error message when fetching fails 
     ✓ navigates to the next page on clicking the Next button 
     ✓ navigates to the previous page on clicking the Previous button 
-- **Locations**: Verify location data is fetched and rendered correctly.
+- **Locations**: 
+  - Verify location data is fetched and rendered correctly.
     ✓ renders and fetches locations data 
     ✓ displays loading message while fetching data 
     ✓ handles search input and triggers debounced search 
@@ -142,7 +147,8 @@ Testing has been implemented for the following components:
     ✓ displays error message when fetching fails
     ✓ displays no results message when no locations found
     ✓ handles type and dimension filters
-- **Modal**: Renders the modal component
+- **Modal**: 
+  - Renders the modal component
     ✓ prevents closing the modal when clicking inside the content
 
 To view the list of tested cases with green checkmarks for passed tests, make sure **Jest** is set up to show results in verbose mode. You can configure this by adding the following section to your **package.json**:

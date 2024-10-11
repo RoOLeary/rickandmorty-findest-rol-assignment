@@ -1,121 +1,125 @@
+.characterFilters {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem;
+  gap: 0.5rem;
 
-.characterFilters{
-    display: flex;
-    flex-direction: column;
+  @media screen and (max-width: 768px) {
+    padding: 3.5em;
+  }
+}
+
+.characterList {
+  .heading {
+    font-size: 32px;
+    color: #08bae3;
+    border-radius: 5px;
     width: 100%;
+    font-family: "Get Schwifty";
+    transition: all 0.15s ease-in-out;
+    padding: 0.5em;
+  }
+
+  .characterListContainer {
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row by default */
+    gap: 15px; /* Space between cards */
     padding: 1rem;
-    gap: .5rem;
+
+    @media screen and (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr); /* 2 cards per row on medium screens */
+    }
 
     @media screen and (max-width: 768px) {
-        padding: 3.5em;
-        // gap: 15px;
-    }
-}
-
-.characterList{
-
-    .heading{
-        font-size: 32px;
-        color: #08BAE3;
-        border-radius: 5px;
-        width: 100%;
-        font-family: "Get Schwifty";
-        transition: all 0.15s ease-in-out;
-        padding: .5em; 
+      grid-template-columns: repeat(2, 1fr); /* 2 cards per row on small screens */
     }
 
-
-
-    .characterListContainer{
-        margin: 0 auto;
-        width: 100%;
-        
-        border-radius: 5px;
-        padding: 1rem;
-        display: flex;
-        flex-direction: column;
-        gap: 10px; 
-
-        .characterListItem{
-            display: flex;
-            gap: 1rem;
-            background: #ffffff;
-            border-radius: 2px;
-            padding: 1rem;
-            align-items: center;
-
-            .characterListImage{
-              width: 100px;
-              height: 100px; 
-            }
-
-            .characterListItemTitle{
-                font-weight: bolder;
-                font-size: large;
-            }
-
-            .characterListItemDetail{
-
-
-                color: black;
-            }
-        }
-
+    @media screen and (max-width: 480px) {
+      grid-template-columns: repeat(2, 1fr); /* 2 cards per row on small screens */
+      gap: 10px;
     }
-}
- 
+  }
 
-.characterListItemTitle{
-  font-weight: bolder;
-  font-size: large;
+  .characterListItem {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border-radius: 25px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+      border-color: #00ff00; /* Green border on hover */
+      box-shadow: 0 0 15px 5px rgba(0, 255, 0, 0.8); /* Green glowing effect */
+    }
+
+    .characterListImage {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      object-fit: cover;
+    }
+
+    .characterListItemTitle {
+      font-weight: bold;
+      font-size: 1.25rem;
+      margin: 0.5rem 0;
+      text-align: left;
+    }
+
+    .characterListItemDetail {
+      color: black;
+      text-align: left;
+      padding: 10px;
+      line-height: 1.15rem;
+    }
+  }
 }
 
 .filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 0px;
-  }
-  
-  .filters select {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 0;
+
+  select {
     padding: 10px;
     border-radius: 5px;
     flex: 1;
-    min-width: 150px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    font-size: 1em;
-    font-size: 16px;
-    color: gray
-  }
-  
-  /* Mobile view: stack dropdowns */
-  @media (max-width: 768px) {
-    .filters {
-      flex-direction: column;
-      width: 100%;
-    }
-  
-    .filters select {
-      width: 100%;
-    }
-  }
-  
-
-
-  .searchInput {
     width: 100%;
-    height: 60px;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  select {
-    padding: 0.5rem;
-    border-radius: 5px;
-    border: 1px solid #ccc;
     background-color: #fff;
-    width: 20%;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    color: gray;
   }
-  
+}
+
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  select {
+    width: 100%;
+  }
+}
+
+.searchInput {
+  width: 100%;
+  height: 60px;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+select {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  width: 20%;
+}
