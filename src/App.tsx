@@ -14,8 +14,8 @@ const App = () => {
       <HistoryRouter history={history}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/findest-explorer" element={<Explorer />} />
-          <Route path="*" element={<Navigate to="/findest-explorer" replace />} />
+          <Route path="/explorer" element={<Explorer />} />
+          <Route path="*" element={<Navigate to="/explorer" replace />} />
         </Routes>
       </HistoryRouter>
     </ReduxStoreProvider>
