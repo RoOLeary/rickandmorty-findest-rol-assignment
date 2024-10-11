@@ -42,6 +42,22 @@ pnpm install
 echo "Spinning up the miniverse engine..."
 pnpm test
 
+pnpm dev
+
 # Start the development server
 echo "...AND AWAAAAAAYYYYY WE GO!!!!"
-pnpm dev
+
+
+# Open localhost:3000 in the default browser
+# For macOS
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  open http://localhost:3000
+# For Linux
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  xdg-open http://localhost:3000
+# For Windows (Git Bash)
+elif [[ "$OSTYPE" == "msys" ]]; then
+  start http://localhost:3000
+else
+  echo "Unsupported OS"
+fi
