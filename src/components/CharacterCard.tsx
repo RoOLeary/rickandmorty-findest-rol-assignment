@@ -38,20 +38,18 @@ const CharacterCard = ({ character, chartoggle }: CharacterCardProps) => {
       <img src={character.image} alt={character.name} width={100} height={100} className={'characterListImage'} data-view-transition={`character-image-${character.id}`} />
       <div className={'characterListItemDetail'}>
         <h3 className={'characterListItemTitle'}>{character.name}</h3>
-        <p><strong>Species:</strong> {character.species}</p>
-        <p><strong>Status:</strong> {character?.status}</p>
-        <p><strong>Origin:</strong> {character.origin.name}</p>
-        <p><strong>Location:</strong> {character?.location.name}</p>
       </div>
 
       {/* Modal component, shown based on state */}
       <Modal show={isModalOpen} onClose={closeModal} data-testid="modal">
         <img src={character.image} alt={character.name} data-view-transition={`character-image-${character.id}`} />
-        <h3 className={'characterListItemTitle'}>{character.name}</h3>
-        <p><strong>Species:</strong> {character.species}</p>
-        <p><strong>Status:</strong> {character?.status}</p>
-        <p><strong>Origin:</strong> {character.origin.name}</p>
-        <p><strong>Location:</strong> {character?.location.name}</p>
+        <div className={'characterListMeta'}>
+          <h3 className={'characterListItemTitle'}>{character.name}</h3>
+          <p><strong>Species:</strong> {character.species}</p>
+          <p><strong>Status:</strong> {character?.status}</p>
+          <p><strong>Origin:</strong> {character.origin.name}</p>
+          <p><strong>Location:</strong> {character?.location.name}</p>
+        </div>
       </Modal>
     </div>
   );

@@ -1,70 +1,139 @@
 .modal {
-    /* Ensure the modal is hidden by default */
-    display: none;
-    
-    /* When the modal is open, show the modal and animate */
-    &.show {
-        display: flex;
-    }
+  /* Ensure the modal is hidden by default */
+  display: none;
 
-    .modalOverlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.8);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
+  /* When the modal is open, show the modal and animate */
+  &.show {
+    display: flex;
+  }
 
-    /* When the modal is open, apply the fade-in */
-    &.show .modalOverlay {
-        opacity: 1;
+  .modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to top, but allow modal to scroll */
+    padding: 20px;
+    overflow-y: auto; /* Allow scrolling for long content */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  /* When the modal is open, apply the fade-in */
+  &.show .modalOverlay {
+    opacity: 1;
+  }
+
+  .modalContent {
+    background-color: white;
+    border-radius: 8px;
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    flex-direction: row; /* Row layout for larger screens */
+    align-items: flex-start;
+    transform: scale(0.9); /* Start scaled down */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 25vh; /* Center modal at approximately 25% from the top */
+  }
+
+  /* Modal content animation when modal is open */
+  &.show .modalContent {
+    transform: scale(1);
+  }
+
+  .modalClose {
+    background: black;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 50%;
+    z-index: 2; /* Ensure it's above the image */
+
+    &:hover {
+      color: #000;
+      background: #fff;
+      border: 1px solid #000;
     }
-    
+  }
+
+  .modalImage {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 8px 0 0 8px;
+    flex: 1;
+    margin-bottom: 0;
+    position: relative; /* Make this relative to allow the close button to be superimposed */
+  }
+
+  .modalBody {
+    text-align: left;
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  @media (max-width: 768px) {
     .modalContent {
-        background-color: white;
-        padding: 20px;
-        border-radius: 8px;
-        max-width: 660px;
+      flex-direction: column; /* Stack vertically for smaller screens */
+      max-width: 90%;
+      padding: 0; /* Remove padding from modal content */
+      margin-top: 25vh; /* Center modal at approximately 25% from the top */
+    
+      img{
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        transform: scale(0.9); /* Start scaled down */
-        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
     }
 
-    /* Modal content animation when modal is open */
-    &.show .modalContent {
-        transform: scale(1); /* Scale to normal size */
+    .modalImage {
+      max-height: 100%; /* Remove fixed height */
+      width: 100%; /* Ensure image takes up full width */
+      object-fit: cover; /* Ensure image fits well */
+      border-radius: 8px 8px 0 0; /* Rounded corners on top */
+      position: relative; /* Close button is relative to this */
     }
 
     .modalClose {
-        background: black;         
-        border: none;                
-        font-size: 16px;            
-        cursor: pointer;             
-        display: flex;               
-        justify-content: center;     
-        align-items: center;         
-        color: white;              
-        width: 30px;                 
-        height: 30px;                
-        position: absolute;          
-        top: 5px;                   
-        right: 10px;                
-        border-radius: 50%;          
-        text-align: center;  
-        
-        &:hover{
-            color: #000; 
-            background: #fff;
-            border: 1px solid #000; 
-        }
+      top: 5px;
+      right: 5px;
+      z-index: 2; /* Ensure close button is on top of the image */
+      position: absolute; /* Superimpose the close button over the image */
     }
-    
+
+    .modalBody {
+      padding: 15px; /* Adjust padding for better layout on small screens */
+    }
+  }
+
+  @media (max-width: 480px) {
+    .modalContent {
+      max-width: 95%; /* Further adjust width for very small screens */
+    }
+
+    .modalImage {
+      max-height: 100%; /* Remove fixed height */
+    }
+
+    .modalBody {
+      padding: 10px; /* Reduce padding for better fit on very small screens */
+    }
+  }
 }

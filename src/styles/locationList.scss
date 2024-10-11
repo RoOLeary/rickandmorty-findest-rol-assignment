@@ -1,85 +1,98 @@
-.locations{
-    
-    
+.locations {
 
-    .locationFilters{
+  .locationFilters {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1rem;
+    gap: 0.5rem;
+
+    @media (max-width: 768px) {
+      padding: 3.5em;
+      gap: 10px;
+    }
+  }
+
+  .locationCard {
+    background-color: #fff;
+    padding: .5rem;
+    border-radius: 5px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, border 0.3s ease; /* Smooth transition */
+    border: 2px solid transparent; /* Default transparent border */
+    text-align: left;
+
+    &:hover {
+      border-color: #00ff00; /* Green border on hover */
+      box-shadow: 0 0 15px 5px rgba(0, 255, 0, 0.5); /* Glowing green effect */
+    }
+
+    .locationListItemTitle {
+      font-weight: bolder;
+      font-size: large;
+      color: #000000;
+    }
+  }
+
+  .locationList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+
+    .heading {
+      font-size: 32px;
+      color: #08bae3;
+      border-radius: 5px;
+      width: 100%;
+      font-family: "Get Schwifty";
+      transition: all 0.15s ease-in-out;
+      padding: 0.5em 1em;
+    }
+
+    .locationListContainer {
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 3 cards per row by default */
+      gap: 10px; 
+      padding: 1rem;
+
+      @media (max-width: 1024px) {
+        grid-template-columns: repeat(2, 1fr); /* 2 cards per row on medium screens */
+      }
+
+      @media (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr); /* 2 cards per row on small screens */
+      }
+
+      @media (max-width: 480px) {
+        grid-template-columns: 1fr; /* 1 card per row on extra small screens */
+      }
+
+      .locationListItem {
         display: flex;
         flex-direction: column;
-        width: 100%;
-        padding: 1rem;
-        gap: .5rem;
-
-        @media (max-width: 768px) {
-            padding: 3.5em;
-            gap: 10px;
-        }
-    }
-
-    
-    .locationCard {
-        background-color: #fff;
-        padding: 1rem;
-        border-radius: 2px;
+        background: #ffffff;
+        border-radius: 25px 0;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        width: 100%;
-        text-align: left;
+        padding: 1.5rem;
+        transition: box-shadow 0.3s ease, border 0.3s ease;
+        border: 2px solid transparent;
 
-        .locationListItemTitle{
-            font-weight: bolder;
-            font-size: large;
-            color: #000000;
+        &:hover {
+          border-color: #00ff00;
+          box-shadow: 0 0 15px 5px rgba(0, 255, 0, 0.5);
         }
 
+        .locationListItemDetail {
+          color: black;
+          text-align: left;
+          padding: 10px;
+          line-height: 1.15rem;
+        }
+      }
     }
-
-    .locationList{
-        
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1.5rem;
-        justify-content: center;
-        margin-bottom: 2rem;
-
-        .heading{
-            font-size: 32px;
-            color: #08BAE3;
-            border-radius: 5px;
-            width: 100%;
-            font-family: "Get Schwifty";
-            transition: all 0.15s ease-in-out;
-            padding: .5em 1em;
-        }
-
-        .locationListContainer{
-
-            margin: 0 auto;
-            width: 100%;
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 10px; 
-
-            .locationListItem{
-                display: flex; 
-                gap: 5px;
-                background: #ffffff;
-                border-radius: 5px;
-                padding: 1rem;
-                background-color: #fff;
-                padding: 1rem;
-                border-radius: 10px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                width: 100%;
-                text-align: left;
-
-                
-                .locationListItemDetail{
-
-
-                    color: black;
-                }
-            }
-
-        }
-    }
+  }
 }
