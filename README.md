@@ -17,6 +17,8 @@ Just click on the Portal, and "Awwwwwayyyy we go!"
    cd rickandmorty-findest-rol-assignment
    ```
 
+  Note: there are 2 ways to get started. the bash script is more entertaining though. 
+
 2. **Run the `setup.sh` bash script**:
 
   Note: You probably won't need to, but if this gives you any grief, you can run:
@@ -45,7 +47,7 @@ Just click on the Portal, and "Awwwwwayyyy we go!"
   will serve up the application on http://localhost:3000
  
 
-2. (Also 2) **Install dependencies using `pnpm`**:
+2. (Alternative 2) **Install dependencies using `pnpm`**:
 
    First, install **pnpm** if you haven't already:
 
