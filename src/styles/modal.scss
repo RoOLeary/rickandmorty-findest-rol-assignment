@@ -100,6 +100,10 @@
     
       img{
         width: 100%;
+        font-size: 1.25rem;
+        margin: 0.5rem 0;
+        text-align: left;
+        color: #000000;
       }
     }
 
@@ -135,5 +139,21 @@
     .modalBody {
       padding: 10px; /* Reduce padding for better fit on very small screens */
     }
+  }
+
+  .episodeListMeta{
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+  }
+
+  .episodeListItemTitle {
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin: 0.5rem 0;
+    text-align: left;
+    color: #000000;
   }
 }

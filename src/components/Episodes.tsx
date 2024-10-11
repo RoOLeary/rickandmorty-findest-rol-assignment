@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState, Suspense, useCallback } from 'react';
+import { debounce } from 'lodash';
+import Modal from '../components/Modal';
 import {
   useGetEpisodeListQuery,
   useGetEpisodesBySeasonQuery,
   useGetEpisodesBySeasonAndNumberQuery
 } from './../services/rickandmorty';
-import { debounce } from 'lodash';
-import Modal from '../components/Modal';
 
 const Episodes = () => {
   const [page, setPage] = useState(1);
@@ -17,6 +17,7 @@ const Episodes = () => {
   const [selectedCharacter, setSelectedCharacter] = useState<any>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedSearch, setDebouncedSearch] = useState(name);
+  const [showAllCharacters, setShowAllCharacters] = useState<{ [key: number]: boolean }>({}); // Add state for "Show All"
 
   // Debounce the search input
   const debouncedSearchChange = useCallback(
@@ -78,7 +79,6 @@ const Episodes = () => {
         fetchCharacterDetails(episode.id, episode.characters);
       });
     }
-   
   }, [data]);
 
   const handleNextPage = () => {
@@ -102,6 +102,13 @@ const Episodes = () => {
     setEpisodeNumber(e.target.value);
   };
 
+  // Toggle the "Show All" state for a given episode
+  const handleToggleShowAll = (episodeId: number) => {
+    setShowAllCharacters((prevState) => ({
+      ...prevState,
+      [episodeId]: !prevState[episodeId],
+    }));
+  };
 
   return (
     <>
@@ -133,11 +140,11 @@ const Episodes = () => {
         </div>
 
         {/* Pagination Controls */}
-        <div className={'pagination'}>
-          <button onClick={handlePreviousPage} disabled={!data?.info?.prev || page === 1} data-testid="pagination-previous">
+        <div className="pagination">
+          <button onClick={handlePreviousPage} disabled={!data?.info?.prev || page === 1} className="pagination-previous">
             Previous
           </button>
-          <button onClick={handleNextPage} disabled={!data?.info?.next} data-testid="pagination-next">
+          <button onClick={handleNextPage} disabled={!data?.info?.next} className="pagination-next">
             Next
           </button>
           <span>{page} / {data?.info?.pages}</span>
@@ -148,17 +155,10 @@ const Episodes = () => {
           {isLoading ? (
             <p>Loading...</p>
           ) : error ? (
-            <div className={'error'}>
+            <div className="error">
               <h2>Awwww Jeez</h2>
-              <p className='font-black'>N-n-n-no characters found for this...c-c-c uuuhhh jeez....current search criteria.</p>
-              <p className='font-black'>Maybe try another search term? Or we could watch some Interdimensional Cable?</p>
+              <p className="font-black">N-n-n-no characters found for this...c-c-c uuuhhh jeez....current search criteria.</p>
             </div>
-          ) : data?.results?.length === 0 ? (
-            
-            <div className={'error'}>
-              <h2>Awwww Jeez</h2>
-              <p>N-n-n-no episodes found for the current search criteria.</p>
-          </div>
           ) : (
             data?.results?.map((episode: any) => (
               <div key={episode.id} className="episodeListItem">
@@ -170,22 +170,29 @@ const Episodes = () => {
                   <ul className="flex flex-wrap gap-2 py-4 max-sm:justify-between">
                     <Suspense fallback={<LoadingFallback />}>
                       {characterDetails[episode.id] ? (
-                        characterDetails[episode.id].map((character, idx) => (
-                          <li key={idx}>
-                            <div onClick={() => openModal(character)}>
-                              <img
-                                src={character.image}
-                                alt={character.name}
-                                style={{ width: '50px', height: '50px', marginRight: '10px', borderRadius: '25px' }}
-                              />
-                            </div>
-                          </li>
-                        ))
+                        characterDetails[episode.id]
+                          .slice(0, showAllCharacters[episode.id] ? characterDetails[episode.id].length : 9) // Show 9 characters by default
+                          .map((character, idx) => (
+                            <li key={idx}>
+                              <div onClick={() => openModal(character)}>
+                                <img
+                                  src={character.image}
+                                  alt={character.name}
+                                  style={{ width: '50px', height: '50px', marginRight: '10px', borderRadius: '25px' }}
+                                />
+                              </div>
+                            </li>
+                          ))
                       ) : (
                         <LoadingFallback />
                       )}
                     </Suspense>
                   </ul>
+                  {characterDetails[episode.id] && characterDetails[episode.id].length > 9 && (
+                    <button onClick={() => handleToggleShowAll(episode.id)} className="font-black text-lg text-[#08BAE3] hover:text-[#66BA4F]">
+                      {showAllCharacters[episode.id] ? 'Show Fewer' : 'Show All Characters'}
+                    </button>
+                  )}
                 </div>
               </div>
             ))
@@ -196,10 +203,13 @@ const Episodes = () => {
       {selectedCharacter && (
         <Modal show={isModalOpen} onClose={closeModal}>
           <img src={selectedCharacter.image} alt={selectedCharacter.name} />
-          <h3 className="font-black text-2xl">{selectedCharacter.name}</h3>
-          <p>Species: {selectedCharacter.species}</p>
-          {selectedCharacter.origin.name ? <p>Origin: {selectedCharacter.origin.name}</p> : null}
-          {selectedCharacter.location.name ? <p>Location: {selectedCharacter.location.name}</p> : null}
+          <div className="episodeListMeta">
+            <h3 className="episodeListItemTitle">{selectedCharacter.name}</h3>
+            <p><strong>Species:</strong> {selectedCharacter.species}</p>
+            <p><strong>Status:</strong> {selectedCharacter?.status}</p>
+            <p><strong>Origin:</strong> {selectedCharacter.origin.name}</p>
+            <p><strong>Location:</strong> {selectedCharacter?.location.name}</p>
+          </div>
         </Modal>
       )}
     </>

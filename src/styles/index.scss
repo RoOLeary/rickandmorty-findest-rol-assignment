@@ -166,14 +166,23 @@ body::before {
     }  
   }
 
+  .episodeListMeta{
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+  }
+
+  .episodeListItemTitle {
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin: 0.5rem 0;
+    text-align: left;
+    color: #000000;
+  }
+  
 }
 
 
-// /* CSS for fallback transitions */
-// .fade-enter {
-//   opacity: 0;
-// }
-// .fade-enter-active {
-//   opacity: 1;
-//   transition: opacity 300ms ease-in-out;
-// }
+

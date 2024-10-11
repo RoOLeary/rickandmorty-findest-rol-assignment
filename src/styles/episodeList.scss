@@ -1,82 +1,87 @@
-.episodeList {
-  .heading {
-    font-size: 32px;
-    color: #08bae3;
-    border-radius: 5px;
-    width: 100%;
-    font-family: "Get Schwifty";
-    transition: all 0.15s ease-in-out;
-    padding: 0.5em;
-  }
-
-  .episodeFilters {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 1rem;
-    gap: 0.5rem;
-
-    @media (max-width: 768px) {
-      padding: 3.5em;
-      gap: 15px;
-    }
-  }
-
-  .episodeListContainer {
-    margin: 0 auto;
-    width: 100%;
-    border-radius: 5px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 cards per row by default */
-    gap: 20px; /* Space between cards */
-    padding: 1rem;
-
-    @media (max-width: 1024px) {
-      grid-template-columns: repeat(2, 1fr); /* 2 cards per row on medium screens */
+  .episodeList {
+    .heading {
+      font-size: 32px;
+      color: #08bae3;
+      border-radius: 5px;
+      width: 100%;
+      font-family: "Get Schwifty";
+      transition: all 0.15s ease-in-out;
+      padding: 0.5em;
     }
 
-    @media (max-width: 768px) {
-      grid-template-columns: repeat(2, 1fr); /* 2 cards per row on small screens */
-    }
-
-    @media (max-width: 480px) {
-      grid-template-columns: 1fr; /* 1 card per row on extra small screens */
-    }
-
-    .episodeListItem {
+    .episodeFilters {
       display: flex;
       flex-direction: column;
-      background: #ffffff;
-      border-radius: 25px 0;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      padding: 1.5rem;
-      transition: box-shadow 0.3s ease, border 0.3s ease; /* Smooth transition */
-      border: 2px solid transparent; /* Default transparent border */
+      width: 100%;
+      padding: 1rem;
+      gap: 0.5rem;
 
-      &:hover {
-        border-color: #00ff00; /* Green border on hover */
-        box-shadow: 0 0 15px 5px rgba(0, 255, 0, 0.5); /* Glowing green effect */
-      }
-
-      .episodeListItemTitle {
-        font-weight: bold;
-        font-size: 1.25rem;
-        margin: 0.5rem 0;
-        text-align: left;
-        color: #000000;
-      }
-
-      .episodeListItemDetail {
-        color: black;
-        text-align: left;
-        padding: 10px;
-        line-height: 1.15rem;
+      @media (max-width: 768px) {
+        padding: 3.5em;
+        gap: 15px;
       }
     }
-  }
 
-  .characterListItemTitle {
-    font-weight: bolder;
-    font-size: large;
+    .episodeListContainer {
+      margin: 0 auto;
+      width: 100%;
+      border-radius: 5px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 3 cards per row by default */
+      gap: 10px; /* Space between cards */
+      padding: 1rem;
+    
+      @media (max-width: 1024px) {
+        grid-template-columns: repeat(2, 1fr); /* 2 cards per row on medium screens */
+      }
+    
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr; /* 1 card per row on small screens */
+      }
+    
+
+      .episodeListItem {
+        display: flex;
+        flex-direction: column;
+        background: #ffffff;
+        border-radius: 25px 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+        transition: box-shadow 0.3s ease, border 0.3s ease; /* Smooth transition */
+        border: 2px solid transparent; /* Default transparent border */
+
+        &:hover {
+          border-color: #00ff00; /* Green border on hover */
+          box-shadow: 0 0 15px 5px rgba(0, 255, 0, 0.5); /* Glowing green effect */
+        }
+
+        .episodeListMeta{
+          padding: 20px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-self: flex-start;
+        }
+
+        .episodeListItemTitle {
+          font-weight: bold;
+          font-size: 1.25rem;
+          margin: 0.5rem 0;
+          text-align: left;
+          color: #000000;
+        }
+
+        .episodeListItemDetail {
+          color: black;
+          text-align: left;
+          padding: 10px;
+          line-height: 1.15rem;
+        }
+      }
+    }
+
+    .characterListItemTitle {
+      font-weight: bolder;
+      font-size: large;
+    }
   }
-}
