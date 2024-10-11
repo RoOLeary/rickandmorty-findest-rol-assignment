@@ -91,6 +91,7 @@ body::before {
   padding: 1em;
   border: 5px solid red;
   border-radius: 5px;
+  grid-column: 1 / -1;
 
   .reload{
     background: red;
@@ -166,22 +167,7 @@ body::before {
     }  
   }
 
-  .episodeListMeta{
-    padding: 20px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-self: flex-start;
-  }
-
-  .episodeListItemTitle {
-    font-weight: bold;
-    font-size: 1.25rem;
-    margin: 0.5rem 0;
-    text-align: left;
-    color: #000000;
-  }
-  
+    
 }
 
 
