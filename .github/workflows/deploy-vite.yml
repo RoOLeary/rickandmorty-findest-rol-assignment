@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'  # Ensure compatibility with Vite
+          node-version: '20'  # Ensure compatibility with pnpm and Vite
 
       - name: Install pnpm
         run: npm install -g pnpm  # Installs pnpm globally
@@ -44,7 +44,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '20'  # Use Node.js v20 in build step
 
       - name: Install pnpm
         run: npm install -g pnpm  # Installs pnpm globally
@@ -61,6 +61,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'  # Ensure Node.js v20 is used in deploy step
 
       - name: Deploy to Vercel
         run: vercel --prod  # Deploys the Vite app to Vercel
