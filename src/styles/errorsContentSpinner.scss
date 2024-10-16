@@ -1,6 +1,6 @@
 .error {
   font-size: 30px;
-  background: white;
+  background: red;
   padding: 1em;
   border: 5px solid red;
   border-radius: 5px;
@@ -20,7 +20,7 @@
   h2 {
     font-family: "Get Schwifty";
     transition: all 0.15s ease-in-out;
-    color: red; 
+    color: white; 
     font-size: 30px;
   }
 }

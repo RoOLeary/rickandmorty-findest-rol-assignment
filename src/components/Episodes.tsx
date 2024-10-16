@@ -157,7 +157,18 @@ const Episodes = () => {
           ) : error ? (
             <div className="error">
               <h2>Awwww Jeez</h2>
-              <p className="font-black">N-n-n-no characters found for this...c-c-c uuuhhh jeez....current search criteria.</p>
+              <p className="font-black mb-4">N-n-n-no characters found for this...c-c-c uuuhhh jeez....current search criteria.</p>
+              <div style={{ width: '100%', height: '0', paddingBottom: '100%', position: 'relative' }}>
+                <iframe
+                  src="https://giphy.com/embed/RH1IFq2GT0Oau8NRWX"
+                  width="100%"
+                  height="100%"
+                  style={{ position: 'absolute', top: 0, left: 0 }}
+                  frameBorder="0"
+                  className="giphy-embed"
+                  allowFullScreen
+                ></iframe>
+              </div>
             </div>
           ) : (
             data?.results?.map((episode: any) => (

@@ -147,7 +147,18 @@ const Characters = () => {
             <div className={'error'}>
               <h2>Awwww Jeez</h2>
               <p className='font-black'>N-n-n-no characters found for this...c-c-c uuuhhh jeez....current search criteria.</p>
-              <p className='font-black'>Maybe try another search term? Or we could watch some Interdimensional Cable?</p>
+              <p className='font-black mb-4'>Maybe try another search term? Or we could watch some Interdimensional Cable?</p>
+              <div style={{ width: '100%', height: '0', paddingBottom: '56%', position: 'relative' }}>
+                <iframe
+                  src="https://giphy.com/embed/Fsn4WJcqwlbtS"
+                  width="100%"
+                  height="100%"
+                  style={{ position: 'absolute', top: 0, left: 0 }}
+                  frameBorder="0"
+                  className="giphy-embed"
+                  allowFullScreen
+                ></iframe>
+              </div>
             </div>
           ) : filteredCharacters?.length === 0 ? (
             <div className="error">

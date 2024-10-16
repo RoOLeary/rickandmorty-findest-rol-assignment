@@ -96,6 +96,17 @@ const Locations = () => {
               <p className="font-black">
                 We have an Error!!...AN ERROR M-m-m-m-morty...Unable to fetch data...WHAT DID YOU DO M-M-M-MORTY?
               </p>
+              <div style={{ width: '100%', height: '0', paddingBottom: '100%', position: 'relative' }}>
+                <iframe
+                  src="https://giphy.com/embed/YrrihyxWQ3pRswrIYe"
+                  width="100%"
+                  height="100%"
+                  style={{ position: 'absolute', top: 0, left: 0 }}
+                  frameBorder="0"
+                  className="giphy-embed"
+                  allowFullScreen
+                ></iframe>
+              </div>
             </div>
           ) : data?.results.length === 0 ? (
             <div className="error">
