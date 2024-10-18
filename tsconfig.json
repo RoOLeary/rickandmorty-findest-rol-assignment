@@ -19,11 +19,11 @@
     "types": ["vitest/globals", "@testing-library/jest-dom"]
   },
   "include": [
-    "tailwind.config.js",
+    "tailwind.config.mjs",
     "vitest.config.ts",
     "vitest.config.ts",
     "postcss.config.mjs",
-    "prettier.config.js",
+    "prettier.config.mjs",
     ".eslintrc.cjs",
     "./src",
     "./@types"
