@@ -1,5 +1,6 @@
+/* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect, useState, Suspense, useCallback } from 'react';
+import { useEffect, useState, Suspense, useCallback } from 'react';
 import { debounce } from 'lodash';
 import Modal from '../components/Modal';
 import {
@@ -7,6 +8,7 @@ import {
   useGetEpisodesBySeasonQuery,
   useGetEpisodesBySeasonAndNumberQuery
 } from './../services/rickandmorty';
+
 
 const Episodes = () => {
   const [page, setPage] = useState(1);

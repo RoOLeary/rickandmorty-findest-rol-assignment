@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react';
-import useUpdateEffect from './useUpdateEffect';
+import useUpdateEffect from '../../hooks/useUpdateEffect';
 
 describe('useUpdateEffect', () => {
   beforeEach(() => {

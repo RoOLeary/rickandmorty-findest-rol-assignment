@@ -1,6 +1,4 @@
-
-import React from 'react';
-
+/* eslint-disable react/react-in-jsx-scope */
 const Landing = () => {
     return (
     <div className="landing">

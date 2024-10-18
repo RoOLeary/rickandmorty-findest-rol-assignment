@@ -1,5 +1,6 @@
+/* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Modal from './Modal';  // Assuming you have a Modal component
 
 interface CharacterCardProps {

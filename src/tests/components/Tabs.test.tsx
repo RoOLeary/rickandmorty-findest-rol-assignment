@@ -2,14 +2,14 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import Tabs from './Tabs';
+import Tabs from '../../components/Tabs/Tabs';
 import { useNavigate } from 'react-router-dom';
 
 // Mock Components
-jest.mock('../Characters', () => () => <div data-testid="characters-content">Characters Component</div>);
-jest.mock('../Locations', () => () => <div data-testid="locations-content">Locations Component</div>);
-jest.mock('../Episodes', () => () => <div data-testid="episodes-content">Episodes Component</div>);
-jest.mock('../Spinner', () => () => <div data-testid="spinner">Loading...</div>);
+jest.mock('../../components/Characters', () => () => <div data-testid="characters-content">Characters Component</div>);
+jest.mock('../../components/Locations', () => () => <div data-testid="locations-content">Locations Component</div>);
+jest.mock('../../components/Episodes', () => () => <div data-testid="episodes-content">Episodes Component</div>);
+jest.mock('../../components/Spinner', () => () => <div data-testid="spinner">Loading...</div>);
 
 // Mock useNavigate from react-router-dom
 jest.mock('react-router-dom', () => ({
@@ -59,14 +59,4 @@ describe('Tabs Component', () => {
     expect(screen.queryByTestId('locations-content')).not.toBeInTheDocument();
   });
 
-//   test('should reset the page when Reset button is clicked', () => {
-//     render(<Tabs />, { wrapper: MemoryRouter });
-
-//     // Click the Reset button
-//     fireEvent.click(screen.getByText('Reset'));
-
-//     // Verify that navigate(0) was called, which reloads the page
-//     expect(mockNavigate).toHaveBeenCalledWith(0);
-//     expect(mockNavigate).toHaveBeenCalledTimes(1); // Ensure it was called exactly once
-//   });
 });

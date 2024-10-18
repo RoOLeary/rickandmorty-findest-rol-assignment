@@ -38,6 +38,8 @@ export interface Location {
     characters: string[]; // Array of character URLs that appear in this episode
     url: string;
     created: string; // ISO date string
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    season?: any;
   }
   
   // Type for a list of Locations

@@ -1,4 +1,5 @@
-import React, { useState, useCallback } from 'react';
+/* eslint-disable react/react-in-jsx-scope */
+import { useState, useCallback } from 'react';
 import { debounce } from 'lodash';
 import { useGetLocationsListQuery } from './../services/rickandmorty';
 

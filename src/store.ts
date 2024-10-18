@@ -5,7 +5,6 @@ import { combineReducers } from 'redux'
 import { createReduxHistoryContext } from 'redux-first-history'
 import { rickAndMortyApi } from './services/rickandmorty'
 
-// Setup redux-first-history
 const { createReduxHistory, routerMiddleware, routerReducer } =
   createReduxHistoryContext({ history: createBrowserHistory() })
 
@@ -13,10 +12,12 @@ export const store = configureStore({
   devTools: process.env.NODE_ENV === 'development',
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat([
+      // additional slices here
       rickAndMortyApi.middleware,
       routerMiddleware,
     ]), // Add taskApi.middleware
   reducer: combineReducers({
+    // additional reducers: ex
     // counter: counterReducer,
     router: routerReducer,
     [rickAndMortyApi.reducerPath]: rickAndMortyApi.reducer,

@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import CharacterCard from './CharacterCard';
+import CharacterCard from '../../components/CharacterCard';
 
 // Mock the Modal component
 // eslint-disable-next-line react/display-name, @typescript-eslint/no-explicit-any
-jest.mock('./Modal', () => ({ show, onClose, children }: any) => {
+jest.mock('../../components/Modal', () => ({ show, onClose, children }: any) => {
   return show ? (
     <div data-testid="modal">
       <button data-testid="modal-close" onClick={onClose}>
