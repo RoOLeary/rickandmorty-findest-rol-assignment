@@ -13,7 +13,9 @@ module.exports = {
     moduleNameMapper: {
         '^ky$': '<rootDir>/mocks/kyMock.ts', // This file would mock ky
     },
-    "verbose": true
+    "verbose": true,
+    collectCoverage: true,
+    coverageDirectory: "<rootDir>/src/tests/coverage",
     
   };
   
