@@ -13,7 +13,7 @@
     "build": "vite build",
     "serve": "serve dist",
     "test": "jest",
-    "test:watch": "je",
+    "test:watch": "jest",
     "lint": "eslint src --c .ts,.tsx,.js,jsx.cjs",
     "lint:fix": "eslint src --c .ts,.tsx,.js,jsx,cjs --fix",
     "typecheck": "tsc --noEmit",
@@ -36,6 +36,8 @@
     "react-router-dom": "^6.26.2",
     "redux": "5.0.1",
     "redux-first-history": "^5.2.0",
+    "sass": "^1.80.2",
+    "sass-loader": "^16.0.2",
     "three": "^0.169.0"
   },
   "devDependencies": {

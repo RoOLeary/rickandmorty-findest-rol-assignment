@@ -1,0 +1,2 @@
+echo #
+pnpm run test
