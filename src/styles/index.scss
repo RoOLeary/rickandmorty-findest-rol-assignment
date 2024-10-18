@@ -1,16 +1,16 @@
-@use "./characterList.scss";
-@use "./episodeList.scss";
-@use "./errorsContentSpinner.scss";
-@use "./home.scss";
-@use "./landing.scss";
-@use "./locationList.scss";
-@use "./modal.scss";
-@use "./pagination.scss";
-@use "./tabs.scss";
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import "./characterList.scss";
+@import "./episodeList.scss";
+@import "./errorsContentSpinner.scss";
+@import "./home.scss";
+@import "./landing.scss";
+@import "./locationList.scss";
+@import "./modal.scss";
+@import "./pagination.scss";
+@import "./tabs.scss";
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
