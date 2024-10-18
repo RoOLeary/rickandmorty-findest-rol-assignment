@@ -40,6 +40,13 @@ Just click on the Portal, and "Awwwwwayyyy we go!"
   ```
   .....you'll see some funny/cool ascii art. 
 
+
+  Note: You can also run the test suites thusly: 
+  And although you may need to chmod +x this command also:
+
+  ```bash
+    ./test.sh
+  ```
   
   ## ANYWAY....
   
