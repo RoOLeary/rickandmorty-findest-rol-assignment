@@ -2,7 +2,7 @@
 /* eslint-disable react/display-name */
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import CharacterCard from "./../../../components/CharacterCard";
+import CharacterCard from "../../../components/CharacterCard";
 
 // Mock the Modal component
 // eslint-disable-next-line react/display-name, @typescript-eslint/no-explicit-any

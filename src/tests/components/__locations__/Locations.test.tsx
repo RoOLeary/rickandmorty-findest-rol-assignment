@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import Locations from "./../../../components/Locations";
-import { useGetLocationsListQuery } from "./../../../services/rickandmorty";
+import Locations from "../../../components/Locations";
+import { useGetLocationsListQuery } from "../../../services/rickandmorty";
 import debounce from "lodash/debounce";
 
 // Mock the necessary API calls

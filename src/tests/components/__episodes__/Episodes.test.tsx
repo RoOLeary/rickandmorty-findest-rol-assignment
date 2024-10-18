@@ -1,11 +1,11 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import Episodes from "./../../../components/Episodes";
+import Episodes from "../../../components/Episodes";
 import {
   useGetEpisodeListQuery,
   useGetEpisodesBySeasonQuery,
   useGetEpisodesBySeasonAndNumberQuery,
-} from "./../../../services/rickandmorty";
+} from "../../../services/rickandmorty";
 
 // Mock API calls
 jest.mock("./../../../services/rickandmorty", () => ({

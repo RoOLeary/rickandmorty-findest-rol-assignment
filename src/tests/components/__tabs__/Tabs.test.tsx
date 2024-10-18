@@ -2,7 +2,7 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import Tabs from "./../../../components/Tabs/Tabs";
+import Tabs from "../../../components/Tabs/Tabs";
 import { useNavigate } from "react-router-dom";
 
 // Mock Components

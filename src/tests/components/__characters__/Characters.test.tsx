@@ -1,14 +1,14 @@
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import Characters from "./../../../components/Characters";
+import Characters from "../../../components/Characters";
 import { debounce } from "lodash";
 import {
   useGetCharacterListQuery,
   useGetUniqueSpeciesQuery,
   useGetUniqueOriginsQuery,
   useGetUniqueLocationsQuery,
-} from "./../../../services/rickandmorty";
+} from "../../../services/rickandmorty";
 
 // Mock lodash debounce
 jest.mock("lodash", () => ({
