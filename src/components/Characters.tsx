@@ -1,5 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { useState, useCallback } from "react";
+import { useState, useCallback, JSXElementConstructor, Key, ReactElement, ReactNode } from "react";
 import { debounce } from "lodash";
 import {
   useGetCharacterListQuery,
@@ -93,7 +93,8 @@ const Characters = () => {
             data-testid="species-select"
           >
             <option value="">All Species</option>
-            {speciesList?.map((speciesOption, idx) => (
+            {speciesList?.map((speciesOption: string | number | boolean | ReactElement<unknown, string | JSXElementConstructor<unknown>> | Iterable<ReactNode> | null | undefined, idx: Key | null | undefined) => (
+              // @ts-expect-error not applicable
               <option key={idx} value={speciesOption}>
                 {speciesOption}
               </option>
@@ -133,7 +134,8 @@ const Characters = () => {
             data-testid="origin-select"
           >
             <option value="">All Origins</option>
-            {originList?.map((originOption, idx) => (
+            {originList?.map((originOption: string | number | boolean | ReactElement<unknown, string | JSXElementConstructor<unknown>> | Iterable<ReactNode> | null | undefined, idx: Key | null | undefined) => (
+              // @ts-expect-error not applicable
               <option key={idx} value={originOption}>
                 {originOption}
               </option>
@@ -148,7 +150,8 @@ const Characters = () => {
             data-testid="location-select"
           >
             <option value="">All Locations</option>
-            {locationList?.map((locationOption, idx) => (
+            {locationList?.map((locationOption: string | number | boolean | ReactElement<unknown, string | JSXElementConstructor<unknown>> | Iterable<ReactNode> | null | undefined, idx: Key | null | undefined) => (
+              // @ts-expect-error not applicable
               <option key={idx} value={locationOption}>
                 {locationOption}
               </option>

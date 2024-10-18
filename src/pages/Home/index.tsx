@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint-disable react/react-in-jsx-scope */
 import styles from "./home.module.css";
 import Landing from "../../components/Landing";
 
