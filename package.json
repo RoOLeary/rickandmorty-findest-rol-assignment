@@ -1,7 +1,7 @@
 {
   "name": "rickandmorty-findest-rol-assignment",
   "version": "2.0.0",
-   "type": "module",
+  "type": "module",
   "msw": {
     "workerDirectory": "public"
   },
