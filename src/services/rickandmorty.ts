@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import ky from "ky";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { Location, Episode, Character } from "./types";
+import type { Character } from "./types";
 
 // Create the API slice using RTK Query
 export const rickAndMortyApi = createApi({

@@ -1,5 +1,6 @@
+/* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import React from "react";
+
 
 interface ModalProps {
   show: boolean;

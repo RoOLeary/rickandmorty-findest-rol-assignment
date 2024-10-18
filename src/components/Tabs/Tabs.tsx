@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable react/react-in-jsx-scope */
+import { useState, useEffect } from "react";
 import Characters from "../Characters";
 import Locations from "../Locations";
 import Episodes from "../Episodes";
@@ -46,7 +47,7 @@ const Tabs = () => {
 
   return (
     <div className="content tabs">
-      <div className="tabContainer @import './pagination.scss">
+      <div className="tabContainer">
         <button
           onClick={() => switchTab("characters")}
           className={`text-white ${activeTab === "characters" && "active"}`}

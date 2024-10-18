@@ -1,5 +1,5 @@
+/* eslint-disable react/react-in-jsx-scope */
 // App.js or App.tsx
-import React from "react";
 import { Provider as ReduxStoreProvider } from "react-redux";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { HistoryRouter } from "redux-first-history/rr6";

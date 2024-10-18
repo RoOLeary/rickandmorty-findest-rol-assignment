@@ -1,5 +1,6 @@
+/* eslint-disable react/react-in-jsx-scope */
 import clsx from "clsx";
-import React, { memo } from "react";
+import { memo } from "react";
 
 const sizes = {
   lg: "h-16 w-16",

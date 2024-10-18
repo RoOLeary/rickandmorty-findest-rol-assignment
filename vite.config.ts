@@ -7,8 +7,8 @@ export default defineConfig({
     sourcemap: true,
     rollupOptions: {
       onwarn(warning, warn) {
-        // Suppress specific deprecation warnings (like legacy JS API warnings)
-        if (warning.message.includes("deprecated legacy JS API")) {
+        // Suppress specific deprecation warnings
+        if (warning.message.includes("Sass @import rules are deprecated")) {
           return;
         }
         // Default behavior: pass through any other warnings
