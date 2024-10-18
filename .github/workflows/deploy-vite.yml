@@ -32,7 +32,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-results
-          path: coverage/  # Assuming your tests produce a coverage report
+          path: /tests/coverage/  # Assuming your tests produce a coverage report
 
   build:
     runs-on: ubuntu-latest
