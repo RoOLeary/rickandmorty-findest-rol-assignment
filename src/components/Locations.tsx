@@ -97,9 +97,9 @@ const Locations = () => {
               <p className="font-black">
                 We have an Error!!...AN ERROR M-m-m-m-morty...Unable to fetch data...WHAT DID YOU DO M-M-M-MORTY?
               </p>
-              <div style={{ width: '100%', height: '0', paddingBottom: '100%', position: 'relative' }}>
+              <div style={{ width: '100%', height: '0', paddingBottom: '100%', position: 'relative', objectFit: 'cover' }}>
                 <iframe
-                  src="https://giphy.com/embed/YrrihyxWQ3pRswrIYe"
+                  src="https://giphy.com/embed/3oEdv2AJQU4l5x43qo"
                   width="100%"
                   height="100%"
                   style={{ position: 'absolute', top: 0, left: 0 }}
