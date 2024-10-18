@@ -3,14 +3,15 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 import { createBrowserHistory } from "history";
 import { combineReducers } from "redux";
 import { createReduxHistoryContext } from "redux-first-history";
-import { rickAndMortyApi } from "./services/rickandmorty";
+import { rickAndMortyApi } from "../services/rickandmorty";
 
 const { createReduxHistory, routerMiddleware, routerReducer } =
   createReduxHistoryContext({ history: createBrowserHistory() });
 
 export const store = configureStore({
   devTools: process.env.NODE_ENV === "development",
-  middleware: (getDefaultMiddleware) =>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  middleware: (getDefaultMiddleware: () => any[]) =>
     getDefaultMiddleware().concat([
       // additional slices here
       rickAndMortyApi.middleware,

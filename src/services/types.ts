@@ -6,16 +6,40 @@ export interface Location {
 export interface Character {
   id: number;
   name: string;
-  status: string; // "Alive", "Dead", or "unknown"
+  status: string;
   species: string;
-  type: string; // Sometimes characters have a specific type, but often it is an empty string
-  gender: string; // "Male", "Female", "Genderless", or "unknown"
-  origin: Location; // Location where the character originated
-  location: Location; // Current location of the character
-  image: string; // URL to the character's image
-  episode: string[]; // Array of episode URLs the character has appeared in
-  url: string; // URL of this character's own API endpoint
-  created: string; // ISO date string of when the character was created
+  type: string;
+  gender: string;
+  origin: {
+    name: string;
+    url: string;
+  };
+  location: {
+    name: string;
+    url: string;
+  };
+  image: string;
+  episode: string[];
+  url: string;
+  created: string;
+}
+
+export interface CharacterListResponse {
+  info: {
+    count: number;
+    pages: number;
+    next: string | null;
+    prev: string | null;
+  };
+  results: Character[];
+}
+
+export interface CharacterListQueryParams {
+  page?: number;
+  name?: string;
+  species?: string;
+  gender?: string;
+  status?: string;
 }
 
 // Type for Location object

@@ -1,80 +1,65 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import ky from "ky";
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { Character } from "./types";
+// @ts-expect-error n/a
+import type { Character, CharacterListResponse, EpisodeListResponse, LocationListResponse } from "./types";
 
 // Create the API slice using RTK Query
 export const rickAndMortyApi = createApi({
-  reducerPath: "rickAndMortyApi", // Unique key for this API slice in the Redux store
+  reducerPath: "rickAndMortyApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://rickandmortyapi.com/api", // Base URL for the Rick and Morty API
-    fetchFn: async (...args) => ky(...args), // Using 'ky' to handle the actual HTTP requests
+    baseUrl: "https://rickandmortyapi.com/api",
+    fetchFn: async (...args: any) => ky(...args),
   }),
-  endpoints: (builder) => ({
-    // Define endpoints (API operations)
-
-    // Fetches a list of characters with optional filters: pagination, name, species, gender, and status
-    getCharacterList: builder.query<
-      CharacterListResponse,
-      {
-        page?: number;
-        name?: string;
-        species?: string;
-        gender?: string;
-        status?: string;
-      }
-    >({
-      query: ({
-        page = 1,
-        name = "",
-        species = "",
-        gender = "",
-        status = "",
-      } = {}) => {
+  endpoints: (builder: { query: (arg0: { query?: (({ page, name, air_date, episode }?: { page?: number | undefined; name?: string | undefined; air_date?: string | undefined; episode?: string | undefined; }) => string) | (({ season, episode }: { season: any; episode: any; }) => string) | (({ season }: { season: any; }) => string) | (({ page, name, species, gender, status }?: { page?: number | undefined; name?: string | undefined; species?: string | undefined; gender?: string | undefined; status?: string | undefined; }) => string) | ((id: any) => string) | (({ page, name, type, dimension }?: { page?: number | undefined; name?: string | undefined; type?: string | undefined; dimension?: string | undefined; }) => string); queryFn?: (() => Promise<{ data: string[]; }>) | (() => Promise<{ data: string[]; }>) | (() => Promise<{ data: string[]; }>); }) => any; }) => ({
+    
+    // Fetches a list of characters with optional filters
+    getCharacterList: builder.query<CharacterListResponse, {
+      page?: number;
+      name?: string;
+      species?: string;
+      gender?: string;
+      status?: string;
+    }>({
+      query: ({ page = 1, name = "", species = "", gender = "", status = "" } = {}) => {
         const params = new URLSearchParams();
-        params.append("page", page.toString()); // Add pagination to the query string
-        if (name) params.append("name", name); // Add name filter if provided
-        if (species) params.append("species", species); // Add species filter if provided
-        if (gender) params.append("gender", gender); // Add gender filter if provided
-        if (status) params.append("status", status); // Add status filter if provided
-        return `character/?${params.toString()}`; // Return the full API endpoint with query string
+        params.append("page", page.toString());
+        if (name) params.append("name", name);
+        if (species) params.append("species", species);
+        if (gender) params.append("gender", gender);
+        if (status) params.append("status", status);
+        return `character/?${params.toString()}`;
       },
     }),
 
     // Fetches the details of a single character by its ID
-    getCharacterById: builder.query<Character, string>({
-      query: (id) => `/character/${id}`, // Endpoint for fetching character by ID
+    getCharacterById: builder.query<Character, string | number>({
+      query: (id: any) => `/character/${id}`,
     }),
 
-    // Fetches unique species from all characters (loops through all pages to find unique species)
+    // Fetches unique species from all characters
     getUniqueSpecies: builder.query<string[], void>({
       async queryFn() {
-        const speciesSet = new Set<string>(); // Use a Set to store unique species
+        const speciesSet = new Set<string>();
         let page = 1;
         let hasNextPage = true;
 
-        // Loop through the API pages until all species are fetched
         while (hasNextPage) {
-          const response = await ky
-            .get(`https://rickandmortyapi.com/api/character/?page=${page}`)
-            .json();
-          // @ts-ignore
-          response?.results?.forEach((character: unknown) => {
-            // @ts-ignore
-            if (character.species) speciesSet.add(character.species); // Add species to the Set
+          const response = await ky.get(`https://rickandmortyapi.com/api/character/?page=${page}`).json();
+          // @ts-expect-error not applicable
+          response.results.forEach((character: any) => {
+            if (character.species) speciesSet.add(character.species);
           });
-          // @ts-ignore
-          hasNextPage = !!response?.info?.next; // Check if there is another page to fetch
+          // @ts-expect-error not applicable
+          hasNextPage = !!response.info.next;
           page++;
         }
 
-        return { data: Array.from(speciesSet) }; // Return the unique species as an array
+        return { data: Array.from(speciesSet) };
       },
     }),
 
-    // Fetches unique origins from characters (similar to getUniqueSpecies, but for origins)
+    // Fetches unique origins from all characters
     getUniqueOrigins: builder.query<string[], void>({
       async queryFn() {
         const originSet = new Set<string>();
@@ -82,25 +67,21 @@ export const rickAndMortyApi = createApi({
         let hasNextPage = true;
 
         while (hasNextPage) {
-          const response = await ky
-            .get(`https://rickandmortyapi.com/api/character/?page=${page}`)
-            .json();
-          // @ts-ignore
-
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const response = await ky.get(`https://rickandmortyapi.com/api/character/?page=${page}`).json();
+          // @ts-expect-error not applicable
           response.results.forEach((character: any) => {
-            if (character.origin?.name) originSet.add(character.origin.name); // Add origin to the Set
+            if (character.origin?.name) originSet.add(character.origin.name);
           });
-          // @ts-ignore
+          // @ts-expect-error not applicable
           hasNextPage = !!response.info.next;
           page++;
         }
 
-        return { data: Array.from(originSet) }; // Return unique origins as an array
+        return { data: Array.from(originSet) };
       },
     }),
 
-    // Fetches unique locations from characters (similar to getUniqueOrigins, but for locations)
+    // Fetches unique locations from all characters
     getUniqueLocations: builder.query<string[], void>({
       async queryFn() {
         const locationSet = new Set<string>();
@@ -108,74 +89,69 @@ export const rickAndMortyApi = createApi({
         let hasNextPage = true;
 
         while (hasNextPage) {
-          const response = await ky
-            .get(`https://rickandmortyapi.com/api/character/?page=${page}`)
-            .json();
-          // @ts-ignore
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const response = await ky.get(`https://rickandmortyapi.com/api/character/?page=${page}`).json();
+          // @ts-expect-error not applicable
           response.results.forEach((character: any) => {
-            if (character.location?.name)
-              locationSet.add(character.location.name); // Add location to the Set
+            if (character.location?.name) locationSet.add(character.location.name);
           });
-          // @ts-ignore
+          // @ts-expect-error not applicable
           hasNextPage = !!response.info.next;
           page++;
         }
 
-        return { data: Array.from(locationSet) }; // Return unique locations as an array
+        return { data: Array.from(locationSet) };
       },
     }),
 
-    // Fetches a list of locations with optional filters: pagination, name, type, and dimension
-    getLocationsList: builder.query<
-      LocationListResponse,
-      { page?: number; name?: string; type?: string; dimension?: string }
-    >({
+    // Fetches a list of locations with optional filters
+    getLocationsList: builder.query<LocationListResponse, {
+      page?: number;
+      name?: string;
+      type?: string;
+      dimension?: string;
+    }>({
       query: ({ page = 1, name = "", type = "", dimension = "" } = {}) => {
         const params = new URLSearchParams();
-        params.append("page", page.toString()); // Add pagination to the query string
-        if (name) params.append("name", name); // Add name filter if provided
-        if (type) params.append("type", type); // Add type filter if provided
-        if (dimension) params.append("dimension", dimension); // Add dimension filter if provided
-        return `location/?${params.toString()}`; // Return the full API endpoint with query string
+        params.append("page", page.toString());
+        if (name) params.append("name", name);
+        if (type) params.append("type", type);
+        if (dimension) params.append("dimension", dimension);
+        return `location/?${params.toString()}`;
       },
     }),
 
-    // Fetches a list of episodes with optional filters: pagination, name, air_date, episode code, and characters
-    getEpisodeList: builder.query<
-      EpisodeListResponse,
-      { page?: number; name?: string; air_date?: string; episode?: string }
-    >({
+    // Fetches a list of episodes with optional filters
+    getEpisodeList: builder.query<EpisodeListResponse, {
+      page?: number;
+      name?: string;
+      air_date?: string;
+      episode?: string;
+    }>({
       query: ({ page = 1, name = "", air_date = "", episode = "" } = {}) => {
         const params = new URLSearchParams();
-        params.append("page", page.toString()); // Add pagination to the query string
-        if (name) params.append("name", name); // Add name filter if provided
-        if (air_date) params.append("air_date", air_date); // Add air_date filter if provided
-        if (episode) params.append("episode", episode); // Add episode filter if provided
-        return `episode/?${params.toString()}`; // Return the full API endpoint with query string
+        params.append("page", page.toString());
+        if (name) params.append("name", name);
+        if (air_date) params.append("air_date", air_date);
+        if (episode) params.append("episode", episode);
+        return `episode/?${params.toString()}`;
       },
     }),
 
     // Fetches episodes by season and episode number
-    getEpisodesBySeasonAndNumber: builder.query<
-      EpisodeListResponse,
-      { season: number; episode: number }
-    >({
+    getEpisodesBySeasonAndNumber: builder.query<EpisodeListResponse, { season: number; episode: number }>({
       query: ({ season, episode }) => {
-        const episodeCode = `S${String(season).padStart(2, "0")}E${String(episode).padStart(2, "0")}`; // Construct episode code like S01E01
-        return `episode/?episode=${episodeCode}`; // Return the full API endpoint filtered by episode code
+        const episodeCode = `S${String(season).padStart(2, "0")}E${String(episode).padStart(2, "0")}`;
+        return `episode/?episode=${episodeCode}`;
       },
     }),
 
     // Fetches episodes by season only
-    getEpisodesBySeason: builder.query<EpisodeListResponse, { season: number }>(
-      {
-        query: ({ season }) => {
-          const seasonCode = `S${String(season).padStart(2, "0")}`; // Construct the season part of episode code (e.g., S01)
-          return `episode/?episode=${seasonCode}`; // Return the full API endpoint filtered by season
-        },
+    getEpisodesBySeason: builder.query<EpisodeListResponse, { season: number }>({
+      query: ({ season }:any) => {
+        const seasonCode = `S${String(season).padStart(2, "0")}`;
+        return `episode/?episode=${seasonCode}`;
       },
-    ),
+    }),
   }),
 });
 

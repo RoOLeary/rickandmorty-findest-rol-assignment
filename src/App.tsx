@@ -6,7 +6,7 @@ import { HistoryRouter } from "redux-first-history/rr6";
 
 import Home from "./pages/Home";
 import Explorer from "./pages/Explorer";
-import { history, store } from "./store";
+import { history, store } from "./store/store";
 
 const App = () => {
   return (
