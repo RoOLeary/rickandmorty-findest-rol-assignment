@@ -2,14 +2,14 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import Tabs from '../../components/Tabs/Tabs';
+import Tabs from './../../../components/Tabs/Tabs';
 import { useNavigate } from 'react-router-dom';
 
 // Mock Components
-jest.mock('../../components/Characters', () => () => <div data-testid="characters-content">Characters Component</div>);
-jest.mock('../../components/Locations', () => () => <div data-testid="locations-content">Locations Component</div>);
-jest.mock('../../components/Episodes', () => () => <div data-testid="episodes-content">Episodes Component</div>);
-jest.mock('../../components/Spinner', () => () => <div data-testid="spinner">Loading...</div>);
+jest.mock('../../../components/Characters', () => () => <div data-testid="characters-content">Characters Component</div>);
+jest.mock('../../../components/Locations', () => () => <div data-testid="locations-content">Locations Component</div>);
+jest.mock('../../../components/Episodes', () => () => <div data-testid="episodes-content">Episodes Component</div>);
+jest.mock('../../../components/Spinner', () => () => <div data-testid="spinner">Loading...</div>);
 
 // Mock useNavigate from react-router-dom
 jest.mock('react-router-dom', () => ({

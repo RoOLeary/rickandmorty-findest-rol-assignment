@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Modal from '../../components/Modal';
+import Modal from './../../../components/Modal';
 
 describe('Modal Component', () => {
   const mockOnClose = jest.fn();

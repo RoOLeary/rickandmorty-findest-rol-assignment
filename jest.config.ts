@@ -8,7 +8,7 @@ module.exports = {
     transformIgnorePatterns: [
       '/node_modules/(?!ky/)', // Tell Jest to transform 'ky'
     ],
-    setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'], // If you have a test setup file for jest-dom
+    setupFilesAfterEnv: ['<rootDir>/src/tests/setupTests.ts'], // If you have a test setup file for jest-dom
    
     moduleNameMapper: {
         '^ky$': '<rootDir>/mocks/kyMock.ts', // This file would mock ky

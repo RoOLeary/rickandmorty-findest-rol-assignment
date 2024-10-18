@@ -1,14 +1,14 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import Episodes from '../../components/Episodes';
+import Episodes from './../../../components/Episodes';
 import {
   useGetEpisodeListQuery,
   useGetEpisodesBySeasonQuery,
   useGetEpisodesBySeasonAndNumberQuery,
-} from '../../services/rickandmorty';
+} from './../../../services/rickandmorty';
 
 // Mock API calls
-jest.mock('../../services/rickandmorty', () => ({
+jest.mock('./../../../services/rickandmorty', () => ({
   useGetEpisodeListQuery: jest.fn(),
   useGetEpisodesBySeasonQuery: jest.fn(),
   useGetEpisodesBySeasonAndNumberQuery: jest.fn(),
@@ -74,7 +74,7 @@ describe('Episodes Component', () => {
       error: null,
       isLoading: false,
     });
-    // @ts-expect-error not applicalre
+    // @ts-expect-error not applicable
     render(<Episodes season="1" />);
 
     // Use waitFor and flexible matcher
