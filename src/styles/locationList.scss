@@ -1,5 +1,4 @@
 .locations {
-
   .locationFilters {
     display: flex;
     flex-direction: column;
@@ -15,10 +14,12 @@
 
   .locationCard {
     background-color: #fff;
-    padding: .5rem;
+    padding: 0.5rem;
     border-radius: 5px 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease, border 0.3s ease; /* Smooth transition */
+    transition:
+      box-shadow 0.3s ease,
+      border 0.3s ease; /* Smooth transition */
     border: 2px solid transparent; /* Default transparent border */
     text-align: left;
 
@@ -56,15 +57,21 @@
       width: 100%;
       display: grid;
       grid-template-columns: repeat(3, 1fr); /* 3 cards per row by default */
-      gap: 10px; 
+      gap: 10px;
       padding: 1rem;
 
       @media (max-width: 1024px) {
-        grid-template-columns: repeat(2, 1fr); /* 2 cards per row on medium screens */
+        grid-template-columns: repeat(
+          2,
+          1fr
+        ); /* 2 cards per row on medium screens */
       }
 
       @media (max-width: 768px) {
-        grid-template-columns: repeat(2, 1fr); /* 2 cards per row on small screens */
+        grid-template-columns: repeat(
+          2,
+          1fr
+        ); /* 2 cards per row on small screens */
       }
 
       @media (max-width: 480px) {
@@ -78,7 +85,9 @@
         border-radius: 25px 0;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         padding: 1.5rem;
-        transition: box-shadow 0.3s ease, border 0.3s ease;
+        transition:
+          box-shadow 0.3s ease,
+          border 0.3s ease;
         border: 2px solid transparent;
 
         &:hover {

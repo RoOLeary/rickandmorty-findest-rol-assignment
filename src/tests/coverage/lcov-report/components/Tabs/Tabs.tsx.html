@@ -150,7 +150,8 @@
 <a name='L85'></a><a href='#L85'>85</a>
 <a name='L86'></a><a href='#L86'>86</a>
 <a name='L87'></a><a href='#L87'>87</a>
-<a name='L88'></a><a href='#L88'>88</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -205,10 +206,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -216,6 +213,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -237,21 +239,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState, useEffect } from 'react';
-import Characters from '../Characters';
-import Locations from '../Locations';
-import Episodes from '../Episodes';
-import Spinner from '../Spinner';
-import { useNavigate } from 'react-router-dom';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState, useEffect } from "react";
+import Characters from "../Characters";
+import Locations from "../Locations";
+import Episodes from "../Episodes";
+import Spinner from "../Spinner";
+import { useNavigate } from "react-router-dom";
 &nbsp;
 // Check if the ViewTransition API is supported
 const useViewTransition = () =&gt; {
-  return typeof document.startViewTransition === 'function';
+  return typeof document.startViewTransition === "function";
 };
 &nbsp;
 const Tabs = () =&gt; {
   const [isLoading, setIsLoading] = useState&lt;boolean&gt;(true);
-  const [activeTab, setActiveTab] = useState('characters');
+  const [activeTab, setActiveTab] = useState("characters");
   const supportsViewTransition = useViewTransition();
   const navigate = useNavigate();
 &nbsp;
@@ -284,26 +286,27 @@ const Tabs = () =&gt; {
   };
 &nbsp;
   return (
-    &lt;div className='content tabs'&gt;
+    &lt;div className="content tabs"&gt;
       &lt;div className="tabContainer @import './pagination.scss"&gt;
         &lt;button
-          onClick={<span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >switchTab('characters')}</span>
-          className={`text-white ${activeTab === 'characters' &amp;&amp; 'active'}`}&gt;
+          onClick={<span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >switchTab("characters")}</span>
+          className={`text-white ${activeTab === "characters" &amp;&amp; "active"}`}
+        &gt;
           Characters
         &lt;/button&gt;
         &lt;button
-          onClick={() =&gt; switchTab('locations')}
-          className={`text-white ${activeTab === 'locations' &amp;&amp; 'active'}`}&gt;
+          onClick={() =&gt; switchTab("locations")}
+          className={`text-white ${activeTab === "locations" &amp;&amp; "active"}`}
+        &gt;
           Locations
         &lt;/button&gt;
         &lt;button
-          onClick={() =&gt; switchTab('episodes')}
-          className={`text-white ${activeTab === 'episodes' &amp;&amp; 'active'}`}&gt;
+          onClick={() =&gt; switchTab("episodes")}
+          className={`text-white ${activeTab === "episodes" &amp;&amp; "active"}`}
+        &gt;
           Episodes
         &lt;/button&gt;
-        &lt;button
-          onClick={handleReload}
-          className={`text-white max-sm:hidden`}&gt;
+        &lt;button onClick={handleReload} className={`text-white max-sm:hidden`}&gt;
           Reset
         &lt;/button&gt;
       &lt;/div&gt;
@@ -314,9 +317,9 @@ const Tabs = () =&gt; {
         &lt;/div&gt;
       ) : (
         &lt;div className={`tab-content ${activeTab}`}&gt;
-          {activeTab === 'characters' &amp;&amp; &lt;Characters /&gt;}
-          {activeTab === 'locations' &amp;&amp; &lt;Locations /&gt;}
-          {activeTab === 'episodes' &amp;&amp; &lt;Episodes /&gt;}
+          {activeTab === "characters" &amp;&amp; &lt;Characters /&gt;}
+          {activeTab === "locations" &amp;&amp; &lt;Locations /&gt;}
+          {activeTab === "episodes" &amp;&amp; &lt;Episodes /&gt;}
         &lt;/div&gt;
       )}
     &lt;/div&gt;
@@ -331,7 +334,7 @@ export default Tabs;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-10-18T12:10:12.459Z
+                at 2024-10-18T12:47:57.221Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

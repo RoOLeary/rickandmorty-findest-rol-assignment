@@ -30,15 +30,24 @@
     padding: 1rem;
 
     @media screen and (max-width: 1024px) {
-      grid-template-columns: repeat(2, 1fr); /* 2 cards per row on medium screens */
+      grid-template-columns: repeat(
+        2,
+        1fr
+      ); /* 2 cards per row on medium screens */
     }
 
     @media screen and (max-width: 768px) {
-      grid-template-columns: repeat(2, 1fr); /* 2 cards per row on small screens */
+      grid-template-columns: repeat(
+        2,
+        1fr
+      ); /* 2 cards per row on small screens */
     }
 
     @media screen and (max-width: 480px) {
-      grid-template-columns: repeat(2, 1fr); /* 2 cards per row on small screens */
+      grid-template-columns: repeat(
+        2,
+        1fr
+      ); /* 2 cards per row on small screens */
       gap: 10px;
     }
   }
@@ -63,14 +72,13 @@
       object-fit: cover;
     }
 
-    .characterListMeta{
+    .characterListMeta {
       padding: 20px;
       width: 100%;
       display: flex;
       flex-direction: column;
       align-self: flex-start;
     }
-
 
     .characterListItemTitle {
       font-weight: bold;

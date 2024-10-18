@@ -2,9 +2,7 @@ export default {
   presets: [
     "@babel/preset-env",
     "@babel/preset-react",
-    "@babel/preset-typescript"
+    "@babel/preset-typescript",
   ],
-  plugins: [
-    "@babel/plugin-transform-modules-commonjs"
-  ]
+  plugins: ["@babel/plugin-transform-modules-commonjs"],
 };

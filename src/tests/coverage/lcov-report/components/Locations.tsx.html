@@ -200,7 +200,27 @@
 <a name='L135'></a><a href='#L135'>135</a>
 <a name='L136'></a><a href='#L136'>136</a>
 <a name='L137'></a><a href='#L137'>137</a>
-<a name='L138'></a><a href='#L138'>138</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a>
+<a name='L143'></a><a href='#L143'>143</a>
+<a name='L144'></a><a href='#L144'>144</a>
+<a name='L145'></a><a href='#L145'>145</a>
+<a name='L146'></a><a href='#L146'>146</a>
+<a name='L147'></a><a href='#L147'>147</a>
+<a name='L148'></a><a href='#L148'>148</a>
+<a name='L149'></a><a href='#L149'>149</a>
+<a name='L150'></a><a href='#L150'>150</a>
+<a name='L151'></a><a href='#L151'>151</a>
+<a name='L152'></a><a href='#L152'>152</a>
+<a name='L153'></a><a href='#L153'>153</a>
+<a name='L154'></a><a href='#L154'>154</a>
+<a name='L155'></a><a href='#L155'>155</a>
+<a name='L156'></a><a href='#L156'>156</a>
+<a name='L157'></a><a href='#L157'>157</a>
+<a name='L158'></a><a href='#L158'>158</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -269,7 +289,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -337,16 +376,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint-disable react/react-in-jsx-scope */
-import { useState, useCallback } from 'react';
-import { debounce } from 'lodash';
-import { useGetLocationsListQuery } from './../services/rickandmorty';
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint-disable react/react-in-jsx-scope */
+import { useState, useCallback } from "react";
+import { debounce } from "lodash";
+import { useGetLocationsListQuery } from "./../services/rickandmorty";
 &nbsp;
 const Locations = () =&gt; {
   const [page, setPage] = useState(1);
-  const [name, setName] = useState('');
-  const [type, setType] = useState('');
-  const [dimension, setDimension] = useState('');
+  const [name, setName] = useState("");
+  const [type, setType] = useState("");
+  const [dimension, setDimension] = useState("");
 &nbsp;
   const [debouncedSearch, setDebouncedSearch] = useState(name);
 &nbsp;
@@ -355,7 +395,7 @@ const Locations = () =&gt; {
     debounce((value: string) =&gt; {
       setDebouncedSearch(value);
     }, 300),
-    []
+    [],
   );
 &nbsp;
   const handleSearchChange = (e: React.ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {
@@ -384,19 +424,19 @@ const Locations = () =&gt; {
   };
 &nbsp;
   return (
-    &lt;div className={'locations'}&gt;
-      &lt;div className={'locationFilters'}&gt;
+    &lt;div className={"locations"}&gt;
+      &lt;div className={"locationFilters"}&gt;
         {/* Search Input */}
         &lt;input
           type="text"
-          className={'searchInput'}
+          className={"searchInput"}
           placeholder="Search Locations by Name"
           value={name}
           onChange={handleSearchChange}
         /&gt;
 &nbsp;
         {/* Filters */}
-        &lt;div className={'filters'}&gt;
+        &lt;div className={"filters"}&gt;
           {/* Type Filter */}
           &lt;select value={type} onChange={(e) =&gt; setType(e.target.value)}&gt;
             &lt;option value=""&gt;All Types&lt;/option&gt;
@@ -406,42 +446,61 @@ const Locations = () =&gt; {
           &lt;/select&gt;
 &nbsp;
           {/* Dimension Filter */}
-          &lt;select value={dimension} onChange={(e) =&gt; setDimension(e.target.value)}&gt;
+          &lt;select
+            value={dimension}
+            onChange={(e) =&gt; setDimension(e.target.value)}
+          &gt;
             &lt;option value=""&gt;All Dimensions&lt;/option&gt;
             &lt;option value="Dimension C-137"&gt;Dimension C-137&lt;/option&gt;
-            &lt;option value="Post-Apocalyptic Dimension"&gt;Post-Apocalyptic Dimension&lt;/option&gt;
+            &lt;option value="Post-Apocalyptic Dimension"&gt;
+              Post-Apocalyptic Dimension
+            &lt;/option&gt;
           &lt;/select&gt;
         &lt;/div&gt;
       &lt;/div&gt;
 &nbsp;
       {/* Pagination Controls */}
-      &lt;div className={'pagination'}&gt;
-        &lt;button onClick={handlePreviousPage} disabled={!data?.info.prev || page === 1}&gt;
+      &lt;div className={"pagination"}&gt;
+        &lt;button
+          onClick={handlePreviousPage}
+          disabled={!data?.info.prev || page === 1}
+        &gt;
           Previous
         &lt;/button&gt;
         &lt;button onClick={handleNextPage} disabled={!data?.info.next}&gt;
           Next
         &lt;/button&gt;
-        &lt;span&gt;{page} / {data?.info?.pages}&lt;/span&gt;
+        &lt;span&gt;
+          {page} / {data?.info?.pages}
+        &lt;/span&gt;
       &lt;/div&gt;
 &nbsp;
       {/* Locations List or Error Handling */}
-      &lt;section className={'locationList'}&gt;
-        &lt;div className={'locationListContainer'}&gt;
+      &lt;section className={"locationList"}&gt;
+        &lt;div className={"locationListContainer"}&gt;
           {isLoading ? (
             &lt;p&gt;Loading...&lt;/p&gt;
           ) : error ? (
-            &lt;div className={'error'}&gt;
+            &lt;div className={"error"}&gt;
               &lt;h2&gt;DAMN IT M-M-M-MORTY..&lt;/h2&gt;
-              &lt;p className="font-black mb-4"&gt;
-                We have an Error!!...AN ERROR M-m-m-m-morty...Unable to fetch data...WHAT DID YOU DO M-M-M-MORTY?
+              &lt;p className="mb-4 font-black"&gt;
+                We have an Error!!...AN ERROR M-m-m-m-morty...Unable to fetch
+                data...WHAT DID YOU DO M-M-M-MORTY?
               &lt;/p&gt;
-              &lt;div style={{ width: '100%', height: '0', paddingBottom: '100%', position: 'relative', objectFit: 'cover' }}&gt;
+              &lt;div
+                style={{
+                  width: "100%",
+                  height: "0",
+                  paddingBottom: "100%",
+                  position: "relative",
+                  objectFit: "cover",
+                }}
+              &gt;
                 &lt;iframe
                   src="https://giphy.com/embed/RH1IFq2GT0Oau8NRWX"
                   width="100%"
                   height="100%"
-                  style={{ position: 'absolute', top: 0, left: 0 }}
+                  style={{ position: "absolute", top: 0, left: 0 }}
                   frameBorder="0"
                   className="giphy-embed"
                   allowFullScreen
@@ -456,8 +515,8 @@ const Locations = () =&gt; {
           ) : (
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             data?.results.map((location: any) =&gt; (
-              &lt;div key={location.id} className={'locationCard'}&gt;
-                &lt;h3 className={'locationListItemTitle'}&gt;{location.name}&lt;/h3&gt;
+              &lt;div key={location.id} className={"locationCard"}&gt;
+                &lt;h3 className={"locationListItemTitle"}&gt;{location.name}&lt;/h3&gt;
                 {/* &lt;p&gt;{location.url}&lt;/p&gt; */}
                 &lt;p&gt;
                   &lt;strong&gt;Type:&lt;/strong&gt; {location.type}
@@ -474,14 +533,15 @@ const Locations = () =&gt; {
   );
 };
 &nbsp;
-export default Locations;</pre></td></tr></table></pre>
+export default Locations;
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-10-18T12:10:12.459Z
+                at 2024-10-18T12:47:57.221Z
             </div>
         <script src="../prettify.js"></script>
         <script>

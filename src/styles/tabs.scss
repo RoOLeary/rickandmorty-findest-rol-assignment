@@ -1,4 +1,4 @@
-.tabs{
+.tabs {
   // SET UP
 
   .tabContainer {
@@ -8,36 +8,34 @@
     gap: 1em;
     @media (max-width: 768px) {
       padding: 3em 3.5em 0;
-    }  
+    }
 
     > button {
       font-size: x-large;
-      background: #08BAE3;
+      background: #08bae3;
       padding: 10px 5px;
       border-radius: 5px;
       width: 100%;
       font-family: "Get Schwifty";
-      transition: all .15s ease-in-out;
+      transition: all 0.15s ease-in-out;
 
-      &:last-child{
+      &:last-child {
         width: 40%;
       }
 
       &:hover {
-        color: #66BA4F;
+        color: #66ba4f;
         background-color: white;
       }
 
       &.active {
         color: white;
-        background-color: #66BA4F;
+        background-color: #66ba4f;
       }
     }
   }
 
-
-
-  .searchFilters{
+  .searchFilters {
     padding: 2em 1em 0;
     display: flex;
     justify-content: space-between;
@@ -46,8 +44,8 @@
     form {
       display: flex;
       width: 100%;
-      gap: .5em;
-      button{
+      gap: 0.5em;
+      button {
         background: blue;
         padding: 5px 25px;
       }

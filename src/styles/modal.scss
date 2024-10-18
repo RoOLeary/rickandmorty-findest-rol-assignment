@@ -37,7 +37,9 @@
     flex-direction: row; /* Row layout for larger screens */
     align-items: flex-start;
     transform: scale(0.9); /* Start scaled down */
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
     position: relative;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     margin-top: 25vh; /* Center modal at approximately 25% from the top */
@@ -97,8 +99,8 @@
       max-width: 90%;
       padding: 0; /* Remove padding from modal content */
       margin-top: 25vh; /* Center modal at approximately 25% from the top */
-    
-      img{
+
+      img {
         width: 100%;
         font-size: 1.25rem;
         margin: 0.5rem 0;
@@ -141,7 +143,7 @@
     }
   }
 
-  .episodeListMeta{
+  .episodeListMeta {
     padding: 20px;
     width: 100%;
     display: flex;

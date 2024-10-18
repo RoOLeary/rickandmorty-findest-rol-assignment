@@ -1,13 +1,13 @@
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import Modal from './../../../components/Modal';
+import React from "react";
+import { render, screen, fireEvent } from "@testing-library/react";
+import Modal from "./../../../components/Modal";
 
-describe('Modal Component', () => {
+describe("Modal Component", () => {
   const mockOnClose = jest.fn();
 
   beforeEach(() => {
     // Suppress console.error temporarily for this test suite
-    jest.spyOn(console, 'error').mockImplementation(() => {});
+    jest.spyOn(console, "error").mockImplementation(() => {});
   });
 
   afterEach(() => {
@@ -15,18 +15,17 @@ describe('Modal Component', () => {
     (console.error as jest.Mock).mockRestore();
   });
 
-  it('prevents closing the modal when clicking inside the content', () => {
+  it("prevents closing the modal when clicking inside the content", () => {
     render(
       <Modal show={true} onClose={mockOnClose}>
         <div data-testid="modal-content">
           <p>Modal Content</p>
         </div>
-      </Modal>
+      </Modal>,
     );
 
     // Click inside modal content, should not close
-    fireEvent.click(screen.getByTestId('modal-content'));
+    fireEvent.click(screen.getByTestId("modal-content"));
     expect(mockOnClose).not.toHaveBeenCalled();
   });
-
 });

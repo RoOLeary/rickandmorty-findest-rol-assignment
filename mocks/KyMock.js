@@ -1,5 +1,4 @@
 module.exports = {
-    get: jest.fn(),
-    post: jest.fn(),
-  };
-  
+  get: jest.fn(),
+  post: jest.fn(),
+};

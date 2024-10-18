@@ -1,7 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from 'react';
-import Modal from './Modal';  // Assuming you have a Modal component
+import { useState } from "react";
+import Modal from "./Modal"; // Assuming you have a Modal component
 
 interface CharacterCardProps {
   character: {
@@ -13,7 +13,7 @@ interface CharacterCardProps {
     location: { name: string };
     gender: string;
     origin: { name: string };
-  },
+  };
   chartoggle?: any;
 }
 
@@ -21,7 +21,7 @@ interface CharacterCardProps {
 const CharacterCard = ({ character, chartoggle }: CharacterCardProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const openModal = (id: any) => {
     document.startViewTransition(() => {
       setIsModalOpen(true);
@@ -35,21 +35,44 @@ const CharacterCard = ({ character, chartoggle }: CharacterCardProps) => {
   };
 
   return (
-    <div onClick={() => openModal(character.id)} className={'characterListItem'} data-testid="modal-open">
-      <img src={character.image} alt={character.name} width={100} height={100} className={'characterListImage'} data-view-transition={`character-image-${character.id}`} />
-      <div className={'characterListItemDetail'}>
-        <h3 className={'characterListItemTitle'}>{character.name}</h3>
+    <div
+      onClick={() => openModal(character.id)}
+      className={"characterListItem"}
+      data-testid="modal-open"
+    >
+      <img
+        src={character.image}
+        alt={character.name}
+        width={100}
+        height={100}
+        className={"characterListImage"}
+        data-view-transition={`character-image-${character.id}`}
+      />
+      <div className={"characterListItemDetail"}>
+        <h3 className={"characterListItemTitle"}>{character.name}</h3>
       </div>
 
       {/* Modal component, shown based on state */}
       <Modal show={isModalOpen} onClose={closeModal} data-testid="modal">
-        <img src={character.image} alt={character.name} data-view-transition={`character-image-${character.id}`} />
-        <div className={'characterListMeta'}>
-          <h3 className={'characterListItemTitle'}>{character.name}</h3>
-          <p><strong>Species:</strong> {character.species}</p>
-          <p><strong>Status:</strong> {character?.status}</p>
-          <p><strong>Origin:</strong> {character.origin.name}</p>
-          <p><strong>Location:</strong> {character?.location.name}</p>
+        <img
+          src={character.image}
+          alt={character.name}
+          data-view-transition={`character-image-${character.id}`}
+        />
+        <div className={"characterListMeta"}>
+          <h3 className={"characterListItemTitle"}>{character.name}</h3>
+          <p>
+            <strong>Species:</strong> {character.species}
+          </p>
+          <p>
+            <strong>Status:</strong> {character?.status}
+          </p>
+          <p>
+            <strong>Origin:</strong> {character.origin.name}
+          </p>
+          <p>
+            <strong>Location:</strong> {character?.location.name}
+          </p>
         </div>
       </Modal>
     </div>
@@ -57,4 +80,3 @@ const CharacterCard = ({ character, chartoggle }: CharacterCardProps) => {
 };
 
 export default CharacterCard;
-

@@ -2,20 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-
-@import './characterList.scss';
-@import './episodeList.scss';
-@import './errorsContentSpinner.scss';
-@import './home.scss';
-@import './landing.scss';
-@import './locationList.scss';
-@import './modal.scss';
-@import './pagination.scss';
-@import './tabs.scss';
-
+@import "./characterList.scss";
+@import "./episodeList.scss";
+@import "./errorsContentSpinner.scss";
+@import "./home.scss";
+@import "./landing.scss";
+@import "./locationList.scss";
+@import "./modal.scss";
+@import "./pagination.scss";
+@import "./tabs.scss";
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -25,13 +23,13 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh; /* Ensure the body takes up the full viewport height */
-  p{
+  p {
     font-size: 14px;
   }
 }
 
 body::before {
-  content: '';
+  content: "";
   position: fixed;
   top: 50%;
   left: 50%;
@@ -40,19 +38,29 @@ body::before {
   background-color: #fff;
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 
-    -42vw -4vh 0px 0px #fff, 25vw -41vh 0px 0px #fff, 
-    -20vw 49vh 0px 1px #fff, 5vw 40vh 1px 1px #fff, 
-    29vw 19vh 1px 0px #fff, -44vw -13vh 0px 0px #fff, 
-    46vw 41vh 0px 1px #fff, -3vw -45vh 0px 1px #fff, 
-    47vw 35vh 1px 0px #fff, 12vw -8vh 1px 0px #fff, 
-    -34vw 48vh 1px 1px #fff, 32vw 26vh 1px 1px #fff,
-    /* Additional stars for more density */
-    -12vw 25vh 1px 0px #fff, 15vw -35vh 0px 0px #fff,
-    37vw 22vh 1px 1px #fff, -16vw -27vh 1px 0px #fff,
-    44vw -12vh 1px 0px #fff, -29vw 36vh 1px 0px #fff,
-    -24vw -18vh 1px 1px #fff, 28vw -19vh 1px 0px #fff,
-    -18vw -25vh 0px 0px #fff, 40vw -5vh 1px 0px #fff,
+  box-shadow:
+    -42vw -4vh 0px 0px #fff,
+    25vw -41vh 0px 0px #fff,
+    -20vw 49vh 0px 1px #fff,
+    5vw 40vh 1px 1px #fff,
+    29vw 19vh 1px 0px #fff,
+    -44vw -13vh 0px 0px #fff,
+    46vw 41vh 0px 1px #fff,
+    -3vw -45vh 0px 1px #fff,
+    47vw 35vh 1px 0px #fff,
+    12vw -8vh 1px 0px #fff,
+    -34vw 48vh 1px 1px #fff,
+    32vw 26vh 1px 1px #fff,
+    /* Additional stars for more density */ -12vw 25vh 1px 0px #fff,
+    15vw -35vh 0px 0px #fff,
+    37vw 22vh 1px 1px #fff,
+    -16vw -27vh 1px 0px #fff,
+    44vw -12vh 1px 0px #fff,
+    -29vw 36vh 1px 0px #fff,
+    -24vw -18vh 1px 1px #fff,
+    28vw -19vh 1px 0px #fff,
+    -18vw -25vh 0px 0px #fff,
+    40vw -5vh 1px 0px #fff,
     50vw -20vh 1px 1px #fff;
   animation: zoom 16s alternate infinite;
   z-index: -1; /* Ensure it stays behind other content */
@@ -72,8 +80,6 @@ body::before {
   display: grid;
 }
 
-
-
 // .container {
 //   background-color: #282c34;
 //   min-height: 100vh;
@@ -92,9 +98,9 @@ body::before {
   border: 5px solid red;
   border-radius: 5px;
   grid-column: 1 / -1;
-  color: white; 
+  color: white;
 
-  .reload{
+  .reload {
     background: red;
     margin: 1em 0;
     justify-content: center;
@@ -102,14 +108,14 @@ body::before {
     margin: 1em auto;
     border-radius: 5px;
     color: white;
-    font-family: 'Get Schwifty';
+    font-family: "Get Schwifty";
     padding: 1em 2em;
   }
 
   h2 {
     font-family: "Get Schwifty";
     transition: all 0.15s ease-in-out;
-    color: white; 
+    color: white;
     font-size: 30px;
   }
 }
@@ -135,25 +141,23 @@ body::before {
   color: #61dafb;
 }
 
-.content{
-    width: 100%;
-    margin: 0 auto; /* Center align content for all screen sizes */
-  
-    @media (min-width: 768px) {
-        width: 960px;
-    }  
+.content {
+  width: 100%;
+  margin: 0 auto; /* Center align content for all screen sizes */
+
+  @media (min-width: 768px) {
+    width: 960px;
+  }
 }
 
 .tab-content-loading {
   display: flex;
-  justify-content: center;  /* Centers the spinner horizontally */
-  align-items: center;      /* Centers the spinner vertically */
-  height: 80vh;             /* Ensures the container takes the full height of the tab content */
-  min-height: 200px;        /* Optional: Adjust minimum height based on your design */
+  justify-content: center; /* Centers the spinner horizontally */
+  align-items: center; /* Centers the spinner vertically */
+  height: 80vh; /* Ensures the container takes the full height of the tab content */
+  min-height: 200px; /* Optional: Adjust minimum height based on your design */
 
-
-
-  .loadingSpinner{
+  .loadingSpinner {
     font-family: "Get Schwifty";
     font-size: 54px;
     color: white;
@@ -165,11 +169,6 @@ body::before {
 
     @media (max-width: 768px) {
       font-size: 34px;
-    }  
+    }
   }
-
-    
 }
-
-
-

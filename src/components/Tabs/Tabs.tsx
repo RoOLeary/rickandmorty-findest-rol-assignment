@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import Characters from '../Characters';
-import Locations from '../Locations';
-import Episodes from '../Episodes';
-import Spinner from '../Spinner';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import Characters from "../Characters";
+import Locations from "../Locations";
+import Episodes from "../Episodes";
+import Spinner from "../Spinner";
+import { useNavigate } from "react-router-dom";
 
 // Check if the ViewTransition API is supported
 const useViewTransition = () => {
-  return typeof document.startViewTransition === 'function';
+  return typeof document.startViewTransition === "function";
 };
 
 const Tabs = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [activeTab, setActiveTab] = useState('characters');
+  const [activeTab, setActiveTab] = useState("characters");
   const supportsViewTransition = useViewTransition();
   const navigate = useNavigate();
 
@@ -45,26 +45,27 @@ const Tabs = () => {
   };
 
   return (
-    <div className='content tabs'>
+    <div className="content tabs">
       <div className="tabContainer @import './pagination.scss">
         <button
-          onClick={() => switchTab('characters')}
-          className={`text-white ${activeTab === 'characters' && 'active'}`}>
+          onClick={() => switchTab("characters")}
+          className={`text-white ${activeTab === "characters" && "active"}`}
+        >
           Characters
         </button>
         <button
-          onClick={() => switchTab('locations')}
-          className={`text-white ${activeTab === 'locations' && 'active'}`}>
+          onClick={() => switchTab("locations")}
+          className={`text-white ${activeTab === "locations" && "active"}`}
+        >
           Locations
         </button>
         <button
-          onClick={() => switchTab('episodes')}
-          className={`text-white ${activeTab === 'episodes' && 'active'}`}>
+          onClick={() => switchTab("episodes")}
+          className={`text-white ${activeTab === "episodes" && "active"}`}
+        >
           Episodes
         </button>
-        <button
-          onClick={handleReload}
-          className={`text-white max-sm:hidden`}>
+        <button onClick={handleReload} className={`text-white max-sm:hidden`}>
           Reset
         </button>
       </div>
@@ -75,9 +76,9 @@ const Tabs = () => {
         </div>
       ) : (
         <div className={`tab-content ${activeTab}`}>
-          {activeTab === 'characters' && <Characters />}
-          {activeTab === 'locations' && <Locations />}
-          {activeTab === 'episodes' && <Episodes />}
+          {activeTab === "characters" && <Characters />}
+          {activeTab === "locations" && <Locations />}
+          {activeTab === "episodes" && <Episodes />}
         </div>
       )}
     </div>

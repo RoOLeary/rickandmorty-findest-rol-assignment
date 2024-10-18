@@ -1,15 +1,15 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { setupListeners } from '@reduxjs/toolkit/query'
-import { createBrowserHistory } from 'history'
-import { combineReducers } from 'redux'
-import { createReduxHistoryContext } from 'redux-first-history'
-import { rickAndMortyApi } from './services/rickandmorty'
+import { configureStore } from "@reduxjs/toolkit";
+import { setupListeners } from "@reduxjs/toolkit/query";
+import { createBrowserHistory } from "history";
+import { combineReducers } from "redux";
+import { createReduxHistoryContext } from "redux-first-history";
+import { rickAndMortyApi } from "./services/rickandmorty";
 
 const { createReduxHistory, routerMiddleware, routerReducer } =
-  createReduxHistoryContext({ history: createBrowserHistory() })
+  createReduxHistoryContext({ history: createBrowserHistory() });
 
 export const store = configureStore({
-  devTools: process.env.NODE_ENV === 'development',
+  devTools: process.env.NODE_ENV === "development",
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat([
       // additional slices here
@@ -22,15 +22,15 @@ export const store = configureStore({
     router: routerReducer,
     [rickAndMortyApi.reducerPath]: rickAndMortyApi.reducer,
   }),
-})
+});
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>
+export type RootState = ReturnType<typeof store.getState>;
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch
+export type AppDispatch = typeof store.dispatch;
 
-setupListeners(store.dispatch)
-export const history = createReduxHistory(store)
+setupListeners(store.dispatch);
+export const history = createReduxHistory(store);
 
 // src/store.js
 // import { configureStore } from '@reduxjs/toolkit';

@@ -1,10 +1,10 @@
-import { renderHook } from '@testing-library/react';
-import useUpdateEffect from '../../../hooks/useUpdateEffect';
+import { renderHook } from "@testing-library/react";
+import useUpdateEffect from "../../../hooks/useUpdateEffect";
 
-describe('useUpdateEffect', () => {
+describe("useUpdateEffect", () => {
   beforeEach(() => {
     // Suppress console.error temporarily for this test suite
-    jest.spyOn(console, 'error').mockImplementation(() => {});
+    jest.spyOn(console, "error").mockImplementation(() => {});
   });
 
   afterEach(() => {
@@ -12,7 +12,7 @@ describe('useUpdateEffect', () => {
     (console.error as jest.Mock).mockRestore();
   });
 
-  it('should not call effect on initial render but call it on subsequent updates', () => {
+  it("should not call effect on initial render but call it on subsequent updates", () => {
     const effect = jest.fn();
 
     const { rerender } = renderHook(() => useUpdateEffect(effect));
@@ -28,12 +28,15 @@ describe('useUpdateEffect', () => {
     expect(effect).toHaveBeenCalledTimes(2);
   });
 
-  it('should only call effect when dependencies change', () => {
+  it("should only call effect when dependencies change", () => {
     const effect = jest.fn();
 
-    const { rerender } = renderHook(({ dep }) => useUpdateEffect(effect, [dep]), {
-      initialProps: { dep: 1 },
-    });
+    const { rerender } = renderHook(
+      ({ dep }) => useUpdateEffect(effect, [dep]),
+      {
+        initialProps: { dep: 1 },
+      },
+    );
 
     expect(effect).toHaveBeenCalledTimes(0);
 

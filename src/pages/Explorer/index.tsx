@@ -1,14 +1,13 @@
-import React from 'react';
-import Tabs from '../../components/Tabs/Tabs'
+import React from "react";
+import Tabs from "../../components/Tabs/Tabs";
 
 const Explorer = () => {
-  
   return (
     <main>
-        <div data-testid="explorer-component">
+      <div data-testid="explorer-component">
         <Tabs />
-        </div>
+      </div>
     </main>
-  )
-}
-export default Explorer
+  );
+};
+export default Explorer;
