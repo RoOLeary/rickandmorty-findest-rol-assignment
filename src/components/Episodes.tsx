@@ -19,7 +19,7 @@ const Episodes = () => {
   const [selectedCharacter, setSelectedCharacter] = useState<any>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedSearch, setDebouncedSearch] = useState(name);
-  const [showAllCharacters, setShowAllCharacters] = useState<{ [key: number]: boolean }>({}); // Add state for "Show All"
+  const [showAllCharacters, setShowAllCharacters] = useState<{ [key: number]: boolean }>({}); 
 
   // Debounce the search input
   const debouncedSearchChange = useCallback(
@@ -184,7 +184,7 @@ const Episodes = () => {
                     <Suspense fallback={<LoadingFallback />}>
                       {characterDetails[episode.id] ? (
                         characterDetails[episode.id]
-                          .slice(0, showAllCharacters[episode.id] ? characterDetails[episode.id].length : 9) // Show 9 characters by default
+                          .slice(0, showAllCharacters[episode.id] ? characterDetails[episode.id].length : 9) 
                           .map((character, idx) => (
                             <li key={idx}>
                               <div onClick={() => openModal(character)}>
