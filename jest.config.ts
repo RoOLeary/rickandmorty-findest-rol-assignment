@@ -15,7 +15,7 @@ module.exports = {
     },
     "verbose": true,
     collectCoverage: true,
-    coverageDirectory: "<rootDir>/src/tests/coverage",
+    coverageDirectory: "<rootDir>/src/tests/coverage/",
     
   };
   
