@@ -41,13 +41,6 @@ And although you may need to chmod +x this fella too, if you run the following:
 
 .....you'll see some funny/cool ascii art.
 
-Note: You can also run the test suites thusly:
-And although you may need to chmod +x this command also:
-
-```bash
-  ./test.sh
-```
-
 ## ANYWAY....
 
 This will install `pnpm`, as well as all the necessary dependencies. It'll run the test suites and
